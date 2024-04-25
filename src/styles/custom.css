@@ -1,25 +1,54 @@
+@font-face {
+  font-family: 'SejongHospitalBold';
+  font-style: normal;
+  src: url('../assets/font/SejongHospitalBold.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'SejongHospitalLight';
+  font-style: normal;
+  src: url('../assets/font/SejongHospitalLight.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'NanumSquareRegular';
+  font-style: normal;
+  src: url('../assets/font/NanumSquareRegular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'NanumSquareBold';
+  font-style: normal;
+  src: url('../assets/font/NanumSquareBold.ttf') format('truetype');
+}
+
 body {
-   background-color: #f1f1f1;
+  background-color: #f1f1f1;
+  font-family: 'NanumSquareRegular';
 }
 
 #root {
-   display: flex;
-   justify-content: center;
+  display: flex;
+  justify-content: center;
+}
+
+/* Daisy UI */
+.btn-primary {
 }
 
 /* Scrollbar */
 * {
-   &::-webkit-scrollbar {
-      width: 5px;
-      height: 0px;
-   }
+  &::-webkit-scrollbar {
+    width: 5px;
+    height: 0px;
+  }
 
-   &::-webkit-scrollbar-thumb {
-      background: #ddd;
-      border-radius: 10px;
-   }
+  &::-webkit-scrollbar-thumb {
+    background: #ddd;
+    border-radius: 10px;
+  }
 
-   &::-webkit-scrollbar-track {
-      background: #eee;
-   }
+  &::-webkit-scrollbar-track {
+    background: #eee;
+  }
 }
