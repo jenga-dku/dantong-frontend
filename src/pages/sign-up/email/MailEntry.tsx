@@ -1,12 +1,19 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Content } from '../Content';
 
-export const MailEntry = () => {
+export const MailEntry = ({
+  updateMail,
+}: {
+  updateMail: React.Dispatch<React.SetStateAction<string>>;
+}) => {
   const inputRef = useRef(null);
   const [isButtonActive, setIsButtonActive] = useState(false);
-  const [email, setEmail] = useState('');
+  const [mail, setMail] = useState('');
 
+  useEffect(() => {
+    updateMail(mail);
+  }, [mail]);
   const navigate = useNavigate();
   return (
     <>
@@ -17,12 +24,12 @@ export const MailEntry = () => {
             <div className="font-NanumSquareBold flex justify-between border-b-2 border-solid border-primary pb-1 pl-2 pr-5 text-lg">
               <input
                 type="text"
-                value={email}
+                value={mail}
                 ref={inputRef}
                 autoFocus={true}
                 onChange={(e) => {
                   setIsButtonActive(e.target.value.length > 0);
-                  setEmail(e.target.value);
+                  setMail(e.target.value);
                 }}
               />
               <p className="text-[#C4C4C4]">@dankook.ac.kr</p>
