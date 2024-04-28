@@ -8,7 +8,7 @@ export const Content = ({
   content?: ReactNode;
 }) => {
   return (
-    <div className="mt-[-50px] w-full">
+    <div className="w-full">
       <p className="font-SejongHospitalBold mb-6 text-xl leading-[1.2] text-primary">
         {message.split('\\n').map((line) => (
           <>

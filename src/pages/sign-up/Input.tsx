@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { ReactNode, useState } from 'react';
 
 type InputProps = React.HTMLAttributes<HTMLDivElement> & {
   value: string;
@@ -7,7 +7,8 @@ type InputProps = React.HTMLAttributes<HTMLDivElement> & {
   additionalElement?: ReactNode;
   className?: string;
   label?: string;
-  ref?: React.MutableRefObject<null>;
+  autoFocus?: boolean;
+  ref?: React.RefObject<HTMLInputElement>;
 };
 
 export const Input = ({
@@ -17,22 +18,33 @@ export const Input = ({
   additionalElement,
   className,
   label,
+  autoFocus,
   ref,
   ...props
 }: InputProps) => {
+  const [isFocused, setIsFocused] = useState(true);
+
   return (
     <div
-      className={`font-NanumSquareBold flex flex-col justify-between border-b-2 border-solid pb-1 pl-2 pr-5 text-lg transition delay-150 ease-in-out ${value.length > 0 ? 'border-primary' : 'border-[#CAD4E0]'}`}
+      className={`font-NanumSquareBold flex flex-col justify-between border-b-2 border-solid pb-1 pl-2 pr-5 text-lg transition delay-150 ease-in-out ${value.length > 0 && isFocused ? 'border-primary' : 'border-[#CAD4E0]'}`}
     >
-      <label className="mb-1 text-sm text-[#aaa]">{label}</label>
+      <label className="mb-1 text-sm text-[#aaa]">
+        {value.length > 0 && label}
+      </label>
       <div className="flex justify-between">
         <input
           className={className}
           type="text"
           placeholder={placeholder}
           value={value}
-          autoFocus={true}
+          autoFocus={autoFocus ?? true}
           onChange={onChange}
+          onFocus={() => {
+            setIsFocused(true);
+          }}
+          onBlur={() => {
+            setIsFocused(false);
+          }}
           {...props}
         />
         {additionalElement}

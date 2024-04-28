@@ -1,10 +1,11 @@
 import { HTMLAttributes } from 'react';
 
-type ButtonProps = HTMLAttributes<HTMLButtonElement> & {
+type Button = HTMLAttributes<HTMLButtonElement> & {
   content: string;
   onClick: () => void;
   size: 'full' | 'fit';
   disabled?: boolean;
+  className?: string;
 };
 
 export const Button = ({
@@ -12,11 +13,12 @@ export const Button = ({
   onClick,
   size,
   disabled,
+  className,
   ...props
-}: ButtonProps) => {
+}: Button) => {
   return (
     <button
-      className={`btn-primary ${size && `btn-${size}`}`}
+      className={`btn-primary ${size && `btn-${size}`} ${className}`}
       disabled={disabled ?? false}
       onClick={onClick}
       {...props}
