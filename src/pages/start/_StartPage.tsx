@@ -1,4 +1,5 @@
 import { Link, useNavigate } from 'react-router-dom';
+import { Button } from '../../components/Button';
 
 export const StartPage = () => {
   const navigate = useNavigate();
@@ -13,14 +14,13 @@ export const StartPage = () => {
         </h1>
       </div>
       <div className="mb-8 flex w-full flex-col gap-6 justify-self-end">
-        <button
+        <Button
+          content="시작하기"
           onClick={() => {
             navigate('/sign-up/email');
           }}
-          className="btn-primary"
-        >
-          시작하기
-        </button>
+          size="full"
+        />
         <Link to="/login" className="text-center text-sm text-[#bbb] underline">
           이미 계정이 있으신가요?
         </Link>

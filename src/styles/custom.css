@@ -34,11 +34,20 @@ body {
 
 /* Daisy UI */
 .btn-primary {
-  @apply btn h-fit w-full bg-primary py-4 text-xl text-white;
+  @apply btn h-fit border-none bg-primary text-white;
   &:hover {
     background-color: #d2d2d2;
   }
-  border: none;
+}
+
+.btn-full {
+  width: 100%;
+  padding: 1rem 0;
+  font-size: 1.25rem;
+}
+
+.btn-fit {
+  padding: 1rem;
 }
 
 /* Scrollbar */

@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Content } from '../Content';
 import { Input } from '../Input';
 import { SignUpLayout } from '../SignUpLayout';
+import { Button } from '../../../components/Button';
 
 export const InfoEntryPage = () => {
   const [userInfo, setUserInfo] = useState({ name: '' });
@@ -18,7 +19,9 @@ export const InfoEntryPage = () => {
             onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
               setUserInfo({ name: e.target.value });
             }}
-            additionalElement={<button className="btn-primary">확인</button>}
+            additionalElement={
+              <Button content="확인" size="fit" onClick={() => {}} />
+            }
           />
         }
       />

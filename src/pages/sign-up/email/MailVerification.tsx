@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { ReactComponent as EmailVerificationIcon } from '../../../assets/svg/EmailVerification.svg';
 import { Content } from '../Content';
+import { Button } from '../../../components/Button';
 
 export const MailVerification = () => {
   const navigate = useNavigate();
@@ -15,15 +16,13 @@ export const MailVerification = () => {
           </div>
         }
       />
-
-      <button
-        className="btn-primary"
+      <Button
+        content="인증 완료"
+        size="full"
         onClick={() => {
           navigate('/sign-up/info');
         }}
-      >
-        인증하기
-      </button>
+      />
     </>
   );
 };
