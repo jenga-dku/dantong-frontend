@@ -5,23 +5,19 @@ import { MailVerification } from './MailVerification';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 
 export const MailEntryPage = () => {
-  const [isMailSended, setIsMailSended] = useState(false);
+  const [isMailSent, setIsMailSent] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
   const [mail, setMail] = useState('');
   const navigate = useNavigate();
 
   useEffect(() => {
     mail.length === 0 && navigate('/sign-up/email');
-    setIsMailSended(searchParams.get('isMailSended') === 'true' ?? false);
+    setIsMailSent(searchParams.get('isMailSent') === 'true' ?? false);
   }, [searchParams]);
 
   return (
     <SignUpLayout>
-      {!isMailSended ? (
-        <MailEntry updateMail={setMail} />
-      ) : (
-        <MailVerification />
-      )}
+      {!isMailSent ? <MailEntry updateMail={setMail} /> : <MailVerification />}
     </SignUpLayout>
   );
 };

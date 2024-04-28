@@ -1,47 +1,47 @@
 import { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Content } from '../Content';
+import { Input } from '../Input';
 
 export const MailEntry = ({
   updateMail,
 }: {
   updateMail: React.Dispatch<React.SetStateAction<string>>;
 }) => {
-  const inputRef = useRef(null);
   const [isButtonActive, setIsButtonActive] = useState(false);
   const [mail, setMail] = useState('');
+  const inputRef = useRef(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     updateMail(mail);
   }, [mail]);
-  const navigate = useNavigate();
+
   return (
     <>
       <Content
         message="힉생 인증을 위한\n단국대학교 이메일을 직접 입력해주세요"
         content={
           <>
-            <div className="font-NanumSquareBold flex justify-between border-b-2 border-solid border-primary pb-1 pl-2 pr-5 text-lg">
-              <input
-                type="text"
-                value={mail}
-                ref={inputRef}
-                autoFocus={true}
-                onChange={(e) => {
-                  setIsButtonActive(e.target.value.length > 0);
-                  setMail(e.target.value);
-                }}
-              />
-              <p className="text-[#C4C4C4]">@dankook.ac.kr</p>
-            </div>
+            <Input
+              ref={inputRef}
+              value={mail}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                setIsButtonActive(e.target.value.length > 0);
+                setMail(e.target.value);
+              }}
+              additionalElement={
+                <p className="text-[#C4C4C4]">@dankook.ac.kr</p>
+              }
+            />
           </>
         }
       />
       <button
-        className="btn-primary"
+        className="btn-primary sticky bottom-0"
         disabled={!isButtonActive}
         onClick={() => {
-          navigate('?isMailSended=true');
+          navigate('?isMailSent=true');
         }}
       >
         인증하기
