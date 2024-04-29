@@ -21,7 +21,7 @@ export const MailEntry = ({
   return (
     <>
       <Content
-        message="힉생 인증을 위한\n단국대학교 이메일을 직접 입력해주세요"
+        message="학생 인증을 위한\n단국대학교 이메일을 직접 입력해주세요"
         content={
           <Input
             ref={inputRef}

@@ -1,20 +1,21 @@
-import { ReactNode, useRef } from 'react';
+import { ReactNode } from 'react';
+import { useLocation } from 'react-router-dom';
 
 export const SignUpLayout = ({
   children,
-  pageIndex,
+  step,
 }: {
   children: ReactNode[];
-  pageIndex: number;
+  step: number;
 }) => {
-  const layoutRef = useRef<HTMLDivElement>(null);
+  const { pathname } = useLocation();
+  const isInSuccessPage = pathname === '/sign-up/success';
 
   return (
     <div
-      className={`grid h-full w-full grid-cols-1 grid-rows-[1fr_3fr] gap-8 p-8`}
-      ref={layoutRef}
+      className={`grid h-full w-full gap-8 p-8 ${isInSuccessPage && 'gradientBackground'}`}
     >
-      {children[pageIndex]}
+      {children[step]}
     </div>
   );
 };

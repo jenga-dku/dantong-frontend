@@ -9,10 +9,12 @@ type InputProps = React.HTMLAttributes<HTMLDivElement> & {
   label?: string;
   autoFocus?: boolean;
   ref?: React.RefObject<HTMLInputElement>;
+  type?: string;
 };
 
 export const Input = ({
   value,
+  type,
   onChange,
   placeholder,
   additionalElement,
@@ -26,7 +28,7 @@ export const Input = ({
 
   return (
     <div
-      className={`font-NanumSquareBold flex flex-col justify-between border-b-2 border-solid pb-1 pl-2 pr-5 text-lg transition delay-150 ease-in-out ${value.length > 0 && isFocused ? 'border-primary' : 'border-[#CAD4E0]'}`}
+      className={`flex flex-col justify-between border-b-2 border-solid pb-1 pl-2 pr-5 font-NanumSquareBold text-lg transition delay-150 ease-in-out ${value.length > 0 && isFocused ? 'border-primary' : 'border-[#CAD4E0]'}`}
     >
       <label className="mb-1 text-sm text-[#aaa]">
         {value.length > 0 && label}
@@ -34,7 +36,7 @@ export const Input = ({
       <div className="flex justify-between">
         <input
           className={className}
-          type="text"
+          type={type}
           placeholder={placeholder}
           value={value}
           autoFocus={autoFocus ?? true}

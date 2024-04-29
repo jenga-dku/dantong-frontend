@@ -31,6 +31,7 @@ module.exports = {
       SejongHospitalLight: ['SejongHospitalLight'],
       NanumSquareRegular: ['NanumSquareRegular'],
       NanumSquareBold: ['NanumSquareBold'],
+      NanumSquareEB: ['NanumSquareEB'],
     },
   },
   plugins: [require('daisyui')],
