@@ -1,6 +1,12 @@
 import { ReactNode, useRef } from 'react';
 
-export const SignUpLayout = ({ children }: { children: ReactNode }) => {
+export const SignUpLayout = ({
+  children,
+  pageIndex,
+}: {
+  children: ReactNode[];
+  pageIndex: number;
+}) => {
   const layoutRef = useRef<HTMLDivElement>(null);
 
   return (
@@ -8,7 +14,7 @@ export const SignUpLayout = ({ children }: { children: ReactNode }) => {
       className={`grid h-full w-full grid-cols-1 grid-rows-[1fr_3fr] gap-8 p-8`}
       ref={layoutRef}
     >
-      {children}
+      {children[pageIndex]}
     </div>
   );
 };

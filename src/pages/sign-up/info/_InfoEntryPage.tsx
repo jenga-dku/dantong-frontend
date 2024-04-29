@@ -1,8 +1,9 @@
 import { useEffect, useRef, useState } from 'react';
 import { Content } from '../Content';
 import { Input } from '../Input';
-import { SignUpLayout } from '../SignUpLayout';
 import { Button } from '../../../components/Button';
+import { useNavigate } from 'react-router-dom';
+import { signUpInfo } from '../_SignUpPage';
 
 type userInfo = {
   name: string;
@@ -16,7 +17,11 @@ type userInfoInputAttr = {
   korName: string;
 };
 
-export const InfoEntryPage = () => {
+export const InfoEntryPage = ({
+  updateState,
+}: {
+  updateState: React.Dispatch<React.SetStateAction<signUpInfo>>;
+}) => {
   const [userInfo, setUserInfo] = useState<userInfo>({
     name: '',
     studentID: '',
@@ -43,8 +48,8 @@ export const InfoEntryPage = () => {
       korName: '전공',
     },
   ];
-
   const isEntryCompleted = activatedInputIndex === userInfoInputAttrList.length;
+  const navigate = useNavigate();
 
   useEffect(() => {
     const currentInput =
@@ -52,8 +57,20 @@ export const InfoEntryPage = () => {
     currentInput?.focus();
   }, [activatedInputIndex]);
 
+  useEffect(() => {
+    updateState((prev) => ({
+      ...prev,
+      2: {
+        name: userInfo.name,
+        major: userInfo.major,
+        phoneNumber: userInfo.phoneNumber,
+        studentID: userInfo.studentID,
+      },
+    }));
+  }, [isEntryCompleted]);
+
   return (
-    <SignUpLayout>
+    <>
       <Content
         message="학생 인증이 완료되었습니다\n회원 정보를 입력해주세요"
         content={
@@ -91,10 +108,16 @@ export const InfoEntryPage = () => {
         }
       />
       {isEntryCompleted ? (
-        <Button content="다음" onClick={() => {}} size="full" />
+        <Button
+          content="다음"
+          onClick={() => {
+            navigate('/sign-up/password');
+          }}
+          size="full"
+        />
       ) : (
         <div />
       )}
-    </SignUpLayout>
+    </>
   );
 };
