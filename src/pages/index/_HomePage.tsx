@@ -1,5 +1,10 @@
 import { Layout } from '../../components/Layout';
+import { WelcomeBox } from './WelcomBox';
 
 export const HomePage = () => {
-  return <Layout>home</Layout>;
+  return (
+    <Layout>
+      <WelcomeBox />
+    </Layout>
+  );
 };
