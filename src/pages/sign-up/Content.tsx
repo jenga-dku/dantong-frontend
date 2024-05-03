@@ -10,22 +10,18 @@ export const Content = ({
   subMessage?: string;
 }) => {
   const parseNewLine = (content: string) =>
-    content.split('\\n').map((line) => (
-      <>
-        {line} <br />
-      </>
-    ));
+    content.split('\\n').map((line) => <p key={line}>{line}</p>);
 
   return (
     <div className="w-full">
       <div className="mb-6 leading-[1.2]">
-        <p className="font-SejongHospitalBold text-xl text-primary">
+        <div className="font-SejongHospitalBold text-xl text-primary">
           {parseNewLine(message)}
-        </p>
+        </div>
         {subMessage && (
-          <p className="font-NanumSquareBold text-sm">
+          <div className="font-NanumSquareBold text-sm">
             {parseNewLine(subMessage)}
-          </p>
+          </div>
         )}
       </div>
       {content}

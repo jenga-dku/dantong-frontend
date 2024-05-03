@@ -12,7 +12,10 @@ export const Nav = () => {
   return (
     <div className="fixed bottom-0 flex h-[80px] w-full max-w-[480px] rounded-t-[10px] bg-white shadow-[0_-2px_5px_1px_rgba(0,0,0,0.05)]">
       {NavButtonDataList.map(({ link, icon }) => (
-        <div className="flex w-1/4 items-center justify-center text-4xl text-[#DEDEDE]">
+        <div
+          key={`nav-button-${link}`}
+          className="flex w-1/4 items-center justify-center text-4xl text-[#DEDEDE]"
+        >
           <button
             onClick={() => {
               navigate(link);

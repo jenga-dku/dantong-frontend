@@ -8,7 +8,6 @@ type InputProps = React.HTMLAttributes<HTMLDivElement> & {
   className?: string;
   label?: string;
   autoFocus?: boolean;
-  ref?: React.RefObject<HTMLInputElement>;
   type?: string;
 };
 
@@ -21,7 +20,6 @@ export const Input = ({
   className,
   label,
   autoFocus,
-  ref,
   ...props
 }: InputProps) => {
   const [isFocused, setIsFocused] = useState(true);

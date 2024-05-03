@@ -9,7 +9,7 @@ export const PostSection = () => {
     <Section title="게시글 둘러보기">
       <HorizontalScrollBox>
         {PostDataList.map(({ id, title, thumbnail }) => (
-          <SwiperSlide>
+          <SwiperSlide key={`post-${id}`}>
             <PostItem id={id} title={title} thumbnail={thumbnail} />
           </SwiperSlide>
         ))}

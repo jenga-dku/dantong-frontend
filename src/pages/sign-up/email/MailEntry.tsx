@@ -24,7 +24,6 @@ export const MailEntry = ({
         message="학생 인증을 위한\n단국대학교 이메일을 직접 입력해주세요"
         content={
           <Input
-            ref={inputRef}
             value={mail}
             onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
               setIsButtonActive(e.target.value.length > 0);

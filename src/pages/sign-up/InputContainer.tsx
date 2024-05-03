@@ -45,6 +45,7 @@ export const InputContainer = ({
           .reverse()
           .map(({ id, korName, type }, inputIndex) => (
             <Input
+              key={`${containerID}-${id}`}
               type={type}
               value={signUpInfo[id]}
               className="text-2xl"
