@@ -18,7 +18,7 @@ export const Button = ({
 }: Button) => {
   return (
     <button
-      className={`btn-primary ${size && `btn-${size}`} ${className}`}
+      className={`btn btn-primary border-none text-white ${size && `btn-${size}`} ${className}`}
       disabled={disabled ?? false}
       onClick={onClick}
       {...props}

@@ -84,13 +84,6 @@ input[type='password'] {
 }
 
 /* Daisy UI */
-.btn-primary {
-  @apply btn h-fit border-none bg-primary text-white;
-  &:hover {
-    background-color: #d2d2d2;
-  }
-}
-
 .btn-full {
   width: 100%;
   padding: 1rem 0;

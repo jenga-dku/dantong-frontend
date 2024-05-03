@@ -34,5 +34,18 @@ module.exports = {
       NanumSquareEB: ['NanumSquareEB'],
     },
   },
+  daisyui: {
+    themes: [
+      {
+        mytheme: {
+          ...require('daisyui/src/theming/themes')['light'],
+          primary: '#308FFF',
+          '.btn-primary.btn-outline:hover': {
+            'color': 'white',
+          },
+        },
+      },
+    ],
+  },
   plugins: [require('daisyui')],
 };
