@@ -1,3 +1,5 @@
+import { SwiperSlide } from 'swiper/react';
+import HorizontalScrollBox from '../../components/HorizontalScrollBox';
 import { PostDataList } from '../../data';
 import { PostItem } from './PostItem';
 import { Section } from './Section';
@@ -5,11 +7,13 @@ import { Section } from './Section';
 export const PostSection = () => {
   return (
     <Section title="게시글 둘러보기">
-      <div className="flex gap-4">
+      <HorizontalScrollBox>
         {PostDataList.map(({ id, title, thumbnail }) => (
-          <PostItem id={id} title={title} thumbnail={thumbnail} />
+          <SwiperSlide>
+            <PostItem id={id} title={title} thumbnail={thumbnail} />
+          </SwiperSlide>
         ))}
-      </div>
+      </HorizontalScrollBox>
     </Section>
   );
 };

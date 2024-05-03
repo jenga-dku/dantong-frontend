@@ -8,7 +8,7 @@ type Box = HTMLAttributes<HTMLDivElement> & {
 export const Box = ({ children, className, ...props }: Box) => {
   return (
     <div
-      className={`flex w-full rounded-[10px] bg-white p-5 shadow-[0_1px_2px_10px_rgba(0,0,0,0.01)] ${className}`}
+      className={`flex w-full rounded-[10px] bg-white p-5 shadow-[1px_2px_10px_0px_rgba(0,0,0,0.1)] ${className}`}
       {...props}
     >
       {children}

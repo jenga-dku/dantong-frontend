@@ -71,6 +71,18 @@ input[type='password'] {
     #ffffff;
 }
 
+/* Swiper */
+.swiper-slide {
+  display: flex;
+  justify-content: center;
+}
+
+.horizontalScrollBox > .swiper-wrapper,
+.horizontalScrollBox > .swiper-wrapper > .swiper-slide {
+  width: fit-content !important;
+  height: fit-content;
+}
+
 /* Daisy UI */
 .btn-primary {
   @apply btn h-fit border-none bg-primary text-white;
