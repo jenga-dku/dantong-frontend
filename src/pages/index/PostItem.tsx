@@ -13,8 +13,8 @@ export const PostItem = ({ id, title, thumbnail }: Post) => {
       }}
       className="h-[17rem] w-[17rem] cursor-pointer flex-col overflow-hidden p-0"
     >
-      <img alt="홈화면 게시글 썸네일" className="h-[13rem]" src={thumbnail} />
-      <div className="box-border flex h-[4rem] items-center gap-2 p-2">
+      <img alt="홈화면 게시글 썸네일" className="h-[17rem]" src={thumbnail} />
+      <div className="relative top-[-3.5rem] box-border flex h-[4rem] items-center gap-2 bg-white p-2">
         <img
           className="h-[2.5rem] w-[2.5rem] rounded-full border-[1px] border-solid border-[#e7e7e7]"
           src={CouncilLogo}
