@@ -4,6 +4,7 @@ import { StartPage } from './pages/start/_StartPage';
 import { SignUpPage } from './pages/sign-up/_SignUpPage';
 import { HomePage } from './pages/index/_HomePage';
 import { Layout } from './components/Layout';
+import { NewsPage } from './pages/news/_NewsPage';
 
 export default function Router() {
   return (
@@ -11,7 +12,7 @@ export default function Router() {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route path="/" element={<HomePage />} />
-          <Route path="/news" element={<></>} />
+          <Route path="/news" element={<NewsPage />} />
           <Route path="/calendar" element={<></>} />
           <Route path="/settings" element={<></>} />
         </Route>

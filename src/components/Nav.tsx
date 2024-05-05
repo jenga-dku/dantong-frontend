@@ -23,7 +23,7 @@ export const Nav = () => {
             className={`${pageType === link && 'text-[#8898AB]'} flex flex-col items-center gap-1`}
           >
             {icon}
-            <p className="text-xs">{name}</p>
+            <p className="text-[0.6rem] leading-tight">{name}</p>
           </button>
         </div>
       ))}
