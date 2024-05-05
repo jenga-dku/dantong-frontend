@@ -3,12 +3,18 @@ import { LoginPage } from './pages/login/_LoginPage';
 import { StartPage } from './pages/start/_StartPage';
 import { SignUpPage } from './pages/sign-up/_SignUpPage';
 import { HomePage } from './pages/index/_HomePage';
+import { Layout } from './components/Layout';
 
 export default function Router() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<HomePage />} />
+        <Route path="/" element={<Layout />}>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/news" element={<></>} />
+          <Route path="/calendar" element={<></>} />
+          <Route path="/settings" element={<></>} />
+        </Route>
         <Route path="/start" element={<StartPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/sign-up/:id" element={<SignUpPage />} />

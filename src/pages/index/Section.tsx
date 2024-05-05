@@ -9,7 +9,7 @@ export const Section = ({
 }) => {
   return (
     <div className="flex flex-col gap-3">
-      <h2 className="font-NanumSquareBold text-lg">{title}</h2>
+      <h2 className="font-NanumSquareBold">{title}</h2>
       {children}
     </div>
   );

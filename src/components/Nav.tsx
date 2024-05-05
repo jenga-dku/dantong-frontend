@@ -10,19 +10,20 @@ export const Nav = () => {
   const pageType = pathname.split('?')[0].split('/')[1];
 
   return (
-    <div className="fixed bottom-0 flex h-[80px] w-full max-w-[480px] rounded-t-[10px] bg-white shadow-[0_-2px_5px_1px_rgba(0,0,0,0.05)]">
-      {NavButtonDataList.map(({ link, icon }) => (
+    <div className="fixed bottom-0 z-50 box-border flex h-[55px] w-full max-w-[400px] rounded-t-[20px] bg-white shadow-[0_-2px_5px_1px_rgba(0,0,0,0.05)]">
+      {NavButtonDataList.map(({ link, icon, name }) => (
         <div
           key={`nav-button-${link}`}
-          className="flex w-1/4 items-center justify-center text-4xl text-[#DEDEDE]"
+          className="flex w-1/4 items-center justify-center text-2xl text-[#DEDEDE]"
         >
           <button
             onClick={() => {
-              navigate(link);
+              navigate(`/${link}`);
             }}
-            className={`${pageType === link && 'text-[#8898AB]'}`}
+            className={`${pageType === link && 'text-[#8898AB]'} flex flex-col items-center gap-1`}
           >
             {icon}
+            <p className="text-xs">{name}</p>
           </button>
         </div>
       ))}
@@ -34,17 +35,21 @@ const NavButtonDataList = [
   {
     link: '',
     icon: <FaHouse />,
+    name: '홈',
   },
   {
-    link: '/news',
+    link: 'news',
     icon: <IoIosPaper />,
+    name: '소식',
   },
   {
-    link: '/calendar',
+    link: 'calendar',
     icon: <IoCalendarClear />,
+    name: '캘린더',
   },
   {
-    link: '/settings',
+    link: 'settings',
     icon: <FiMenu />,
+    name: '메뉴',
   },
 ];
