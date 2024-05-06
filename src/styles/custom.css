@@ -77,6 +77,11 @@ input[type='password'] {
   justify-content: center;
 }
 
+.swiper-carousel {
+  width: 100%;
+  transition: opacity 0.2s ease-in-out;
+}
+
 .horizontalScrollBox > .swiper-wrapper,
 .horizontalScrollBox > .swiper-wrapper > .swiper-slide {
   width: fit-content !important;

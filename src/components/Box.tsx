@@ -7,7 +7,7 @@ type Box = HTMLAttributes<HTMLDivElement> & {
 };
 
 export const boxStyle =
-  'flex w-full rounded-[10px] bg-white p-5 shadow-[1px_2px_10px_0px_rgba(0,0,0,0.1)]';
+  'flex h-fit w-full rounded-[10px] bg-white p-5 shadow-[1px_2px_10px_0px_rgba(0,0,0,0.1)]';
 
 export const Box = ({ children, className, ...props }: Box) => {
   return (
