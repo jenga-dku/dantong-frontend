@@ -1,5 +1,4 @@
-import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 import { Content } from '../Content';
 import { Input } from '../Input';
 import { Button } from '../../../components/Button';
@@ -7,32 +6,26 @@ import {
   usePostMail,
   usePostVerificationCode,
 } from '../../../query-hooks/sign-up';
+import { useSignUpInfoStore } from '../../../stores/signUpInfo-stores';
 
 export const MailEntry = ({
-  updateMail,
+  updateIsMailSent,
 }: {
-  updateMail: React.Dispatch<React.SetStateAction<string>>;
+  updateIsMailSent: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
   const [isButtonActive, setIsButtonActive] = useState(false);
   const [mail, setMail] = useState('');
   const [code, setCode] = useState('');
-  const { mutate: postMail } = usePostMail({
-    onSuccess: (res) => {
-      setIsMailSent(true);
-    },
-  });
-  const { mutate: mutateCode } = usePostVerificationCode({
-    onError: (res) => {
-      console.log(res);
-    },
-  });
-
   const [isMailSent, setIsMailSent] = useState(false);
-
-  useEffect(() => {
-    updateMail(mail);
-  }, [mail]);
-
+  const { signUpInfo, setSignUpInfo } = useSignUpInfoStore();
+  const { mutate: postMail } = usePostMail({
+    onSuccess: () => {
+      updateIsMailSent(true);
+      setIsMailSent(true);
+      setSignUpInfo({ ...signUpInfo, mail: mail });
+    },
+  });
+  const { mutate: postCode } = usePostVerificationCode();
   const submitMail = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     postMail(mail);
@@ -41,7 +34,7 @@ export const MailEntry = ({
   const verifyCode = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (code.length === 6) {
-      mutateCode({ studentId: mail, emailCode: code });
+      postCode({ studentId: mail, emailCode: code });
     } else {
       alert('6자리 인증코드를 입력해주세요');
     }
@@ -54,7 +47,11 @@ export const MailEntry = ({
       }}
     >
       <Content
-        message="학생 인증을 위한\n단국대학교 이메일을 직접 입력해주세요"
+        message={
+          !isMailSent
+            ? '학생 인증을 위한\n단국대학교 이메일을 직접 입력해주세요'
+            : '인증메일이 전송되었습니다.\n인증번호 7자리를 입력해주세요'
+        }
         content={
           !isMailSent ? (
             <Input

@@ -34,7 +34,7 @@ export const usePostVerificationCode = (
       }),
     onSuccess: (res: VerificationResponse) => {
       setSignUpToken(res.signupToken);
-      navigate('/sign-up/info');
+      navigate('?isMailSent=true');
     },
     ...options,
   });
