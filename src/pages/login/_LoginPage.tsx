@@ -1,25 +1,48 @@
 import { useNavigate } from 'react-router-dom';
 import { Button } from '../../components/Button';
 import { Input } from './Input';
+import { LoginInfo } from '../../api/login/types';
+import { useState } from 'react';
+import { usePostLoginInfo } from '../../query-hooks/login';
 
 export const LoginPage = () => {
-  const navigate = useNavigate();
+  const [loginInfo, setLoginInfo] = useState<LoginInfo>({
+    studentId: '',
+    password: '',
+  });
+  const { mutate: postLoginInfo } = usePostLoginInfo();
+
+  const submitLoginInfo = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    postLoginInfo(loginInfo);
+  };
 
   return (
     <div className="mt-[-5rem] flex w-full flex-col items-center justify-center">
-      <form className="flex h-fit w-full flex-col items-center gap-5 p-5 text-[#C4C4C4]">
+      <form
+        onSubmit={(e) => {
+          submitLoginInfo(e);
+        }}
+        className="flex h-fit w-full flex-col items-center gap-5 p-5 text-[#C4C4C4]"
+      >
         <h1 className="font-SejongHospitalBold text-4xl text-primary">단통</h1>
-        <Input label="Student ID" maxLength={8}>
+        <Input
+          onChange={(e) => {
+            setLoginInfo((prev) => ({ ...prev, studentId: e.target.value }));
+          }}
+          label="Student ID"
+          maxLength={8}
+        >
           <span>@dankook.ac.kr</span>
         </Input>
-        <Input label="Password" type="password" />
-        <Button
-          size="full"
-          onClick={() => {
-            navigate('/');
+        <Input
+          onChange={(e) => {
+            setLoginInfo((prev) => ({ ...prev, password: e.target.value }));
           }}
-          content="로그인"
+          label="Password"
+          type="password"
         />
+        <Button size="full" content="로그인" />
       </form>
     </div>
   );
