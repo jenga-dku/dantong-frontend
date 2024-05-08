@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { Content } from '../Content';
 import { InputContainer } from '../InputContainer';
 

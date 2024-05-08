@@ -1,9 +1,23 @@
-import { post } from '../api';
-import { SignUpInfo } from './types';
+import { API } from '../api';
+import { SignUpInfo, VerificationResponse } from './types';
 
 export const SignUp = {
   async postMail(studentID: string) {
-    await post('/user/email', { studentId: studentID });
+    const response = await API.post('/user/email', { studentId: studentID });
+    return response.data;
+  },
+  async postVerificationCode({
+    studentId,
+    emailCode,
+  }: {
+    studentId: string;
+    emailCode: string;
+  }): Promise<VerificationResponse> {
+    const response = await API.post('/user/email/verify', {
+      studentId,
+      emailCode,
+    });
+    return response.data;
   },
   async postSignUpInfo({
     signUpToken,
@@ -12,6 +26,7 @@ export const SignUp = {
     signUpToken: string;
     signUpInfo: SignUpInfo;
   }) {
-    await post(`/user/signup/${signUpToken}`, signUpInfo);
+    const response = await API.post(`/user/signup/${signUpToken}`, signUpInfo);
+    return response.data;
   },
 };

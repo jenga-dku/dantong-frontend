@@ -12,7 +12,7 @@ export const SignUpPage = () => {
   const { pathname } = useLocation();
   const steps = ['email', 'info', 'password', 'success'];
   const navigate = useNavigate();
-  const { mutate: postSignUpInfo } = usePostSignUpInfo('signUpToken'); // TODO: 토큰 넣어야 함
+  const { mutate: postSignUpInfo } = usePostSignUpInfo();
 
   useEffect(() => {
     const pageName = pathname.split('?')[0].split('/sign-up/')[1];

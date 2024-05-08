@@ -5,3 +5,13 @@ export type SignUpInfo = {
   phoneNumber: string;
   major: string;
 };
+
+export type Verification = {
+  studentId: string;
+  emailCode: string;
+};
+
+export type VerificationResponse = {
+  studentId: string;
+  signupToken: string;
+};
