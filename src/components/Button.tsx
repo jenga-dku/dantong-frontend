@@ -2,7 +2,7 @@ import { HTMLAttributes } from 'react';
 
 type Button = HTMLAttributes<HTMLButtonElement> & {
   content: string;
-  onClick: () => void;
+  onClick?: () => void;
   size: 'full' | 'fit';
   disabled?: boolean;
   className?: string;
@@ -18,7 +18,7 @@ export const Button = ({
 }: Button) => {
   return (
     <button
-      className={`btn btn-primary border-none text-white ${size && `btn-${size}`} ${className}`}
+      className={`btn-primary btn border-none text-white ${size && `btn-${size}`} ${className}`}
       disabled={disabled ?? false}
       onClick={onClick}
       {...props}

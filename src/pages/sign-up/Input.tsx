@@ -33,7 +33,7 @@ export const Input = ({
       </label>
       <div className="flex justify-between">
         <input
-          className={className}
+          className={`w-[150px] ${className}`}
           type={type}
           placeholder={placeholder}
           value={value}
