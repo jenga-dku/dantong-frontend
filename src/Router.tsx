@@ -6,6 +6,7 @@ import { HomePage } from './pages/index/_HomePage';
 import { Layout } from './components/Layout';
 import { NewsPage } from './pages/news/_NewsPage';
 import { PostPage } from './pages/post/_PostPage';
+import { SettingsPage } from './pages/settings/_SettingsPage';
 
 export default function Router() {
   return (
@@ -16,7 +17,7 @@ export default function Router() {
           <Route path="/news" element={<NewsPage />} />
           <Route path="/news/:id" element={<PostPage />} />
           <Route path="/calendar" element={<></>} />
-          <Route path="/settings" element={<></>} />
+          <Route path="/settings" element={<SettingsPage />} />
         </Route>
         <Route path="/start" element={<StartPage />} />
         <Route path="/login" element={<LoginPage />} />

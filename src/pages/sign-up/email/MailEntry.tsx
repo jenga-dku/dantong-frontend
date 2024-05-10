@@ -7,34 +7,46 @@ import {
   usePostVerificationCode,
 } from '../../../query-hooks/sign-up';
 import { useSignUpInfoStore } from '../../../stores/signUpInfo-stores';
+import { VerificationResponse } from '../../../api/sign-up/types';
+import { useNavigate } from 'react-router-dom';
 
 export const MailEntry = ({
-  updateIsMailSent,
+  updateIsVerified,
 }: {
-  updateIsMailSent: React.Dispatch<React.SetStateAction<boolean>>;
+  updateIsVerified: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
-  const [isButtonActive, setIsButtonActive] = useState(false);
-  const [mail, setMail] = useState('');
+  const [isSubmitButtonActive, setIsSubmitButtonActive] = useState(false);
+  const [studentID, setStudentID] = useState('');
   const [code, setCode] = useState('');
   const [isMailSent, setIsMailSent] = useState(false);
-  const { signUpInfo, setSignUpInfo } = useSignUpInfoStore();
+  const { signUpInfo, setSignUpInfo, setSignUpToken } = useSignUpInfoStore();
+  const navigate = useNavigate();
+
   const { mutate: postMail } = usePostMail({
     onSuccess: () => {
-      updateIsMailSent(true);
       setIsMailSent(true);
-      setSignUpInfo({ ...signUpInfo, mail: mail });
+      setSignUpInfo({ ...signUpInfo, studentID });
+      alert('전송되었습니다');
     },
   });
-  const { mutate: postCode } = usePostVerificationCode();
-  const submitMail = (e: React.FormEvent<HTMLFormElement>) => {
+
+  const { mutate: postCode } = usePostVerificationCode({
+    onSuccess: (res: VerificationResponse) => {
+      setSignUpToken(res.signupToken);
+      navigate('?isMailSent=true');
+      updateIsVerified(true);
+    },
+  });
+
+  const submitStudentID = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    postMail(mail);
+    postMail(studentID);
   };
 
   const verifyCode = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (code.length === 6) {
-      postCode({ studentId: mail, emailCode: code });
+      postCode({ studentId: studentID, emailCode: code });
     } else {
       alert('6자리 인증코드를 입력해주세요');
     }
@@ -43,23 +55,23 @@ export const MailEntry = ({
   return (
     <form
       onSubmit={(e) => {
-        !isMailSent ? submitMail(e) : verifyCode(e);
+        !isMailSent ? submitStudentID(e) : verifyCode(e);
       }}
     >
       <Content
         message={
           !isMailSent
             ? '학생 인증을 위한\n단국대학교 이메일을 직접 입력해주세요'
-            : '인증메일이 전송되었습니다.\n인증번호 7자리를 입력해주세요'
+            : '인증메일이 전송되었습니다.\n인증코드 6자리를 입력해주세요'
         }
         content={
           !isMailSent ? (
             <Input
-              value={mail}
+              value={studentID}
               placeholder="32XXXXXX"
               onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                setIsButtonActive(e.target.value.length > 0);
-                setMail(e.target.value);
+                setIsSubmitButtonActive(e.target.value.length > 0);
+                setStudentID(e.target.value);
               }}
               additionalElement={
                 <p className="text-[#C4C4C4]">@dankook.ac.kr</p>
@@ -68,9 +80,10 @@ export const MailEntry = ({
           ) : (
             <Input
               value={code}
-              placeholder="인증코드 7자리"
+              placeholder="인증코드 6자리"
+              maxLength={6}
               onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                setIsButtonActive(e.target.value.length > 0);
+                setIsSubmitButtonActive(e.target.value.length > 0);
                 setCode(e.target.value);
               }}
             />
@@ -80,7 +93,7 @@ export const MailEntry = ({
       <Button
         className="mt-10"
         content="인증하기"
-        disabled={!isButtonActive}
+        disabled={!isSubmitButtonActive}
         size="full"
       />
     </form>

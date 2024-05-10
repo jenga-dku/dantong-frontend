@@ -1,17 +1,13 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import { Button } from '../../components/Button';
 import { Input } from './Input';
-import { useSignUpInfoStore } from '../../stores/signUpInfo-stores';
+import {
+  SignUpInfoKey,
+  useSignUpInfoStore,
+} from '../../stores/signUpInfo-stores';
 
 export type userInfoInputAttr = {
-  id:
-    | 'mail'
-    | 'name'
-    | 'studentID'
-    | 'phoneNumber'
-    | 'major'
-    | 'password'
-    | 'passwordCheck';
+  id: SignUpInfoKey;
   korName: string;
   type: string;
 };
@@ -63,6 +59,7 @@ export const InputContainer = ({
                     onClick={() => {
                       setActivatedInputIndex({
                         ...activatedInputIndex,
+                        // 해당하는 InputContainer 타입의 활성화된 Input Index에 1을 더하여 다음 Input을 표시한다.
                         [containerID]: activatedInputIndex[containerID] + 1,
                       });
                     }}

@@ -1,8 +1,14 @@
 import { useQuery } from '@tanstack/react-query';
 import { Post } from '../../api/post';
 
-export const useGetPostList = () =>
+export const useGetPostList = (category: string) =>
   useQuery({
-    queryFn: () => Post.getPostList(),
+    queryFn: () => Post.getPostList(category),
     queryKey: ['postList'],
+  });
+
+export const useGetPostDetail = (id: number) =>
+  useQuery({
+    queryFn: () => Post.getPostDetail(id),
+    queryKey: ['postDetail'],
   });

@@ -4,6 +4,7 @@ import { useSignUpInfoStore } from '../../stores/signUpInfo-stores';
 import { AxiosError } from 'axios';
 import { Verification, VerificationResponse } from '../../api/sign-up/types';
 import { useNavigate } from 'react-router-dom';
+import { ErrorResponse } from '../../api/types';
 
 export const usePostMail = (
   options?: UseMutationOptions<void, AxiosError, string>,
@@ -15,10 +16,12 @@ export const usePostMail = (
 };
 
 export const usePostVerificationCode = (
-  options?: UseMutationOptions<VerificationResponse, AxiosError, Verification>,
+  options?: UseMutationOptions<
+    VerificationResponse,
+    AxiosError<ErrorResponse>,
+    Verification
+  >,
 ) => {
-  const { setSignUpToken } = useSignUpInfoStore();
-  const navigate = useNavigate();
   return useMutation({
     mutationKey: ['verificationCode'],
     mutationFn: ({
@@ -32,10 +35,7 @@ export const usePostVerificationCode = (
         studentId,
         emailCode,
       }),
-    onSuccess: (res: VerificationResponse) => {
-      setSignUpToken(res.signupToken);
-      navigate('?isMailSent=true');
-    },
+    onError: ({ response }) => alert(response?.data.message[0]),
     ...options,
   });
 };
@@ -43,18 +43,24 @@ export const usePostVerificationCode = (
 export const usePostSignUpInfo = () => {
   const { signUpInfo } = useSignUpInfoStore();
   const { signUpToken } = useSignUpInfoStore();
-  const { studentID, password, name, phoneNumber, major } = signUpInfo;
+  const {
+    studentID: studentId,
+    password,
+    name,
+    phoneNumber,
+    major,
+  } = signUpInfo;
   const navigate = useNavigate();
   return useMutation({
     mutationFn: () =>
       SignUp.postSignUpInfo({
         signUpToken,
         signUpInfo: {
-          studentId: studentID,
-          password: password,
-          name: name,
-          phoneNumber: phoneNumber,
-          major: major,
+          studentId,
+          password,
+          name,
+          phoneNumber,
+          major,
         },
       }),
     onSuccess: () => {

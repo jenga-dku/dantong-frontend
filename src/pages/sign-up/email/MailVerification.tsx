@@ -9,7 +9,7 @@ export const MailVerification = () => {
   return (
     <>
       <Content
-        message="메일 전송 완료 !\n인증 메일을 확인해주세요"
+        message="재학 인증 완료!\n다음 페이지로 이동해주세요."
         content={
           <div className="flex w-full justify-center">
             <EmailVerificationIcon width={300} />
@@ -17,7 +17,7 @@ export const MailVerification = () => {
         }
       />
       <Button
-        content="인증 완료"
+        content="다음"
         size="full"
         onClick={() => {
           navigate('/sign-up/info');

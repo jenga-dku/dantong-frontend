@@ -6,17 +6,17 @@ import { Section } from './Section';
 import { useGetPostList } from '../../query-hooks/post';
 
 export const PostSection = () => {
-  const { data } = useGetPostList();
+  const { data } = useGetPostList('');
 
   return (
     <Section title="게시글 둘러보기">
       <HorizontalScrollBox>
-        {data?.map(({ userId, title }) => (
-          <SwiperSlide key={`post-${userId}`}>
+        {data?.map(({ postId, title }) => (
+          <SwiperSlide key={`post-${postId}`}>
             <PostItem
-              id={userId}
+              id={postId}
               title={title}
-              thumbnail={PostDataList[Number(userId)].thumbnail}
+              thumbnail={PostDataList[0].thumbnail}
             />
           </SwiperSlide>
         ))}

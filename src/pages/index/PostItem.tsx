@@ -1,16 +1,9 @@
 import { Box } from '../../components/Box';
 import CouncilLogo from '../../assets/image/CouncilLogo.png';
 import { useNavigate } from 'react-router-dom';
+import { Post } from '../../types';
 
-export const PostItem = ({
-  id,
-  title,
-  thumbnail,
-}: {
-  id: string;
-  title: string;
-  thumbnail: string;
-}) => {
+export const PostItem = ({ id, title, thumbnail }: Post) => {
   const navigate = useNavigate();
 
   return (
@@ -31,7 +24,7 @@ export const PostItem = ({
           <p className="w-full overflow-hidden text-ellipsis whitespace-nowrap ">
             {title}
           </p>
-          <p className="text-sm text-[#848484]">SW융합대학 SW:ng 학생회</p>
+          <p className="text-sm text-[#848484]">SW융합대학 SW:ing 학생회</p>
         </div>
       </div>
     </Box>

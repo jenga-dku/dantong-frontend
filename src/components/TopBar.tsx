@@ -1,10 +1,10 @@
 import { IoNotifications } from 'react-icons/io5';
 import { FaAngleLeft } from 'react-icons/fa6';
-import { useTobBarStore } from '../stores/topBar-stores';
+import { useTopBarStore } from '../stores/topBar-stores';
 import { useNavigate } from 'react-router-dom';
 
 export const TopBar = () => {
-  const { isBackButtonVisible } = useTobBarStore();
+  const { isBackButtonVisible } = useTopBarStore();
   const navigate = useNavigate();
 
   return (

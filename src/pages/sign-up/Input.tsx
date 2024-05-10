@@ -1,6 +1,6 @@
 import { ReactNode, useState } from 'react';
 
-type InputProps = React.HTMLAttributes<HTMLDivElement> & {
+type InputProps = React.HTMLAttributes<HTMLInputElement> & {
   value: string;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   placeholder?: string;
@@ -8,6 +8,7 @@ type InputProps = React.HTMLAttributes<HTMLDivElement> & {
   className?: string;
   label?: string;
   autoFocus?: boolean;
+  maxLength?: number;
   type?: string;
 };
 
@@ -19,6 +20,7 @@ export const Input = ({
   additionalElement,
   className,
   label,
+  maxLength,
   autoFocus,
   ...props
 }: InputProps) => {
@@ -33,12 +35,13 @@ export const Input = ({
       </label>
       <div className="flex justify-between">
         <input
-          className={`w-[150px] ${className}`}
+          className={`w-[180px] ${className}`}
           type={type}
           placeholder={placeholder}
           value={value}
           autoFocus={autoFocus ?? true}
           onChange={onChange}
+          maxLength={maxLength}
           onFocus={() => {
             setIsFocused(true);
           }}

@@ -2,16 +2,16 @@ import { TopBar } from './TopBar';
 import { Nav } from './Nav';
 import { Outlet, useLocation } from 'react-router-dom';
 import { useEffect, useRef } from 'react';
-import { useTobBarStore } from '../stores/topBar-stores';
+import { useTopBarStore } from '../stores/topBar-stores';
 
 export const Layout = ({ className }: { className?: string }) => {
   const layoutRef = useRef<HTMLDivElement>(null);
   const { pathname } = useLocation();
-  const { isBackButtonVisible, setIsBackButtonVisible } = useTobBarStore();
+  const { isBackButtonVisible, setIsBackButtonVisible } = useTopBarStore();
 
   // 페이지 전환시 로직
   useEffect(() => {
-    isBackButtonVisible && setIsBackButtonVisible(false);
+    isBackButtonVisible && setIsBackButtonVisible(false); // 뒤로가기 버튼 true인 경우에 false로 초기화
     layoutRef.current?.scrollTo({ top: 0, behavior: 'smooth' });
   }, [pathname]);
 
