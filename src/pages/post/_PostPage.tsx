@@ -6,13 +6,14 @@ import parse from 'html-react-parser';
 import { Button } from '../../components/Button';
 import { useTopBarStore } from '../../stores/topBar-stores';
 import { useGetPostDetail } from '../../query-hooks/post';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 export const PostPage = () => {
   const { images, author } = post;
   const { pathname } = useLocation();
   const postId = Number(pathname.split('/news/')[1]);
   const { data } = useGetPostDetail(postId);
+  const navigate = useNavigate();
   useTopBarStore.setState({ isBackButtonVisible: true });
 
   return (
@@ -29,7 +30,13 @@ export const PostPage = () => {
           <hr />
           <p className="p-4 text-sm">{parse(data.content)}</p>
           <div className=" p-4 pt-2">
-            <Button content="신청" size="full" onClick={() => {}} />
+            <Button
+              content="신청"
+              size="full"
+              onClick={() => {
+                navigate('/form/id');
+              }}
+            />
           </div>
         </Box>
       )}
