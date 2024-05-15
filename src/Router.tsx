@@ -8,6 +8,7 @@ import { NewsPage } from './pages/news/_NewsPage';
 import { PostPage } from './pages/post/_PostPage';
 import { SettingsPage } from './pages/settings/_SettingsPage';
 import { FormPage } from './pages/form/_FormPage';
+import { FormUploadPage } from './pages/form-upload/_FormUploadPage';
 
 export default function Router() {
   return (
@@ -20,6 +21,7 @@ export default function Router() {
           <Route path="/calendar" element={<></>} />
           <Route path="/settings" element={<SettingsPage />} />
           <Route path="/form/:id" element={<FormPage />} />
+          <Route path="/form/upload" element={<FormUploadPage />} />
         </Route>
         <Route path="/start" element={<StartPage />} />
         <Route path="/login" element={<LoginPage />} />
