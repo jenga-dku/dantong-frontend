@@ -9,8 +9,17 @@ export const FormUploadPage = () => {
     end: new Date(),
   });
 
+  const submitForm = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+  };
+
   return (
-    <>
+    <form
+      className="flex flex-col gap-5"
+      onSubmit={(e) => {
+        submitForm(e);
+      }}
+    >
       <Box className="flex-col gap-2">
         <input
           type="text"
@@ -23,6 +32,6 @@ export const FormUploadPage = () => {
           <PeriodPicker periodState={periodState} />
         </div>
       </Box>
-    </>
+    </form>
   );
 };
