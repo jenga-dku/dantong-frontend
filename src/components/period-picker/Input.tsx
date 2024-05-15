@@ -1,4 +1,5 @@
 import { LegacyRef, forwardRef } from 'react';
+import { IoCalendarClearOutline } from 'react-icons/io5';
 
 export const Input = forwardRef(
   (
@@ -6,11 +7,14 @@ export const Input = forwardRef(
     ref: LegacyRef<HTMLButtonElement> | undefined,
   ) => (
     <button
-      className="rounded-md border-[1px] border-solid border-zinc-300 px-4 py-1 text-xs"
+      className="flex items-center gap-1 rounded-md border-[1px] border-solid border-zinc-300 px-3 py-2 text-xs leading-none text-zinc-600"
       onClick={onClick}
       ref={ref}
     >
-      <>{value?.toString().replaceAll('/', '.')}</>
+      <>
+        <IoCalendarClearOutline />
+        {value?.toString().replaceAll('/', '.')}
+      </>
     </button>
   ),
 );

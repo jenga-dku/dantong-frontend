@@ -42,7 +42,7 @@ export const FormPage = () => {
           </Box>
         ),
       )}
-      <SubmitButton type="submit" content="제출" size="full" />
+      <SubmitButton content="제출" />
     </form>
   ) : (
     <></>
