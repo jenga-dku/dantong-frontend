@@ -4,7 +4,7 @@ import { useTopBarStore } from '../stores/topBar-stores';
 import { useNavigate } from 'react-router-dom';
 
 export const TopBar = () => {
-  const { isBackButtonVisible } = useTopBarStore();
+  const { isBackButtonVisible, isNotificationButtonVisible } = useTopBarStore();
   const navigate = useNavigate();
 
   return (
@@ -21,7 +21,9 @@ export const TopBar = () => {
       ) : (
         <h1 className="font-SejongHospitalBold text-2xl">단통</h1>
       )}
-      <IoNotifications className="text-3xl text-[#AFAFAF]" />
+      {isNotificationButtonVisible && (
+        <IoNotifications className="text-3xl text-[#AFAFAF]" />
+      )}
     </div>
   );
 };

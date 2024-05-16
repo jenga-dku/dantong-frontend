@@ -13,7 +13,10 @@ import {
   QuestionTypeButtonChangeEvent,
 } from './QuestionTypeButton';
 import { Header } from './Header';
+import { useTopBarStore } from '../../stores/topBar-stores';
 export const FormUploadPage = () => {
+  const { setIsBackButtonVisible, setIsNotificationButtonVisible } =
+    useTopBarStore();
   const defaultQuestion: Question = {
     tag: 'SUBJECTIVE',
     title: '',
@@ -30,6 +33,13 @@ export const FormUploadPage = () => {
   const submitForm = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
   };
+
+  useEffect(() => {
+    useTopBarStore.setState({
+      isBackButtonVisible: true,
+      isNotificationButtonVisible: false,
+    });
+  }, []);
 
   type QuestionTypeButton = { type: QuestionType; icon: ReactNode };
   const questionTypeList: QuestionTypeButton[] = [

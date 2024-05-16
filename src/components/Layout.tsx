@@ -7,11 +7,17 @@ import { useTopBarStore } from '../stores/topBar-stores';
 export const Layout = ({ className }: { className?: string }) => {
   const layoutRef = useRef<HTMLDivElement>(null);
   const { pathname } = useLocation();
-  const { isBackButtonVisible, setIsBackButtonVisible } = useTopBarStore();
+  const {
+    isBackButtonVisible,
+    setIsBackButtonVisible,
+    isNotificationButtonVisible,
+    setIsNotificationButtonVisible,
+  } = useTopBarStore();
 
   // 페이지 전환시 로직
   useEffect(() => {
     isBackButtonVisible && setIsBackButtonVisible(false); // 뒤로가기 버튼 true인 경우에 false로 초기화
+    isNotificationButtonVisible && setIsNotificationButtonVisible(true);
     layoutRef.current?.scrollTo({ top: 0, behavior: 'smooth' });
   }, [pathname]);
 
