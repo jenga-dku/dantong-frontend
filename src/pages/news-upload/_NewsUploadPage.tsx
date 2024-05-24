@@ -8,6 +8,7 @@ import { Button } from '../../components/Button';
 import { FaCamera } from 'react-icons/fa6';
 import { useTopBarStore } from '../../stores/topBar-stores';
 import { Editor } from '../../components/Editor';
+import ImageList from './ImageList';
 
 export const NewsUploadPage = () => {
   const [title, setTitle] = useState('');
@@ -16,6 +17,16 @@ export const NewsUploadPage = () => {
 
   const { setIsBackButtonVisible, setIsNotificationButtonVisible } =
     useTopBarStore();
+
+  const handleImages = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setImages([]);
+    const files = Array.from(e.target.files || []);
+    files.forEach((f) => {
+      setImages((prev) => {
+        return [...prev, URL.createObjectURL(f)];
+      });
+    });
+  };
 
   useEffect(() => {
     setIsBackButtonVisible(true);
@@ -49,11 +60,22 @@ export const NewsUploadPage = () => {
       </Desc>
       <File>
         <label className="flex cursor-pointer text-gray-400">
-          <input type="button" />
+          <input
+            multiple
+            type="file"
+            className="hidden"
+            accept="image/png, image/jpeg"
+            onChange={(e) => {
+              handleImages(e);
+            }}
+          />
           <FaCamera className="mr-2" />
           이미지 첨부
         </label>
       </File>
+      {images.length > 0 && images[0].length > 0 && (
+        <ImageList images={images} />
+      )}
       <Button size="full" content="업로드" />
     </div>
   );
