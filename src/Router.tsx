@@ -9,6 +9,7 @@ import { PostPage } from './pages/post/_PostPage';
 import { SettingsPage } from './pages/settings/_SettingsPage';
 import { FormPage } from './pages/form/_FormPage';
 import { FormUploadPage } from './pages/form-upload/_FormUploadPage';
+import { NewsUploadPage } from './pages/news-upload/_NewsUploadPage';
 
 export default function Router() {
   return (
@@ -22,6 +23,7 @@ export default function Router() {
           <Route path="/settings" element={<SettingsPage />} />
           <Route path="/form/:id" element={<FormPage />} />
           <Route path="/form/upload" element={<FormUploadPage />} />
+          <Route path="/news/upload" element={<NewsUploadPage />} />
         </Route>
         <Route path="/start" element={<StartPage />} />
         <Route path="/login" element={<LoginPage />} />
