@@ -8,6 +8,7 @@ import { Button } from '../../components/Button';
 import { FaCamera } from 'react-icons/fa6';
 import { useTopBarStore } from '../../stores/topBar-stores';
 import { Editor } from '../../components/Editor';
+import { CATEGORY } from '../../types';
 import ImageList from './ImageList';
 
 export const NewsUploadPage = () => {
@@ -40,9 +41,9 @@ export const NewsUploadPage = () => {
           <option disabled selected>
             카테고리 선택
           </option>
-          <option>행사</option>
-          <option>공지</option>
-          <option>기타</option>
+          {Object.entries(CATEGORY).map(([id, categoryName]) => (
+            <option value={id}>{categoryName}</option>
+          ))}
         </select>
       </Category>
       <Title>
