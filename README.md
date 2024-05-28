@@ -1,46 +1,67 @@
-# Getting Started with Create React App
+# 단국인을 위한 학생회 소통 플랫폼, <단통>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+![Untitled](/src/assets/image/README_img_0.png)
 
-## Available Scripts
+‘단통’ 프론트엔드 레포지토리입니다!
 
-In the project directory, you can run:
+🐱 Backend : https://github.com/jenga-dku/dantong
 
-### `npm start`
+📙 Wiki : https://github.com/jenga-dku/dantong-frontend/wiki
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+🔗 Deployment : http://dantong.site/
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+---
 
-### `npm test`
+## 🧑🏻‍💻 JENGA
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+| FE         | BE        | BE       |
+| ---------- | --------- | -------- |
+| @gaeunnlee | @dku19jam | @Sermadl |
 
-### `npm run build`
+---
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## 📢 프로젝트 설명
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+‘단통’은 학생회와 학생들 간의 소통을 강화하는 플랫폼입니다. 단통은 학생회가 설문을 생성하고 행사 관련 게시물을 업로드하고, 일반 학생들이 행사 정보를 확인하고 설문에 응답할 수 있는 기능을 제공합니다. 그리고 학생회는 설문 결과를 확인하고 엑셀로 다운로드할 수 있습니다. 이 프로젝트를 통하여 학생회 업무의 효율성을 높이고, 일반 학생들의 행사 참여를 촉진하는 효과를 기대합니다.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- 주요 기능
+  - 행사 신청
+  - 참여 행사 조회
+  - 폼 생성
+  - 캘린더 조회
+  - 친구 추가
 
-### `npm run eject`
+---
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## 📚 라이브러리
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+![Untitled](/src/assets/image/README_img_1.png)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+---
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## 📱 화면
 
-## Learn More
+![Untitled](/src/assets/image/README_img_3.png)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+---
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## 📁 구조
+
+```tsx
+📦src
+ ┣ 📂api
+ ┣ 📂assets
+ ┃ ┣ 📂font
+ ┃ ┣ 📂image
+ ┃ ┣ 📂svg
+ ┣ 📂components
+ ┣ 📂hooks
+ ┣ 📂pages
+ ┣ 📂query-hooks
+ ┣ 📂stores
+ ┣ 📂styles
+ ┣ 📂types
+ ┗ 📂utils
+```
+
+---
