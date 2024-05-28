@@ -1,10 +1,5 @@
-export type Post = {
-  id: number;
-  title: string;
-  thumbnail: string;
-};
-
 export type Category = 'PARTNERSHIP' | 'NOTICE' | 'EVENT';
+
 export type FilterCategory = Category | 'LIKE' | '';
 
 export const CATEGORY = {

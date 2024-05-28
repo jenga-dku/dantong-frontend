@@ -8,7 +8,7 @@ import { Button } from '../../components/Button';
 import { FaCamera } from 'react-icons/fa6';
 import { useTopBarStore } from '../../stores/topBar-stores';
 import { Editor } from '../../components/Editor';
-import { CATEGORY } from '../../types';
+import { CATEGORY } from '../../types/news-category';
 import ImageList from './ImageList';
 
 export const NewsUploadPage = () => {

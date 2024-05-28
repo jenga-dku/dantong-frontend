@@ -1,7 +1,7 @@
 import { ReactNode } from 'react';
 import { Box } from '../../components/Box';
 import { IoHeart } from 'react-icons/io5';
-import { FilterCategory } from '../../types';
+import { FilterCategory } from '../../types/news-category';
 
 export const FilterNav = ({
   updateCategory,

@@ -1,4 +1,4 @@
-import { CATEGORY, Category } from '../types';
+import { CATEGORY, Category } from '../types/news-category';
 
 export const PostHeader = ({
   status,

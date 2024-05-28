@@ -1,7 +1,7 @@
 import { Box } from '../../components/Box';
 import CouncilLogo from '../../assets/image/CouncilLogo.png';
 import { useNavigate } from 'react-router-dom';
-import { Post } from '../../types';
+import { Post } from '../../types/post';
 
 export const PostItem = ({ id, title, thumbnail }: Post) => {
   const navigate = useNavigate();
