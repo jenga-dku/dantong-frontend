@@ -37,11 +37,12 @@
 
  <img src="https://img.shields.io/badge/react-61DAFB?style=for-the-badge&logo=react&logoColor=black">
  <img src="https://shields.io/badge/TypeScript-3178C6?logo=TypeScript&logoColor=FFF&style=for-the-badge">
+
 ![Untitled](/src/assets/image/README_img_1.png)
 
 <br/>
 
-## 📱 화면
+## 📱 주요 화면
 
 ![Untitled](/src/assets/image/README_img_2.png)
 
