@@ -1,10 +1,12 @@
 import { useQuery } from '@tanstack/react-query';
 import { User } from '../../api/user';
-import { isLoggedIn } from '../../utils/handleAuth';
+import { useAuthStore } from '../../stores/auth-stores';
 
-export const useGetUserInfo = () =>
-  useQuery({
+export const useGetUserInfo = () => {
+  const { isLoggedIn } = useAuthStore();
+  return useQuery({
     queryFn: () => User.getUserInfo(),
     queryKey: ['user-info'],
     enabled: isLoggedIn,
   });
+};

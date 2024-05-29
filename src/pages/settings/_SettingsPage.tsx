@@ -9,11 +9,19 @@ import {
   PiCalendarCheckLight,
 } from 'react-icons/pi';
 import { Fragment } from 'react/jsx-runtime';
-import { isLoggedIn, removeToken } from '../../utils/handleAuth';
+import { removeToken } from '../../utils/handleAuth';
+import { useAuthStore } from '../../stores/auth-stores';
 
 export const SettingsPage = () => {
   const navigate = useNavigate();
   const { data } = useGetUserInfo();
+  const { isLoggedIn, setIsLoggedIn, setUserInfo } = useAuthStore();
+  const removeUserInfo = () => {
+    setUserInfo({
+      name: '',
+      role: '',
+    });
+  };
 
   const menuList = [
     {
@@ -72,7 +80,9 @@ export const SettingsPage = () => {
               size="full"
               onClick={() => {
                 removeToken();
+                removeUserInfo();
                 navigate('/start');
+                setIsLoggedIn(false);
               }}
             />
           </div>
