@@ -1,4 +1,4 @@
-import { getToken } from '../../utils/getToken';
+import { getToken } from '../../utils/handleAuth';
 import { API } from '../api';
 import { UserInfoResponse } from './types';
 

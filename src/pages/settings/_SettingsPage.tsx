@@ -9,6 +9,7 @@ import {
   PiCalendarCheckLight,
 } from 'react-icons/pi';
 import { Fragment } from 'react/jsx-runtime';
+import { isLoggedIn, removeToken } from '../../utils/handleAuth';
 
 export const SettingsPage = () => {
   const navigate = useNavigate();
@@ -34,43 +35,57 @@ export const SettingsPage = () => {
 
   return (
     <>
-      {data && (
-        <div className="flex flex-col gap-4">
-          <div className="flex items-center gap-3 rounded-xl bg-white p-3 shadow-lg">
-            <div className="w-fit rounded-2xl bg-zinc-200 p-1 text-[60px] text-white">
-              <HiUser />
+      {isLoggedIn ? (
+        data && (
+          <div className="flex flex-col gap-4">
+            <div className="flex items-center gap-3 rounded-xl bg-white p-3 shadow-lg">
+              <div className="w-fit rounded-2xl bg-zinc-200 p-1 text-[60px] text-white">
+                <HiUser />
+              </div>
+              <div className="flex flex-col gap-1">
+                <p className="w-fit rounded-md text-xs text-primary">
+                  {getMajorKoreanName(data.majorName)}
+                </p>
+                <p className="flex items-center gap-1">
+                  <strong>{data?.name}</strong>
+                  <span className="text-sm">({data?.studentId})</span>
+                </p>
+                <p className="text-sm">{data?.phoneNumber}</p>
+              </div>
             </div>
-            <div className="flex flex-col gap-1">
-              <p className="w-fit rounded-md text-xs text-primary">
-                {getMajorKoreanName(data.majorName)}
-              </p>
-              <p className="flex items-center gap-1">
-                <strong>{data?.name}</strong>
-                <span className="text-sm">({data?.studentId})</span>
-              </p>
-              <p className="text-sm">{data?.phoneNumber}</p>
-            </div>
+            <ul className="rounded-xl bg-white p-5 shadow-lg">
+              {menuList.map(({ id, icon, menuName }, index) => (
+                <Fragment key={id}>
+                  <li
+                    onClick={() => {}}
+                    className="flex cursor-pointer items-center gap-3"
+                  >
+                    <span className="text-2xl">{icon}</span>
+                    <p>{menuName}</p>
+                  </li>
+                  {index !== menuList.length - 1 && <hr className="my-3" />}
+                </Fragment>
+              ))}
+            </ul>
+            <Button
+              content="로그아웃"
+              size="full"
+              onClick={() => {
+                removeToken();
+                navigate('/start');
+              }}
+            />
           </div>
-          <ul className="rounded-xl bg-white p-5 shadow-lg">
-            {menuList.map(({ id, icon, menuName }, index) => (
-              <Fragment key={id}>
-                <li
-                  onClick={() => {}}
-                  className="flex cursor-pointer items-center gap-3"
-                >
-                  <span className="text-2xl">{icon}</span>
-                  <p>{menuName}</p>
-                </li>
-                {index !== menuList.length - 1 && <hr className="my-3" />}
-              </Fragment>
-            ))}
-          </ul>
+        )
+      ) : (
+        <div className="flex flex-col items-center justify-center gap-8 rounded-xl bg-white px-3 pb-5 pt-10  shadow-lg">
+          <p className="">로그인 후 이용 가능합니다!🥲</p>
           <Button
-            content="로그아웃"
-            size="full"
             onClick={() => {
               navigate('/start');
             }}
+            content="로그인"
+            size="full"
           />
         </div>
       )}
