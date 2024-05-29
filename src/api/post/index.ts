@@ -5,12 +5,12 @@ export const Post = {
   async getPostList(category: string): Promise<PostListResponse> {
     const isCategoryViewAll = category.length === 0;
     const response = await API.get(
-      `/board/list${isCategoryViewAll ? '' : `?category=${category}`}`,
+      `/post/list${isCategoryViewAll ? '' : `?category=${category}`}`,
     );
     return response.data;
   },
   async getPostDetail(id: number): Promise<PostDetailResponse> {
-    const response = await API.get(`/board/${id}`);
+    const response = await API.get(`/post/${id}`);
     return response.data;
   },
 };

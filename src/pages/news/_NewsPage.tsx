@@ -3,6 +3,7 @@ import { useGetPostList } from '../../query-hooks/post';
 import { FilterNav } from './FilterNav';
 import { PostItem } from './PostItem';
 import { FilterCategory } from '../../types/news-category';
+import { PostDetailResponse } from '../../api/post/types';
 
 export const NewsPage = () => {
   const [category, setCategory] = useState<FilterCategory>('');
@@ -16,7 +17,9 @@ export const NewsPage = () => {
     <div className="gap- flex flex-col gap-5">
       <FilterNav updateCategory={setCategory} />
       <ul className="flex flex-col gap-6 pt-[55px]">
-        {postList?.map((data) => <PostItem data={data} />)}
+        {postList?.content.map((data: PostDetailResponse) => (
+          <PostItem data={data} />
+        ))}
       </ul>
     </div>
   );
