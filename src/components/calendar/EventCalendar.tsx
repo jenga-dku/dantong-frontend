@@ -17,6 +17,7 @@ export const EventCalendar = () => {
           weekdayFormat: (date, culture, localizer) =>
             localizer!.format(date, 'ddd', culture).toUpperCase(),
         }}
+        views={['month']}
       />
     </div>
   );
