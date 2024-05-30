@@ -2,6 +2,7 @@ import './styles.css';
 import { Calendar, momentLocalizer } from 'react-big-calendar';
 import moment from 'moment';
 import { Toolbar } from './Toolbar';
+import { events } from '../../data';
 
 export const EventCalendar = () => {
   const localizer = momentLocalizer(moment);
@@ -11,7 +12,10 @@ export const EventCalendar = () => {
       <Calendar
         localizer={localizer}
         startAccessor="start"
+        endAccessor="endDate"
+        events={events}
         style={{ height: 400 }}
+        showAllEvents={true}
         components={{ toolbar: Toolbar }}
         formats={{
           weekdayFormat: (date, culture, localizer) =>
