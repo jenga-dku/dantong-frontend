@@ -10,6 +10,7 @@ import { SettingsPage } from './pages/settings/_SettingsPage';
 import { FormPage } from './pages/form/_FormPage';
 import { FormUploadPage } from './pages/form-upload/_FormUploadPage';
 import { NewsUploadPage } from './pages/news-upload/_NewsUploadPage';
+import { CalendarPage } from './pages/calendar/_CalendarPage';
 
 export default function Router() {
   return (
@@ -19,7 +20,7 @@ export default function Router() {
           <Route path="/" element={<HomePage />} />
           <Route path="/news" element={<NewsPage />} />
           <Route path="/news/:id" element={<PostPage />} />
-          <Route path="/calendar" element={<></>} />
+          <Route path="/calendar" element={<CalendarPage />} />
           <Route path="/settings" element={<SettingsPage />} />
           <Route path="/form/:id" element={<FormPage />} />
           <Route path="/form/upload" element={<FormUploadPage />} />
