@@ -1,6 +1,7 @@
 import React from 'react';
 import Router from './Router';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { ModalProvider } from './components/modal/ModalProvider';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -15,9 +16,11 @@ const queryClient = new QueryClient({
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <div className="absolute flex h-full w-full max-w-[400px] overflow-hidden bg-white">
-        <Router />
-      </div>
+      <ModalProvider>
+        <div className="absolute flex h-full w-full max-w-[400px] overflow-hidden bg-white">
+          <Router />
+        </div>
+      </ModalProvider>
     </QueryClientProvider>
   );
 }
