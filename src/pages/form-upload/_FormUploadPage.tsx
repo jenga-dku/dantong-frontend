@@ -14,17 +14,18 @@ import {
 } from './QuestionTypeButton';
 import { Header } from './Header';
 import { useTopBarStore } from '../../stores/topBar-stores';
+
 export const FormUploadPage = () => {
-  const { setIsBackButtonVisible, setIsNotificationButtonVisible } =
-    useTopBarStore();
   const defaultQuestion: Question = {
     tag: 'SUBJECTIVE',
     title: '',
     description: '',
   };
+
   const [questionList, setQuestionList] = useState<Question[]>([
     defaultQuestion,
   ]);
+
   const periodState = useState<Period>({
     start: new Date(),
     end: new Date(),
@@ -40,6 +41,17 @@ export const FormUploadPage = () => {
       isNotificationButtonVisible: false,
     });
   }, []);
+
+  const handleQuestionInputChange = (
+    e: React.ChangeEvent<HTMLInputElement>,
+    index: number,
+  ) => {
+    setQuestionList((prev) => [
+      ...prev.slice(0, index),
+      { ...prev[index], [e.target.name]: e.target.value },
+      ...prev.slice(index + 1),
+    ]);
+  };
 
   type QuestionTypeButton = { type: QuestionType; icon: ReactNode };
   const questionTypeList: QuestionTypeButton[] = [
@@ -77,14 +89,34 @@ export const FormUploadPage = () => {
               ))}
             </div>
             <button>
-              <RxCross2 />
+              <RxCross2
+                onClick={() => {
+                  setQuestionList((prev) => [
+                    ...prev.slice(0, index),
+                    ...prev.slice(index + 1),
+                  ]);
+                }}
+              />
             </button>
           </div>
-          <input type="text" placeholder="질문을 입력해주세요" />
           <input
             type="text"
+            name="title"
+            placeholder="질문을 입력해주세요"
+            value={questionList[index].title}
+            onChange={(e) => {
+              handleQuestionInputChange(e, index);
+            }}
+          />
+          <input
+            type="text"
+            name="description"
             className="ml-[-35px] scale-[0.8] text-[16px] text-zinc-500"
             placeholder="설명을 입력해주세요"
+            value={questionList[index].description}
+            onChange={(e) => {
+              handleQuestionInputChange(e, index);
+            }}
           />
           {questionType === 'SUBJECTIVE' ? (
             <input
