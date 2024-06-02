@@ -3,9 +3,14 @@ import { HTMLAttributes } from 'react';
 type Button = HTMLAttributes<HTMLButtonElement> & {
   content: string;
   onClick?: () => void;
-  size: 'full' | 'fit';
+  size?: 'full' | 'fit';
   disabled?: boolean;
   className?: string;
+};
+
+const SIZE = {
+  full: 'w-full text-xl',
+  fit: 'w-fit',
 };
 
 export const Button = ({
@@ -18,7 +23,7 @@ export const Button = ({
 }: Button) => {
   return (
     <button
-      className={`btn-primary btn border-none text-white ${size && `btn-${size}`} ${className}`}
+      className={`btn-primary btn border-none text-white ${SIZE[size ?? 'full']} ${className}`}
       disabled={disabled ?? false}
       onClick={onClick}
       {...props}

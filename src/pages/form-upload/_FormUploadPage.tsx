@@ -3,7 +3,11 @@ import { Box } from '../../components/Box';
 import 'react-datepicker/dist/react-datepicker.css';
 import { Period } from '../../components/period-picker';
 import { TbPlus } from 'react-icons/tb';
-import { Question, QuestionType } from '../../api/upload-form/types';
+import {
+  FormUpload,
+  Question,
+  QuestionType,
+} from '../../api/form-upload/types';
 import { SubmitButton } from '../../components/SubmitButton';
 import { RiListRadio } from 'react-icons/ri';
 import { RxCross2 } from 'react-icons/rx';
@@ -33,6 +37,17 @@ export const FormUploadPage = () => {
     end: new Date(),
   });
 
+  const formUploadInfoState = useState<FormUpload>({
+    title: '',
+    description: '',
+    postId: 0,
+    startTime: '',
+    endTime: '',
+    surveyItems: questionList,
+  });
+
+  const setFormUploadInfo = formUploadInfoState[1];
+
   const submitForm = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
   };
@@ -43,6 +58,10 @@ export const FormUploadPage = () => {
       isNotificationButtonVisible: false,
     });
   }, []);
+
+  useEffect(() => {
+    setFormUploadInfo((prev) => ({ ...prev, surveyItems: questionList }));
+  }, [questionList]);
 
   const handleQuestionInputChange = (
     e: React.ChangeEvent<HTMLInputElement>,
@@ -67,7 +86,10 @@ export const FormUploadPage = () => {
         submitForm(e);
       }}
     >
-      <Header periodState={periodState} />
+      <Header
+        periodState={periodState}
+        formUploadInfoState={formUploadInfoState}
+      />
       {questionList.map(({ tag: questionType, options }, index) => (
         <Box className="flex flex-col gap-3" key={`question-${index}`}>
           <div className="flex justify-between text-zinc-400">

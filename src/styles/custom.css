@@ -88,17 +88,6 @@ input[type='password'] {
   height: fit-content;
 }
 
-/* Daisy UI */
-.btn-full {
-  width: 100%;
-  padding: 1rem 0;
-  font-size: 1.25rem;
-}
-
-.btn-fit {
-  padding: 1rem;
-}
-
 /* Scrollbar */
 * {
   &::-webkit-scrollbar {
