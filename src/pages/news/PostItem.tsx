@@ -1,19 +1,20 @@
 import { useNavigate } from 'react-router-dom';
 import { Box } from '../../components/Box';
 import { PostHeader } from '../../components/PostHeader';
-import { PostDataList } from '../../data';
 import { PostDetailResponse } from '../../api/post/types';
 
 export const PostItem = ({
-  data: { postId, title, status, category },
+  data: { postId, title, status, category, postFileResponse },
 }: {
   data: PostDetailResponse;
 }) => {
   const navigate = useNavigate();
   return (
     <Box
-      className={`h-[22.5rem] cursor-pointer flex-col justify-end overflow-hidden bg-cover p-0`}
-      style={{ backgroundImage: `url('${PostDataList[0].thumbnail}')` }}
+      className={`h-[22.5rem] cursor-pointer flex-col justify-end overflow-hidden bg-slate-200 bg-cover bg-center p-0`}
+      style={{
+        backgroundImage: `url('${postFileResponse.length > 0 ? postFileResponse[0].url : ''}')`,
+      }}
       onClick={() => {
         navigate(`${postId}`);
       }}
