@@ -5,7 +5,7 @@ import { ModalState } from '../../types/modal';
 
 const modalRoot = document.getElementById('modal-root') as HTMLElement;
 export const ModalContext = createContext({
-  setModalState: ({ title, desc, visible }: ModalState) => {},
+  setModalState: (state: ModalState) => {},
 });
 
 export const ModalProvider = ({ children }: { children: ReactNode }) => {
@@ -20,6 +20,7 @@ export const ModalProvider = ({ children }: { children: ReactNode }) => {
             title={modalState.title}
             desc={modalState.desc}
             visible={modalState.visible}
+            option={modalState.option}
           />,
           modalRoot,
         )}

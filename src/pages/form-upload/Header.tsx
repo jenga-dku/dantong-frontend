@@ -61,6 +61,7 @@ export const Header = ({
         placeholder="설명을 입력해주세요"
       ></textarea>
       <button
+        type="button"
         onClick={() => {
           setPostModalState((prev) => ({ ...prev, visible: true }));
         }}

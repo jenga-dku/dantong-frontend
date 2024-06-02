@@ -19,6 +19,8 @@ import {
 import { Header } from './Header';
 import { useTopBarStore } from '../../stores/topBar-stores';
 import { PiTrashLight } from 'react-icons/pi';
+import { useModal } from '../../hooks/useModal';
+import { useCreateForm } from '../../query-hooks/form-upload';
 
 export const FormUploadPage = () => {
   const defaultQuestion: Question = {
@@ -46,10 +48,21 @@ export const FormUploadPage = () => {
     surveyItems: questionList,
   });
 
-  const setFormUploadInfo = formUploadInfoState[1];
+  const [formUploadInfo, setFormUploadInfo] = formUploadInfoState;
 
-  const submitForm = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const { open } = useModal();
+  const { mutate: createForm } = useCreateForm();
+  const uploadForm = () => {
+    open({
+      title: '폼 생성',
+      desc: '폼을 생성하시겠습니까?',
+      option: {
+        type: 'CONFIRM',
+        confirmEvent: () => {
+          createForm(formUploadInfo);
+        },
+      },
+    });
   };
 
   useEffect(() => {
@@ -80,12 +93,7 @@ export const FormUploadPage = () => {
     { type: 'MULTIPLE', icon: <RiListRadio /> },
   ];
   return (
-    <form
-      className="flex flex-col gap-5"
-      onSubmit={(e) => {
-        submitForm(e);
-      }}
-    >
+    <div className="flex flex-col gap-5">
       <Header
         periodState={periodState}
         formUploadInfoState={formUploadInfoState}
@@ -227,7 +235,7 @@ export const FormUploadPage = () => {
           <TbPlus size={30} />
         </button>
       </div>
-      <SubmitButton content="업로드" />
-    </form>
+      <SubmitButton content="업로드" onClick={() => uploadForm()} />
+    </div>
   );
 };
