@@ -20,7 +20,6 @@ export const ModalProvider = ({ children }: { children: ReactNode }) => {
             title={modalState.title}
             desc={modalState.desc}
             visible={modalState.visible}
-            onClose={modalState.onClose}
           />,
           modalRoot,
         )}

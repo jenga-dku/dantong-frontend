@@ -1,30 +1,26 @@
-import { useEffect, useRef } from 'react';
+import { useContext, useEffect, useRef } from 'react';
+import { ModalContext } from './ModalProvider';
 
 export const Modal = ({
   title,
   desc,
   visible,
-  onClose,
 }: {
   title: string;
   desc: string;
   visible: boolean;
-  onClose: () => void;
 }) => {
   const modalRef = useRef<HTMLDialogElement>(null);
-
+  const { setModalState } = useContext(ModalContext);
+  const handleClose = () => {
+    setModalState({ title: '', desc: '', visible: false });
+  };
   useEffect(() => {
     if (!modalRef.current) {
       return;
     }
     visible ? modalRef.current.showModal() : modalRef.current.close();
   }, [visible]);
-
-  const handleClose = () => {
-    if (onClose) {
-      onClose();
-    }
-  };
 
   const handleESC = (event: React.SyntheticEvent<HTMLDialogElement, Event>) => {
     event.preventDefault();
@@ -42,7 +38,7 @@ export const Modal = ({
           <p>{desc}</p>
         </div>
         <div className="modal-action">
-          <button className="btn w-full" onClick={handleClose}>
+          <button className="btn w-full" onClick={() => handleClose()}>
             확인
           </button>
         </div>
