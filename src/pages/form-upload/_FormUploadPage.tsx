@@ -14,12 +14,14 @@ import {
 } from './QuestionTypeButton';
 import { Header } from './Header';
 import { useTopBarStore } from '../../stores/topBar-stores';
+import { PiTrashLight } from 'react-icons/pi';
 
 export const FormUploadPage = () => {
   const defaultQuestion: Question = {
     tag: 'SUBJECTIVE',
     title: '',
     description: '',
+    options: [''],
   };
 
   const [questionList, setQuestionList] = useState<Question[]>([
@@ -66,7 +68,7 @@ export const FormUploadPage = () => {
       }}
     >
       <Header periodState={periodState} />
-      {questionList.map(({ tag: questionType }, index) => (
+      {questionList.map(({ tag: questionType, options }, index) => (
         <Box className="flex flex-col gap-3" key={`question-${index}`}>
           <div className="flex justify-between text-zinc-400">
             <div className="flex gap-3">
@@ -126,14 +128,70 @@ export const FormUploadPage = () => {
               className="rounded-lg border-[1px] border-solid bg-zinc-50 p-2 text-sm"
             />
           ) : (
-            <label className="flex items-center gap-1 text-[16px]">
-              <input type="radio" disabled />
-              <input
-                type="text"
-                placeholder="옵션을 입력해주세요"
-                className="ml-[-10px] scale-[0.8]"
-              />
-            </label>
+            <div className="flex w-full flex-col gap-2">
+              {options.map((option, optionIndex) => (
+                <label className="flex w-full items-center justify-between text-[16px]">
+                  <div>
+                    <input type="radio" disabled />
+                    <input
+                      type="text"
+                      value={option}
+                      onChange={(e) =>
+                        setQuestionList((prev) => [
+                          ...prev.slice(0, index),
+                          {
+                            ...prev[index],
+                            options: [
+                              ...options.slice(0, optionIndex),
+                              e.target.value,
+                              ...options.slice(optionIndex + 1),
+                            ],
+                          },
+                          ...prev.slice(index + 1),
+                        ])
+                      }
+                      placeholder="옵션을 입력해주세요"
+                      className="ml-[-10px] scale-[0.8]"
+                    />
+                  </div>
+                  <button className="text-zinc-400">
+                    <PiTrashLight
+                      onClick={() => {
+                        setQuestionList((prev) => [
+                          ...prev.slice(0, index),
+                          {
+                            ...prev[index],
+                            options: [
+                              ...options.slice(0, optionIndex),
+                              ...options.slice(optionIndex + 1),
+                            ],
+                          },
+                          ...prev.slice(index + 1),
+                        ]);
+                      }}
+                    />
+                  </button>
+                </label>
+              ))}
+              <button
+                onClick={() => {
+                  setQuestionList((prev) => [
+                    ...prev.slice(0, index),
+                    {
+                      ...prev[index],
+                      options: [...options, ''],
+                    },
+                    ...prev.slice(index + 1),
+                  ]);
+                }}
+                className="flex cursor-pointer items-center text-[16px]"
+              >
+                <input type="radio" disabled />
+                <p className="ml-[-1px] scale-[0.8] text-zinc-400">
+                  옵션 추가하기
+                </p>
+              </button>
+            </div>
           )}
         </Box>
       ))}
