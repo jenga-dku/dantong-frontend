@@ -1,3 +1,5 @@
+import { UserInfoResponse } from '../user/types';
+
 export type PostListResponse = {
   content: PostDetailResponse[];
   pageable: {
@@ -29,6 +31,7 @@ export type PostListResponse = {
 
 export type PostDetailResponse = {
   postId: number;
+  surveyId: number;
   title: string;
   description: string;
   content: string;
@@ -36,6 +39,7 @@ export type PostDetailResponse = {
   status: string;
   category: 'EVENT' | 'NOTICE' | 'PARTNERSHIP';
   postFileResponse: PostFileResponse[];
+  userResponse: UserInfoResponse;
 };
 
 export type PostFileResponse = {

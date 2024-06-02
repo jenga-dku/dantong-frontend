@@ -11,7 +11,7 @@ export const useTopBarStore = create<TopBarState>((set) => ({
   isBackButtonVisible: false,
   setIsBackButtonVisible: (state: boolean) =>
     set({ isBackButtonVisible: state }),
-  isNotificationButtonVisible: false,
+  isNotificationButtonVisible: true,
   setIsNotificationButtonVisible: (state: boolean) =>
     set({ isNotificationButtonVisible: state }),
 }));

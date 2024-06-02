@@ -1,6 +1,5 @@
 import { Box } from '../../components/Box';
 import { PostHeader } from '../../components/PostHeader';
-import { post } from '../../data';
 import { Carousel } from '../../components/carousel/Carousel';
 import parse from 'html-react-parser';
 import { Button } from '../../components/Button';
@@ -9,7 +8,6 @@ import { useGetPostDetail } from '../../query-hooks/post';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 export const PostPage = () => {
-  const { images, author } = post;
   const { pathname } = useLocation();
   const postId = Number(pathname.split('/news/')[1]);
   const { data } = useGetPostDetail(postId);
@@ -20,12 +18,12 @@ export const PostPage = () => {
     <div>
       {data && (
         <Box className={`h-fit flex-col overflow-hidden p-0`}>
-          <Carousel data={images} />
+          <Carousel data={data.postFileResponse} />
           <PostHeader
             status={data.status}
             title={data.title}
             category={data.category}
-            author={author}
+            author={data.userResponse.name}
           />
           <hr />
           <p className="p-4 text-sm">{parse(data.content)}</p>
@@ -34,7 +32,7 @@ export const PostPage = () => {
               content="신청"
               size="full"
               onClick={() => {
-                navigate('/form/id');
+                navigate(`/form/${data.surveyId}`);
               }}
             />
           </div>
