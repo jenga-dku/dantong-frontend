@@ -14,4 +14,10 @@ export type SurveyItem = {
   options: string[];
 };
 
+export type FormAnswer = {
+  surveyItemId: number;
+  content: string;
+  userId: number;
+};
+
 export type SurveyItemTag = 'SUBJECTIVE' | 'MULTIPLE';
