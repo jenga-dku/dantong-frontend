@@ -5,3 +5,5 @@ export type ErrorResponse = {
   code: string;
   message: string[];
 };
+
+export type PageParams = { page: number; size: number };

@@ -1,7 +1,21 @@
+import { FilterCategory } from '../../types/news-category';
 import { API } from '../api';
+import { PageParams } from '../types';
 import { PostDetailResponse, PostListResponse } from './types';
 
 export const Post = {
+  async getInfinitePostList({
+    category,
+    page,
+    size,
+  }: PageParams & { category: FilterCategory }): Promise<PostDetailResponse[]> {
+    const isCategoryViewAll = category.length === 0;
+    const response = await API.get(
+      `/post/list${isCategoryViewAll ? '?' : `?category=${category}&`}page=${page}&size=${size}&sort=createdAt,desc`,
+    );
+    const postList = (await response.data.content) as PostDetailResponse[];
+    return postList;
+  },
   async getPostList(category: string): Promise<PostListResponse> {
     const isCategoryViewAll = category.length === 0;
     const response = await API.get(
