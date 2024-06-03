@@ -27,15 +27,19 @@ export const PostPage = () => {
           />
           <hr />
           <p className="p-4 text-sm">{parse(data.content)}</p>
-          <div className=" p-4 pt-2">
-            <Button
-              content="신청"
-              size="full"
-              onClick={() => {
-                navigate(`/form/${data.surveyId}`);
-              }}
-            />
-          </div>
+          {data.surveyId ? (
+            <div className=" p-4 pt-2">
+              <Button
+                content="신청"
+                size="full"
+                onClick={() => {
+                  navigate(`/form/${data.surveyId}`);
+                }}
+              />
+            </div>
+          ) : (
+            <div className="h-8" />
+          )}
         </Box>
       )}
     </div>
