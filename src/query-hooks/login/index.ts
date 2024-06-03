@@ -23,6 +23,7 @@ export const usePostLoginInfo = () => {
       setUserInfo({
         name: data!.name,
         role: data!.userRole,
+        studentID: data!.studentId,
       });
       navigate('/');
     },

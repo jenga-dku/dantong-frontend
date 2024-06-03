@@ -20,6 +20,7 @@ export const SettingsPage = () => {
     setUserInfo({
       name: '',
       role: '',
+      studentID: '',
     });
   };
 
