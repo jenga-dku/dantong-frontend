@@ -11,6 +11,7 @@ export type SurveyItem = {
   tag: SurveyItemTag;
   title: string;
   description: string;
+  options: string[];
 };
 
 export type SurveyItemTag = 'SUBJECTIVE' | 'MULTIPLE';
