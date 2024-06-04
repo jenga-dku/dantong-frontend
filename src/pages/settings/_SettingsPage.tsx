@@ -8,9 +8,9 @@ import {
   PiLockKeyLight,
   PiCalendarCheckLight,
 } from 'react-icons/pi';
-import { Fragment } from 'react/jsx-runtime';
 import { removeToken } from '../../utils/handleAuth';
 import { useAuthStore } from '../../stores/auth-stores';
+import { MenuContainer } from '../../components/MenuContainer';
 
 export const SettingsPage = () => {
   const navigate = useNavigate();
@@ -62,20 +62,7 @@ export const SettingsPage = () => {
                 <p className="text-sm">{data?.phoneNumber}</p>
               </div>
             </div>
-            <ul className="rounded-xl bg-white p-5 shadow-lg">
-              {menuList.map(({ id, icon, menuName }, index) => (
-                <Fragment key={id}>
-                  <li
-                    onClick={() => {}}
-                    className="flex cursor-pointer items-center gap-3"
-                  >
-                    <span className="text-2xl">{icon}</span>
-                    <p>{menuName}</p>
-                  </li>
-                  {index !== menuList.length - 1 && <hr className="my-3" />}
-                </Fragment>
-              ))}
-            </ul>
+            <MenuContainer menuList={menuList} />
             <Button
               content="로그아웃"
               size="full"
