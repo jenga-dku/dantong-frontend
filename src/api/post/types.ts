@@ -1,3 +1,4 @@
+import { PostStatus } from '../../types/post-status';
 import { UserInfoResponse } from '../user/types';
 
 export type PostListResponse = {
@@ -36,7 +37,7 @@ export type PostDetailResponse = {
   description: string;
   content: string;
   date: string;
-  status: string;
+  status: PostStatus;
   category: 'EVENT' | 'NOTICE' | 'PARTNERSHIP';
   postFileResponse: PostFileResponse[];
   userResponse: UserInfoResponse;
