@@ -1,14 +1,14 @@
 import { useEffect, useState } from 'react';
-import { useGetForm, useSubmitForm } from '../../query-hooks/form';
-import { Box } from '../../components/Box';
-import { handleDateFormat } from '../../utils/handleDateFomat';
-import { SubmitButton } from '../../components/SubmitButton';
-import { useTopBarStore } from '../../stores/topBar-stores';
+import { useGetForm, useSubmitForm } from '../../../query-hooks/form';
+import { Box } from '../../../components/Box';
+import { handleDateFormat } from '../../../utils/handleDateFomat';
+import { SubmitButton } from '../../../components/SubmitButton';
+import { useTopBarStore } from '../../../stores/topBar-stores';
 import { useParams } from 'react-router-dom';
 import { CiCalendar } from 'react-icons/ci';
-import { FormAnswer } from '../../api/form/types';
-import { useAuthStore } from '../../stores/auth-stores';
-import { useModal } from '../../hooks/useModal';
+import { FormAnswer } from '../../../api/form/types';
+import { useAuthStore } from '../../../stores/auth-stores';
+import { useModal } from '../../../hooks/useModal';
 
 export const FormPage = () => {
   const { id: formID } = useParams();
