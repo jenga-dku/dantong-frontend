@@ -72,10 +72,6 @@ export const FormUploadPage = () => {
     });
   }, []);
 
-  useEffect(() => {
-    setFormUploadInfo((prev) => ({ ...prev, surveyItems: questionList }));
-  }, [questionList]);
-
   const handleQuestionInputChange = (
     e: React.ChangeEvent<HTMLInputElement>,
     index: number,

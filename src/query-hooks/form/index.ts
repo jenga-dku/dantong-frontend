@@ -4,6 +4,7 @@ import { useModal } from '../../hooks/useModal';
 import { FormAnswer } from '../../api/form/types';
 import { AxiosError } from 'axios';
 import { Form } from '../../api/form';
+import { useNavigate } from 'react-router-dom';
 
 export const useGetForm = (id: number) =>
   useQuery({
@@ -13,11 +14,13 @@ export const useGetForm = (id: number) =>
 
 export const useSubmitForm = () => {
   const { open } = useModal();
+  const navigate = useNavigate();
 
   return useMutation({
     mutationFn: (data: FormAnswer[]) => Form.submit(data),
-    onSuccess: (response) => {
-      console.log(response);
+    onSuccess: () => {
+      navigate('/news');
+      open({ title: '폼 제출 완료', desc: '폼이 성공적으로 제출되었습니다.' });
     },
     onError: ({ response }: AxiosError<ErrorResponse>) =>
       open({
