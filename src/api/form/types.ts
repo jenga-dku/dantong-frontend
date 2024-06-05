@@ -17,7 +17,6 @@ export type SurveyItem = {
 export type FormAnswer = {
   surveyItemId: number;
   content: string;
-  userId: number;
 };
 
 export type SurveyItemTag = 'SUBJECTIVE' | 'MULTIPLE';
