@@ -32,7 +32,6 @@ export type PostListResponse = {
 
 export type PostDetailResponse = {
   postId: number;
-  surveyId: number;
   title: string;
   description: string;
   content: string;
@@ -41,6 +40,15 @@ export type PostDetailResponse = {
   category: 'EVENT' | 'NOTICE' | 'PARTNERSHIP';
   postFileResponse: PostFileResponse[];
   userResponse: UserInfoResponse;
+  surveySummaryResponse: FormSummaryResponse;
+};
+
+export type FormSummaryResponse = {
+  surveyId: number;
+  title: string;
+  postId: number;
+  startTime: string;
+  endTime: string;
 };
 
 export type PostFileResponse = {

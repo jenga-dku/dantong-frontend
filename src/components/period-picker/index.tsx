@@ -1,6 +1,6 @@
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-import { renderCustomHeader } from './Header';
+import { renderCustomHeader } from '../calendar/Header';
 import { Input } from './Input';
 import './styles.css';
 
