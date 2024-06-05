@@ -27,10 +27,10 @@ export const PostPage = () => {
             status={data.status}
             title={data.title}
             category={data.category}
-            author={data.userResponse.name}
+            author="SW융합대학 SW:ing 학생회"
           />
           <hr />
-          <p className="p-4 text-sm">{parse(data.content)}</p>
+          <div className="p-4 text-sm">{parse(data.content)}</div>
           {data.surveySummaryResponse && data.surveySummaryResponse.surveyId ? (
             <div className=" p-4 pt-2">
               <Button
@@ -42,7 +42,7 @@ export const PostPage = () => {
               />
             </div>
           ) : (
-            <div className="h-8" />
+            <div className="h-2" />
           )}
         </Box>
       )}
