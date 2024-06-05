@@ -5,10 +5,8 @@ import { Input } from './Input';
 import './styles.css';
 import moment from 'moment';
 import { setMinutes } from 'date-fns';
-export type Period = {
-  start: Date;
-  end: Date;
-};
+import { Period } from '../../types/period-picker/period';
+
 export const PeriodPicker = ({
   periodState: [period, setPeriod],
 }: {

@@ -6,13 +6,17 @@ import { Button } from '../../components/Button';
 import { useTopBarStore } from '../../stores/topBar-stores';
 import { useGetPostDetail } from '../../query-hooks/post';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
 
 export const PostPage = () => {
   const { pathname } = useLocation();
   const postId = Number(pathname.split('/news/')[1]);
   const { data } = useGetPostDetail(postId);
   const navigate = useNavigate();
-  useTopBarStore.setState({ isBackButtonVisible: true });
+
+  useEffect(() => {
+    useTopBarStore.setState({ isBackButtonVisible: true });
+  }, []);
 
   return (
     <div>
@@ -27,7 +31,7 @@ export const PostPage = () => {
           />
           <hr />
           <p className="p-4 text-sm">{parse(data.content)}</p>
-          {data.surveySummaryResponse.surveyId ? (
+          {data.surveySummaryResponse && data.surveySummaryResponse.surveyId ? (
             <div className=" p-4 pt-2">
               <Button
                 content="신청"

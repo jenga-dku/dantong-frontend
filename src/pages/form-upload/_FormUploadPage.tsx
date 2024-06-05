@@ -1,7 +1,7 @@
 import { ReactNode, useEffect, useState } from 'react';
 import { Box } from '../../components/Box';
 import 'react-datepicker/dist/react-datepicker.css';
-import { Period } from '../../components/period-picker';
+import { Period } from '../../types/period-picker/period';
 import { TbPlus } from 'react-icons/tb';
 import {
   FormUpload,

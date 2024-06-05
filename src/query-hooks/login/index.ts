@@ -17,6 +17,7 @@ export const usePostLoginInfo = () => {
   const { open } = useModal();
 
   useEffect(() => {
+    console.log(isLoggedIn && isUserInfoFetchedSuccess);
     isLoggedIn &&
       isUserInfoFetchedSuccess &&
       setUserInfo({
