@@ -5,5 +5,6 @@ export const getToken = () => {
 export const removeToken = () => {
   localStorage.removeItem('accessToken');
   localStorage.removeItem('refreshToken');
-  localStorage.removeItem('userName');
+  localStorage.removeItem('auth');
+  localStorage.removeItem('role');
 };

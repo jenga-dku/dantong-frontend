@@ -1,8 +1,9 @@
 import { Button } from '../../components/Button';
 import { Input } from './Input';
 import { LoginInfo } from '../../api/login/types';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { usePostLoginInfo } from '../../query-hooks/login';
+import { useAuthStore } from '../../stores/auth-stores';
 
 export const LoginPage = () => {
   const [loginInfo, setLoginInfo] = useState<LoginInfo>({
@@ -10,6 +11,7 @@ export const LoginPage = () => {
     password: '',
   });
   const { mutate: postLoginInfo } = usePostLoginInfo();
+  const { setIsLoggedIn } = useAuthStore();
 
   const submitLoginInfo = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();

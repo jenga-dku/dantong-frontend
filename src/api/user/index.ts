@@ -9,6 +9,6 @@ export const User = {
         Authorization: `Bearer ${getToken()}`,
       },
     });
-    return response.data;
+    return response?.data ?? null;
   },
 };

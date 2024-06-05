@@ -7,12 +7,28 @@ import { useNavigate } from 'react-router-dom';
 import { useAuthStore } from '../../stores/auth-stores';
 import { useGetUserInfo } from '../user';
 import { useModal } from '../../hooks/useModal';
+import { useEffect } from 'react';
 
 export const usePostLoginInfo = () => {
   const navigate = useNavigate();
-  const { setIsLoggedIn, setUserInfo } = useAuthStore();
-  const { data } = useGetUserInfo();
+  const { isLoggedIn, userInfo, setIsLoggedIn, setUserInfo } = useAuthStore();
+  const { data: fetchedUserInfo, isSuccess: isUserInfoFetchedSuccess } =
+    useGetUserInfo();
   const { open } = useModal();
+
+  useEffect(() => {
+    isLoggedIn &&
+      isUserInfoFetchedSuccess &&
+      setUserInfo({
+        name: fetchedUserInfo!.name,
+        role: fetchedUserInfo!.userRole,
+        studentID: fetchedUserInfo!.studentId,
+      });
+  }, [isLoggedIn]);
+
+  useEffect(() => {
+    userInfo.name && userInfo.name.length > 0 && navigate('/');
+  }, [userInfo.name]);
 
   return useMutation({
     mutationFn: (data: LoginInfo) => Login.post(data),
@@ -20,12 +36,6 @@ export const usePostLoginInfo = () => {
       localStorage.setItem('accessToken', accessToken);
       localStorage.setItem('refreshToken', refreshToken);
       setIsLoggedIn(true);
-      setUserInfo({
-        name: data!.name,
-        role: data!.userRole,
-        studentID: data!.studentId,
-      });
-      navigate('/');
     },
     onError: ({ response }: AxiosError<ErrorResponse>) =>
       open({
