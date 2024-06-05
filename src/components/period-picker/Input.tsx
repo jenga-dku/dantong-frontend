@@ -7,7 +7,7 @@ export const Input = forwardRef(
     ref: LegacyRef<HTMLButtonElement> | undefined,
   ) => (
     <button
-      className="flex items-center gap-1 rounded-md border-[1px] border-solid border-zinc-300 px-3 py-2 text-xs leading-none text-zinc-600"
+      className="flex items-center gap-1 rounded-md border-[1px] border-solid border-zinc-300 bg-white px-3 py-2 text-xs leading-none text-zinc-600"
       onClick={onClick}
       ref={ref}
     >

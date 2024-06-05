@@ -2,22 +2,67 @@ import '@toast-ui/editor/dist/toastui-editor.css';
 import { useEffect, useState } from 'react';
 import { Box as Title } from '../../components/Box';
 import { Box as Category } from '../../components/Box';
+import { Box as Summary } from '../../components/Box';
 import { Box as Desc } from '../../components/Box';
 import { Box as File } from '../../components/Box';
+import { Box as PeriodBox } from '../../components/Box';
 import { Button } from '../../components/Button';
 import { FaCamera } from 'react-icons/fa6';
 import { useTopBarStore } from '../../stores/topBar-stores';
 import { Editor } from '../../components/Editor';
 import { CATEGORY } from '../../types/news-category';
 import ImageList from './ImageList';
+import { Period } from '../../types/period-picker/period';
+import { NewsUpload } from '../../api/news-upload/types';
+import { getFormattedDate } from '../../utils/getFormattedDate';
+import { PeriodPicker } from '../../components/period-picker';
+import { usePostNews } from '../../query-hooks/news-upload';
+import { useModal } from '../../hooks/useModal';
 
 export const NewsUploadPage = () => {
-  const [title, setTitle] = useState('');
   const [desc, setDesc] = useState('');
   const [images, setImages] = useState(['']);
-
+  const [imageFiles, setImageFiles] = useState<File[]>([]);
+  const { mutate: post } = usePostNews();
+  const { open } = useModal();
   const { setIsBackButtonVisible, setIsNotificationButtonVisible } =
     useTopBarStore();
+  const [postInfo, setPostInfo] = useState<NewsUpload>({
+    title: '',
+    description: '',
+    content: '',
+    category: undefined,
+    imageFiles: undefined,
+    startTime: '',
+    endTime: '',
+    shown: true,
+  });
+  const periodState = useState<Period>({
+    start: new Date(),
+    end: new Date(),
+  });
+  const [period] = periodState;
+  useEffect(() => {
+    setIsBackButtonVisible(true);
+    setIsNotificationButtonVisible(false);
+  }, []);
+
+  useEffect(() => {
+    setPostInfo((prev) => ({
+      ...prev,
+      content: desc,
+      imageFiles: imageFiles,
+      startTime: `${getFormattedDate(period.start)}`,
+      endTime: `${getFormattedDate(period.end)}`,
+    }));
+  }, [desc, imageFiles, period]);
+
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
+  ) => {
+    const { name, value } = e.target;
+    setPostInfo((prev) => ({ ...prev, [name]: value }));
+  };
 
   const handleImages = (e: React.ChangeEvent<HTMLInputElement>) => {
     setImages([]);
@@ -26,18 +71,40 @@ export const NewsUploadPage = () => {
       setImages((prev) => {
         return [...prev, URL.createObjectURL(f)];
       });
+      setImageFiles((prev) => {
+        if (prev !== null || prev !== undefined) {
+          return [...prev, f];
+        } else {
+          return [f];
+        }
+      });
     });
   };
 
-  useEffect(() => {
-    setIsBackButtonVisible(true);
-    setIsNotificationButtonVisible(false);
-  }, []);
+  const uploadPost = () => {
+    open({
+      title: '소식 업로드',
+      desc: '업로드하시겠습니까?',
+      option: {
+        type: 'CONFIRM',
+        confirmEvent: () => {
+          post(postInfo);
+        },
+      },
+    });
+  };
 
   return (
     <div className="flex flex-col gap-5">
+      <PeriodBox>
+        <PeriodPicker periodState={periodState} />
+      </PeriodBox>
       <Category className="p-0 py-1">
-        <select className="select w-full  text-gray-400">
+        <select
+          className="select w-full  text-gray-400"
+          name="category"
+          onChange={(e) => handleInputChange(e)}
+        >
           <option disabled selected>
             카테고리 선택
           </option>
@@ -48,14 +115,26 @@ export const NewsUploadPage = () => {
       </Category>
       <Title>
         <input
-          className="text-md"
-          value={title}
+          className="text-md w-full"
+          name="title"
+          value={postInfo.title}
           onChange={(e) => {
-            setTitle(e.target.value);
+            handleInputChange(e);
           }}
           placeholder="제목을 입력해주세요"
         />
       </Title>
+      <Summary>
+        <input
+          className="text-md w-full"
+          value={postInfo.description}
+          name="description"
+          onChange={(e) => {
+            handleInputChange(e);
+          }}
+          placeholder="간단한 설명을 입력해주세요"
+        />
+      </Summary>
       <Desc className="overflow-hidden p-0 [&>div]:w-full">
         <Editor setDesc={setDesc} />
       </Desc>
@@ -77,7 +156,13 @@ export const NewsUploadPage = () => {
       {images.length > 0 && images[0].length > 0 && (
         <ImageList images={images} />
       )}
-      <Button size="full" content="업로드" />
+      <Button
+        onClick={() => {
+          uploadPost();
+        }}
+        size="full"
+        content="업로드"
+      />
     </div>
   );
 };
