@@ -13,7 +13,7 @@ export const Input = forwardRef(
     >
       <>
         <IoCalendarClearOutline />
-        {value?.toString().replaceAll('/', '.')}
+        {value?.toString()}
       </>
     </button>
   ),

@@ -3,7 +3,8 @@ import 'react-datepicker/dist/react-datepicker.css';
 import { renderCustomHeader } from '../calendar/Header';
 import { Input } from './Input';
 import './styles.css';
-
+import moment from 'moment';
+import { setMinutes } from 'date-fns';
 export type Period = {
   start: Date;
   end: Date;
@@ -13,6 +14,7 @@ export const PeriodPicker = ({
 }: {
   periodState: [Period, React.Dispatch<React.SetStateAction<Period>>];
 }) => {
+  const currentDate = new Date();
   return (
     <div className="flex items-center gap-3">
       <DatePicker
@@ -23,7 +25,10 @@ export const PeriodPicker = ({
           setPeriod((prev) => ({ ...prev, start: date }));
         }}
         customInput={<Input />}
-        dateFormat="yy/MM/dd"
+        dateFormat="MM.dd a hh:mm"
+        showTimeInput
+        minDate={moment().toDate()}
+        minTime={setMinutes(currentDate, 0)}
       />
       <p>~</p>
       <DatePicker
@@ -35,7 +40,10 @@ export const PeriodPicker = ({
           setPeriod((prev) => ({ ...prev, end: date }));
         }}
         customInput={<Input />}
-        dateFormat="yy/MM/dd"
+        dateFormat="MM.dd a hh:mm"
+        showTimeInput
+        minDate={moment().toDate()}
+        minTime={setMinutes(currentDate, 0)}
       />
     </div>
   );
