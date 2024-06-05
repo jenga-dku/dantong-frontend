@@ -7,18 +7,14 @@ import { useGetPostList } from '../../query-hooks/post';
 import { PostDetailResponse } from '../../api/post/types';
 
 export const PostSection = () => {
-  const { data } = useGetPostList('');
+  const { data: postList } = useGetPostList('');
 
   return (
     <Section title="게시글 둘러보기">
       <HorizontalScrollBox>
-        {data?.content.map(({ postId, title }: PostDetailResponse) => (
-          <SwiperSlide key={`post-${postId}`}>
-            <PostItem
-              id={postId}
-              title={title}
-              thumbnail={PostDataList[0].thumbnail}
-            />
+        {postList?.content.map((postData: PostDetailResponse) => (
+          <SwiperSlide key={`post-${postData.postId}`}>
+            <PostItem data={postData} />
           </SwiperSlide>
         ))}
       </HorizontalScrollBox>
