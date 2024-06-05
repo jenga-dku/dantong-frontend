@@ -35,8 +35,8 @@ export const Header = ({
   useEffect(() => {
     setFormUploadInfo((prev) => ({
       ...prev,
-      startTime: `${getFormattedDate(period.start)}T00:00:00`,
-      endTime: `${getFormattedDate(period.end)}T23:59:59`,
+      startTime: `${getFormattedDate(period.start)}`,
+      endTime: `${getFormattedDate(period.end)}`,
     }));
   }, [period]);
 

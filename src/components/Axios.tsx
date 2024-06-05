@@ -13,9 +13,6 @@ export const Axios = () => {
   const { pathname } = useLocation();
   const { setIsLoggedIn, setUserInfo } = useAuthStore();
 
-  useEffect(() => {
-    console.log(pathname);
-  }, [pathname]);
   API.interceptors.response.use(
     function (response) {
       return response;
