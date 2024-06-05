@@ -3,6 +3,7 @@ import { Nav } from './Nav';
 import { Outlet, useLocation } from 'react-router-dom';
 import { useEffect, useRef } from 'react';
 import { useTopBarStore } from '../stores/topBar-stores';
+import { Axios } from './Axios';
 
 export const Layout = ({ className }: { className?: string }) => {
   const layoutRef = useRef<HTMLDivElement>(null);
@@ -31,6 +32,7 @@ export const Layout = ({ className }: { className?: string }) => {
         <Outlet />
       </div>
       <Nav />
+      <Axios />
     </>
   );
 };

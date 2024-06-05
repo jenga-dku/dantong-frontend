@@ -14,7 +14,7 @@ import { MenuContainer } from '../../components/MenuContainer';
 
 export const SettingsPage = () => {
   const navigate = useNavigate();
-  const { data } = useGetUserInfo();
+  const { data: userInfo } = useGetUserInfo();
   const { isLoggedIn, setIsLoggedIn, setUserInfo } = useAuthStore();
   const removeUserInfo = () => {
     setUserInfo({
@@ -45,7 +45,7 @@ export const SettingsPage = () => {
   return (
     <>
       {isLoggedIn ? (
-        data && (
+        userInfo && (
           <div className="flex flex-col gap-4">
             <div className="flex items-center gap-3 rounded-xl bg-white p-3 shadow-lg">
               <div className="w-fit rounded-2xl bg-zinc-200 p-1 text-[60px] text-white">
@@ -53,13 +53,13 @@ export const SettingsPage = () => {
               </div>
               <div className="flex flex-col gap-1">
                 <p className="w-fit rounded-md text-xs text-primary">
-                  {getMajorKoreanName(data.majorName)}
+                  {getMajorKoreanName(userInfo?.majorName)}
                 </p>
                 <p className="flex items-center gap-1">
-                  <strong>{data?.name}</strong>
-                  <span className="text-sm">({data?.studentId})</span>
+                  <strong>{userInfo?.name}</strong>
+                  <span className="text-sm">({userInfo?.studentId})</span>
                 </p>
-                <p className="text-sm">{data?.phoneNumber}</p>
+                <p className="text-sm">{userInfo?.phoneNumber}</p>
               </div>
             </div>
             <MenuContainer menuList={menuList} />
