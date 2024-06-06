@@ -7,29 +7,22 @@ import { useNavigate } from 'react-router-dom';
 import { useAuthStore } from '../../stores/auth-stores';
 import { useGetUserInfo } from '../user';
 import { useModal } from '../../hooks/useModal';
-import { useEffect } from 'react';
 
 export const usePostLoginInfo = () => {
   const navigate = useNavigate();
-  const { isLoggedIn, userInfo, setIsLoggedIn, setUserInfo } = useAuthStore();
+  const { setIsLoggedIn, setUserInfo } = useAuthStore();
   const { data: fetchedUserInfo, isSuccess: isUserInfoFetchedSuccess } =
     useGetUserInfo();
   const { open } = useModal();
 
-  useEffect(() => {
-    console.log(isLoggedIn && isUserInfoFetchedSuccess);
-    isLoggedIn &&
-      isUserInfoFetchedSuccess &&
-      setUserInfo({
-        name: fetchedUserInfo!.name,
-        role: fetchedUserInfo!.userRole,
-        studentID: fetchedUserInfo!.studentId,
-      });
-  }, [isLoggedIn]);
-
-  useEffect(() => {
-    userInfo.name && userInfo.name.length > 0 && navigate('/');
-  }, [userInfo.name]);
+  if (isUserInfoFetchedSuccess) {
+    setUserInfo({
+      name: fetchedUserInfo!.name,
+      role: fetchedUserInfo!.userRole,
+      studentID: fetchedUserInfo!.studentId,
+    });
+    navigate('/');
+  }
 
   return useMutation({
     mutationFn: (data: LoginInfo) => Login.post(data),
@@ -38,10 +31,11 @@ export const usePostLoginInfo = () => {
       localStorage.setItem('refreshToken', refreshToken);
       setIsLoggedIn(true);
     },
-    onError: ({ response }: AxiosError<ErrorResponse>) =>
+    onError: ({ response }: AxiosError<ErrorResponse>) => {
       open({
         title: '로그인 오류',
         desc: response?.data.message[0],
-      }),
+      });
+    },
   });
 };

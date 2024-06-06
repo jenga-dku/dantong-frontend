@@ -16,9 +16,6 @@ export const FormPage = () => {
   const [userAnswerList, setUserAnswerList] = useState<FormAnswer[]>([]);
   const { mutate: postAnswer } = useSubmitForm();
   const { open } = useModal();
-  const {
-    userInfo: { studentID },
-  } = useAuthStore();
 
   useEffect(() => {
     useTopBarStore.setState({
@@ -50,7 +47,6 @@ export const FormPage = () => {
       {
         content: value,
         surveyItemId: questionID,
-        userId: Number(studentID),
       },
     ]);
   };
