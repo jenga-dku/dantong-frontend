@@ -5,6 +5,8 @@ import { getCategoryKoreanName } from '../../utils/getCategoryKoreanName';
 import { FormUpload } from '../../api/form-upload/types';
 import { useIntersectionObserver } from '../../hooks/useIntersectionObserver';
 import { PostDetailResponse } from '../../api/post/types';
+import { Loader } from '../../components/Loader';
+import { Intersection } from '../../components/Intersection';
 
 export type PostModalState = {
   visible: boolean;
@@ -37,7 +39,6 @@ export const PostListModal = ({
           {postList?.map(({ postId, title, category, postFileResponse }) => (
             <div
               key={`Post-Modal-${postId}`}
-              ref={intersection}
               onClick={() => {
                 updateFormUploadInfo((prev) => ({ ...prev, postId }));
                 updatePostModalState((prev) => ({
@@ -66,7 +67,8 @@ export const PostListModal = ({
               </div>
             </div>
           ))}
-          {isFetching && <div>로딩 중..</div>}
+          <Intersection ref={intersection} />
+          <Loader size={10} loading={isFetching} />
         </div>
         <Button
           content="확인"
