@@ -7,6 +7,7 @@ import { useSearchParams } from 'react-router-dom';
 import { isInCategory } from '../../utils/isInCategory';
 import { useIntersectionObserver } from '../../hooks/useIntersectionObserver';
 import { Intersection } from '../../components/Intersection';
+import { Loader } from '../../components/Loader';
 
 export const NewsPage = () => {
   const [searchParams] = useSearchParams();
@@ -31,13 +32,11 @@ export const NewsPage = () => {
       <FilterNav />
       <ul className="flex flex-col gap-6 pt-[55px]">
         {postList?.map((data: PostDetailResponse) => (
-          <li key={data.postId}>
-            <PostItem data={data} />
-            <Intersection ref={intersection} />
-          </li>
+          <PostItem key={data.postId} data={data} />
         ))}
-        {isFetching && <div>로딩 중...</div>}
       </ul>
+      <Intersection ref={intersection} />
+      <Loader loading={isFetching} />
     </div>
   );
 };

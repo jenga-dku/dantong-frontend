@@ -21,7 +21,7 @@ export const useGetInfinitePostList = ({
       Post.getInfinitePostList({ page: pageNum, size, category }),
     initialPageParam: 0,
     getNextPageParam: (lastPage, allPages) =>
-      lastPage.length ? allPages.length + 1 : undefined,
+      lastPage.length ? allPages.length : undefined,
   });
 
 export const useGetPostDetail = (id: number) =>
