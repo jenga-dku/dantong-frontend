@@ -16,14 +16,6 @@ export const SettingsPage = () => {
   const navigate = useNavigate();
   const { data: userInfo } = useGetUserInfo();
   const { isLoggedIn, setIsLoggedIn, setUserInfo } = useAuthStore();
-  const removeUserInfo = () => {
-    setUserInfo({
-      name: '',
-      role: '',
-      studentID: '',
-    });
-  };
-
   const menuList = [
     {
       id: 'my-info',
@@ -68,9 +60,13 @@ export const SettingsPage = () => {
               size="full"
               onClick={() => {
                 removeToken();
-                removeUserInfo();
-                navigate('/start');
+                setUserInfo({
+                  name: '',
+                  role: '',
+                  studentID: '',
+                });
                 setIsLoggedIn(false);
+                navigate('/start');
               }}
             />
           </div>

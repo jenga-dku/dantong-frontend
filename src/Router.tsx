@@ -13,6 +13,7 @@ import { NewsUploadPage } from './pages/news-upload/_NewsUploadPage';
 import { CalendarPage } from './pages/calendar/_CalendarPage';
 import { AdminPage } from './pages/admin/_AdminPage';
 import { FormListPage } from './pages/form/list/_FormListPage';
+import { FormResponsePage } from './pages/form/response/_FormResponsePage';
 
 export default function Router() {
   return (
@@ -27,6 +28,7 @@ export default function Router() {
           <Route path="/form/:id" element={<FormPage />} />
           <Route path="/form/list" element={<FormListPage />} />
           <Route path="/form/upload" element={<FormUploadPage />} />
+          <Route path="/form/response" element={<FormResponsePage />} />
           <Route path="/news/upload" element={<NewsUploadPage />} />
           <Route path="/admin" element={<AdminPage />} />
         </Route>

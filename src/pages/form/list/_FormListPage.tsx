@@ -27,7 +27,7 @@ export const FormListPage = () => {
             key={surveyId}
             className="flex cursor-pointer flex-col gap-2"
             onClick={() => {
-              navigate(`/form/response/${surveyId}`);
+              navigate(`/form/response?formId=${surveyId}`);
             }}
           >
             <p className="text-xs text-gray-500">
