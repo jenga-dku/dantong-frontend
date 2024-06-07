@@ -4,7 +4,6 @@ import { ErrorResponse } from '../api/types';
 import { removeToken } from '../utils/handleAuth';
 import { useModal } from '../hooks/useModal';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { useEffect } from 'react';
 import { useAuthStore } from '../stores/auth-stores';
 
 export const Axios = () => {
@@ -24,13 +23,13 @@ export const Axios = () => {
         error.response?.data.message[0] === 'TOKEN_EXPIRED' ||
         error.response?.data.message[0] === 'TOKEN_NOT_VALIDATED'
       ) {
-        removeToken();
         pathname !== '/login' &&
           open({
             title: '토큰이 만료되었습니다.',
             option: {
               type: 'CONFIRM',
               confirmEvent: () => {
+                removeToken();
                 setIsLoggedIn(false);
                 setUserInfo({
                   name: '',

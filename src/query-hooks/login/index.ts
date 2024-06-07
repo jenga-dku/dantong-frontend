@@ -11,11 +11,10 @@ import { useModal } from '../../hooks/useModal';
 export const usePostLoginInfo = () => {
   const navigate = useNavigate();
   const { setIsLoggedIn, setUserInfo } = useAuthStore();
-  const { data: fetchedUserInfo, isSuccess: isUserInfoFetchedSuccess } =
-    useGetUserInfo();
+  const { data: fetchedUserInfo } = useGetUserInfo();
   const { open } = useModal();
 
-  if (isUserInfoFetchedSuccess) {
+  if (fetchedUserInfo) {
     setUserInfo({
       name: fetchedUserInfo!.name,
       role: fetchedUserInfo!.userRole,
