@@ -4,6 +4,7 @@ import { useSignUpInfoStore } from '../../../stores/signUpInfo-stores';
 
 export const SignUpSuccessPage = ({ onNext }: { onNext: () => void }) => {
   const { signUpInfo } = useSignUpInfoStore();
+
   return (
     <div className="grid grid-cols-1 grid-rows-[5fr_1fr]">
       <div className="flex h-full w-full flex-col items-center justify-center">
@@ -18,7 +19,6 @@ export const SignUpSuccessPage = ({ onNext }: { onNext: () => void }) => {
       <Button
         onClick={() => {
           onNext();
-          localStorage.setItem('userName', signUpInfo.name);
         }}
         content="로그인"
         size="full"

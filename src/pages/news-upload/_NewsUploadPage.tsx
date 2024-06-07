@@ -4,7 +4,7 @@ import { Box as Title } from '../../components/Box';
 import { Box as Category } from '../../components/Box';
 import { Box as Summary } from '../../components/Box';
 import { Box as Desc } from '../../components/Box';
-import { Box as File } from '../../components/Box';
+import { Box as FileBox } from '../../components/Box';
 import { Box as PeriodBox } from '../../components/Box';
 import { Button } from '../../components/Button';
 import { FaCamera } from 'react-icons/fa6';
@@ -94,6 +94,19 @@ export const NewsUploadPage = () => {
     });
   };
 
+  // 이미지 순서 변경시 로직
+  useEffect(() => {
+    setImageFiles([]);
+    images.forEach((image) => {
+      fetch(image)
+        .then((res) => res.blob())
+        .then((blob) => {
+          const file = new File([blob], 'image.jpg', { type: blob.type });
+          setImageFiles((prev) => [...prev, file]);
+        });
+    });
+  }, [images]);
+
   return (
     <div className="flex flex-col gap-5">
       <PeriodBox>
@@ -138,7 +151,7 @@ export const NewsUploadPage = () => {
       <Desc className="overflow-hidden p-0 [&>div]:w-full">
         <Editor setDesc={setDesc} />
       </Desc>
-      <File>
+      <FileBox>
         <label className="flex cursor-pointer text-gray-400">
           <input
             multiple
@@ -152,9 +165,9 @@ export const NewsUploadPage = () => {
           <FaCamera className="mr-2" />
           이미지 첨부
         </label>
-      </File>
+      </FileBox>
       {images.length > 0 && images[0].length > 0 && (
-        <ImageList images={images} />
+        <ImageList images={images} updateImages={setImages} />
       )}
       <Button
         onClick={() => {
