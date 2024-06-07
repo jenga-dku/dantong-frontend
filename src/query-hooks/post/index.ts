@@ -22,10 +22,12 @@ export const useGetInfinitePostList = ({
     initialPageParam: 0,
     getNextPageParam: (lastPage, allPages) =>
       lastPage.length ? allPages.length : undefined,
+    gcTime: 0,
   });
 
 export const useGetPostDetail = (id: number) =>
   useQuery({
     queryFn: () => Post.getPostDetail(id),
     queryKey: ['postDetail'],
+    gcTime: 0,
   });
