@@ -9,6 +9,8 @@ import {
 import { useSignUpInfoStore } from '../../../stores/signUpInfo-stores';
 import { VerificationResponse } from '../../../api/sign-up/types';
 import { useNavigate } from 'react-router-dom';
+import { useModal } from '../../../hooks/useModal';
+import { Loader } from '../../../components/Loader';
 
 export const MailEntry = ({
   updateIsVerified,
@@ -21,12 +23,36 @@ export const MailEntry = ({
   const [isMailSent, setIsMailSent] = useState(false);
   const { signUpInfo, setSignUpInfo, setSignUpToken } = useSignUpInfoStore();
   const navigate = useNavigate();
+  const { open } = useModal();
+  const [isMailPosting, setIsMailPosting] = useState(true);
 
   const { mutate: postMail } = usePostMail({
     onSuccess: () => {
       setIsMailSent(true);
       setSignUpInfo({ ...signUpInfo, studentID });
-      alert('전송되었습니다');
+      setIsMailPosting(false);
+      open({
+        title: '이메일 전송 완료',
+        desc: '인증 이메일을 확인해주세요',
+      });
+    },
+    onMutate: () => {
+      open({
+        title: <p className="flex w-full justify-center">이메일 전송 중</p>,
+        desc: isMailPosting ? (
+          <Loader
+            loading={isMailPosting}
+            type="clip"
+            className="mt-5"
+            size={30}
+          />
+        ) : (
+          '인증 이메일을 확인해주세요'
+        ),
+        option: {
+          type: 'DISABLE_CANCLE',
+        },
+      });
     },
   });
 

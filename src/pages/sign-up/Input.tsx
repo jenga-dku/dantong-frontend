@@ -10,12 +10,14 @@ type InputProps = React.HTMLAttributes<HTMLInputElement> & {
   autoFocus?: boolean;
   maxLength?: number;
   type?: string;
+  onKeyDown?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
 };
 
 export const Input = ({
   value,
   type,
   onChange,
+  onKeyDown,
   placeholder,
   additionalElement,
   className,
@@ -48,6 +50,7 @@ export const Input = ({
           onBlur={() => {
             setIsFocused(false);
           }}
+          onKeyDown={onKeyDown}
           {...props}
         />
         {additionalElement}
