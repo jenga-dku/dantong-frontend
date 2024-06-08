@@ -1,11 +1,13 @@
+import { ReactNode } from 'react';
+
 export type ModalState = {
-  title: string;
-  desc?: string;
+  title: ReactNode | string;
+  desc?: ReactNode | string;
   visible: boolean;
   option?: {
     type: ModalType;
-    confirmEvent: () => void;
+    confirmEvent?: () => void;
   };
 };
 
-export type ModalType = 'CONFIRM';
+export type ModalType = 'CONFIRM' | 'DISABLE_CANCLE';
