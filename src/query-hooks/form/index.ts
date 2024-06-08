@@ -17,7 +17,13 @@ export const useSubmitForm = () => {
   const navigate = useNavigate();
 
   return useMutation({
-    mutationFn: (data: FormAnswer[]) => Form.submit(data),
+    mutationFn: ({
+      formID,
+      answerList,
+    }: {
+      formID: number;
+      answerList: FormAnswer[];
+    }) => Form.submit(formID, answerList),
     onSuccess: () => {
       navigate('/news');
       open({ title: '폼 제출 완료', desc: '폼이 성공적으로 제출되었습니다.' });

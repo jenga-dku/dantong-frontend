@@ -7,7 +7,6 @@ import { useTopBarStore } from '../../../stores/topBar-stores';
 import { useParams } from 'react-router-dom';
 import { CiCalendar } from 'react-icons/ci';
 import { FormAnswer } from '../../../api/form/types';
-import { useAuthStore } from '../../../stores/auth-stores';
 import { useModal } from '../../../hooks/useModal';
 
 export const FormPage = () => {
@@ -16,12 +15,12 @@ export const FormPage = () => {
   const [userAnswerList, setUserAnswerList] = useState<FormAnswer[]>([]);
   const { mutate: postAnswer } = useSubmitForm();
   const { open } = useModal();
+  const { setIsBackButtonVisible, setIsNotificationButtonVisible } =
+    useTopBarStore();
 
   useEffect(() => {
-    useTopBarStore.setState({
-      isBackButtonVisible: true,
-      isNotificationButtonVisible: false,
-    });
+    setIsBackButtonVisible(true);
+    setIsNotificationButtonVisible(false);
   }, []);
 
   const submitForm = (e: React.FormEvent<HTMLFormElement>) => {
@@ -32,7 +31,10 @@ export const FormPage = () => {
       option: {
         type: 'CONFIRM',
         confirmEvent: () => {
-          postAnswer(userAnswerList);
+          postAnswer({
+            formID: Number(formID),
+            answerList: userAnswerList,
+          });
         },
       },
     });
@@ -87,7 +89,7 @@ export const FormPage = () => {
             {tag === 'MULTIPLE' && (
               <div className="flex flex-col gap-2">
                 {options.map((option) => (
-                  <label className="flex cursor-pointer items-center text-[16px]">
+                  <label className="flex cursor-pointer items-center gap-1 text-[16px]">
                     <input
                       name={`${surveyItemId}`}
                       type="radio"

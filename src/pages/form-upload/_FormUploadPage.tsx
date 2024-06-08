@@ -53,6 +53,7 @@ export const FormUploadPage = () => {
   const { open } = useModal();
   const { mutate: createForm } = useCreateForm();
   const uploadForm = () => {
+    console.log(formUploadInfo);
     open({
       title: '폼 생성',
       desc: '폼을 생성하시겠습니까?',
@@ -82,6 +83,9 @@ export const FormUploadPage = () => {
       ...prev.slice(index + 1),
     ]);
   };
+  useEffect(() => {
+    setFormUploadInfo((prev) => ({ ...prev, surveyItems: questionList }));
+  }, [questionList]);
 
   type QuestionTypeButton = { type: QuestionType; icon: ReactNode };
   const questionTypeList: QuestionTypeButton[] = [
