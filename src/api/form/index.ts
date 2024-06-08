@@ -7,12 +7,19 @@ export const Form = {
     const response = await API.get(`/survey/${id}`);
     return response.data;
   },
-  async submit(answer: FormAnswer[]) {
-    const response = await API.post('/reply', answer, {
-      headers: {
-        Authorization: `Bearer ${getToken()}`,
+  async submit(formID: number, answerList: FormAnswer[]) {
+    const response = await API.post(
+      '/submit',
+      {
+        surveyId: formID,
+        replyRequest: answerList,
       },
-    });
+      {
+        headers: {
+          Authorization: `Bearer ${getToken()}`,
+        },
+      },
+    );
     return response.data;
   },
 };

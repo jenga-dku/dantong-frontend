@@ -60,6 +60,7 @@ export const Header = ({
           handleInputChange(e);
         }}
         placeholder="설명을 입력해주세요"
+        className="leading-[1.2]"
       ></textarea>
       <button
         type="button"
