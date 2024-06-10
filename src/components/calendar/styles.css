@@ -210,7 +210,7 @@ button.rbc-input::-moz-focus-inner {
 }
 .rbc-slot-selecting .rbc-event {
   cursor: inherit;
-  pointer-events: none;
+  /* pointer-events: none; */
 }
 .rbc-event.rbc-selected {
   background-color: #265985;
@@ -654,5 +654,24 @@ button.rbc-input::-moz-focus-inner {
   z-index: 3;
   height: 1px;
   background-color: #74ad31;
-  pointer-events: none;
+  /* pointer-events: none; */
+}
+
+.rbc-row-segment,
+.rbc-date-cell {
+  z-index: -1;
+}
+
+div[data-rsbs-backdrop='true'] {
+  z-index: 999;
+  max-width: 400px;
+  width: 100%;
+  justify-self: center;
+  cursor: default;
+}
+div[aria-modal='true'] {
+  z-index: 999;
+  max-width: 400px;
+  width: 100%;
+  justify-self: center;
 }

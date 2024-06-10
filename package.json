@@ -25,6 +25,7 @@
     "react-router-dom": "^6.22.3",
     "react-scripts": "5.0.1",
     "react-spinners": "^0.13.8",
+    "react-spring-bottom-sheet": "^3.4.1",
     "sortablejs": "^1.15.2",
     "surge": "^0.23.1",
     "swiper": "^11.1.1",
