@@ -8,6 +8,7 @@ import { useParams } from 'react-router-dom';
 import { CiCalendar } from 'react-icons/ci';
 import { FormAnswer } from '../../../api/form/types';
 import { useModal } from '../../../hooks/useModal';
+import { useAuthStore } from '../../../stores/auth-stores';
 
 export const FormPage = () => {
   const { id: formID } = useParams();
@@ -15,6 +16,7 @@ export const FormPage = () => {
   const [userAnswerList, setUserAnswerList] = useState<FormAnswer[]>([]);
   const { mutate: postAnswer } = useSubmitForm();
   const { open } = useModal();
+  const { isLoggedIn } = useAuthStore();
   const { setIsBackButtonVisible, setIsNotificationButtonVisible } =
     useTopBarStore();
 
@@ -25,19 +27,24 @@ export const FormPage = () => {
 
   const submitForm = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    open({
-      title: '폼 제출',
-      desc: '폼을 제출하시겠습니까?',
-      option: {
-        type: 'CONFIRM',
-        confirmEvent: () => {
-          postAnswer({
-            formID: Number(formID),
-            answerList: userAnswerList,
-          });
-        },
-      },
-    });
+    isLoggedIn
+      ? open({
+          title: '폼 제출',
+          desc: '폼을 제출하시겠습니까?',
+          option: {
+            type: 'CONFIRM',
+            confirmEvent: () => {
+              postAnswer({
+                formID: Number(formID),
+                answerList: userAnswerList,
+              });
+            },
+          },
+        })
+      : open({
+          title: '회원 전용',
+          desc: '로그인 이후 이용 가능합니다',
+        });
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {

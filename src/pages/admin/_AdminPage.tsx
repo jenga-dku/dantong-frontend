@@ -1,7 +1,14 @@
 import { PiNoteLight, PiNotePencilLight } from 'react-icons/pi';
 import { MenuContainer } from '../../components/MenuContainer';
+import { Button } from '../../components/Button';
+import { removeToken } from '../../utils/handleAuth';
+import { useAuthStore } from '../../stores/auth-stores';
+import { useNavigate } from 'react-router-dom';
 
 export const AdminPage = () => {
+  const { setUserInfo, setIsLoggedIn } = useAuthStore();
+  const navigate = useNavigate();
+
   const menuList = [
     {
       id: 'form-list',
@@ -11,8 +18,22 @@ export const AdminPage = () => {
     { id: 'news-upload', icon: <PiNotePencilLight />, menuName: '소식 업로드' },
   ];
   return (
-    <>
+    <div className="flex flex-col gap-3">
       <MenuContainer menuList={menuList} />
-    </>
+      <Button
+        content="로그아웃"
+        size="full"
+        onClick={() => {
+          removeToken();
+          setUserInfo({
+            name: '',
+            role: '',
+            studentID: '',
+          });
+          setIsLoggedIn(false);
+          navigate('/start');
+        }}
+      />
+    </div>
   );
 };
