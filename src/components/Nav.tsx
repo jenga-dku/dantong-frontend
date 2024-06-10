@@ -3,11 +3,15 @@ import { IoIosPaper } from 'react-icons/io';
 import { IoCalendarClear } from 'react-icons/io5';
 import { FiMenu } from 'react-icons/fi';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { useAuthStore } from '../stores/auth-stores';
 
 export const Nav = () => {
   const navigate = useNavigate();
   const { pathname } = useLocation();
   const pageType = pathname.split('?')[0].split('/')[1];
+  const { userInfo } = useAuthStore();
+  const isAdminMenu = (link: string) =>
+    userInfo.role.indexOf('ROLE_ADMIN') > 0 && link === 'settings';
 
   return (
     <div className="fixed bottom-0 z-50 box-border flex h-[55px] w-full max-w-[400px] rounded-t-[20px] bg-white shadow-[0_-2px_5px_1px_rgba(0,0,0,0.05)]">
@@ -18,7 +22,7 @@ export const Nav = () => {
         >
           <button
             onClick={() => {
-              navigate(`/${link}`);
+              navigate(`/${isAdminMenu(link) ? 'admin' : link}`);
             }}
             className={`${pageType === link && 'text-[#8898AB]'} flex flex-col items-center gap-1`}
           >
