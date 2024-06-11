@@ -1,11 +1,27 @@
 import { getToken } from '../../utils/handleAuth';
 import { API } from '../api';
-import { FormAnswer, FormResponse } from './types';
+import { PageParams } from '../types';
+import { FormAnswer, FormListItem, FormResponse } from './types';
 
 export const Form = {
   async get(id: number): Promise<FormResponse> {
     const response = await API.get(`/survey/${id}`);
     return response.data;
+  },
+  async getInfiniteFormList({
+    page,
+    size,
+  }: PageParams): Promise<FormListItem[]> {
+    const response = await API.get(
+      `/survey/admin/surveys?page=${page}&size=${size}&sort=createdAt,desc`,
+      {
+        headers: {
+          Authorization: `Bearer ${getToken()}`,
+        },
+      },
+    );
+    const postList = (await response.data.content) as FormListItem[];
+    return postList;
   },
   async submit(formID: number, answerList: FormAnswer[]) {
     const response = await API.post(

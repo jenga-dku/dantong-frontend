@@ -3,7 +3,7 @@ import { LoginPage } from './pages/login/_LoginPage';
 import { StartPage } from './pages/start/_StartPage';
 import { SignUpPage } from './pages/sign-up/_SignUpPage';
 import { HomePage } from './pages/index/_HomePage';
-import { Layout } from './components/Layout';
+import { Layout } from './layout/Layout';
 import { NewsPage } from './pages/news/index/_NewsPage';
 import { PostPage } from './pages/post/_PostPage';
 import { SettingsPage } from './pages/settings/_SettingsPage';
