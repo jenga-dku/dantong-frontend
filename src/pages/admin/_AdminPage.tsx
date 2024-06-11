@@ -1,4 +1,8 @@
-import { PiNoteLight, PiNotePencilLight } from 'react-icons/pi';
+import {
+  PiNoteLight,
+  PiNotePencilLight,
+  PiNotebookLight,
+} from 'react-icons/pi';
 import { MenuContainer } from '../../components/MenuContainer';
 import { Button } from '../../components/Button';
 import { removeToken } from '../../utils/handleAuth';
@@ -16,6 +20,7 @@ export const AdminPage = () => {
       menuName: '응답 현황',
     },
     { id: 'news-upload', icon: <PiNotePencilLight />, menuName: '소식 업로드' },
+    { id: 'form-upload', icon: <PiNotebookLight />, menuName: '폼 업로드' },
   ];
   return (
     <div className="flex flex-col gap-3">
