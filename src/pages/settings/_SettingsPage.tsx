@@ -3,11 +3,7 @@ import { Button } from '../../components/Button';
 import { useGetUserInfo } from '../../query-hooks/user';
 import { HiUser } from 'react-icons/hi';
 import { getMajorKoreanName } from '../../utils/getMajorKoreanName';
-import {
-  PiUsersLight,
-  PiLockKeyLight,
-  PiCalendarCheckLight,
-} from 'react-icons/pi';
+import { PiLockKeyLight, PiCalendarCheckLight } from 'react-icons/pi';
 import { removeToken } from '../../utils/handleAuth';
 import { useAuthStore } from '../../stores/auth-stores';
 import { MenuContainer } from '../../components/MenuContainer';
@@ -18,17 +14,12 @@ export const SettingsPage = () => {
   const { isLoggedIn, setIsLoggedIn, setUserInfo } = useAuthStore();
   const menuList = [
     {
-      id: 'my-info',
+      id: 'profile',
       icon: <PiLockKeyLight />,
       menuName: '개인정보 수정',
     },
     {
-      id: 'friends',
-      icon: <PiUsersLight />,
-      menuName: '친구',
-    },
-    {
-      id: 'history',
+      id: 'form-my',
       icon: <PiCalendarCheckLight />,
       menuName: '신청 내역',
     },

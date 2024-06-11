@@ -4,16 +4,17 @@ import { StartPage } from './pages/start/_StartPage';
 import { SignUpPage } from './pages/sign-up/_SignUpPage';
 import { HomePage } from './pages/index/_HomePage';
 import { Layout } from './components/Layout';
-import { NewsPage } from './pages/news/_NewsPage';
+import { NewsPage } from './pages/news/index/_NewsPage';
 import { PostPage } from './pages/post/_PostPage';
 import { SettingsPage } from './pages/settings/_SettingsPage';
 import { FormPage } from './pages/form/id/_FormPage';
-import { FormUploadPage } from './pages/form-upload/_FormUploadPage';
-import { NewsUploadPage } from './pages/news-upload/_NewsUploadPage';
+import { FormUploadPage } from './pages/form/upload/_FormUploadPage';
+import { NewsUploadPage } from './pages/news/upload/_NewsUploadPage';
 import { CalendarPage } from './pages/calendar/_CalendarPage';
 import { AdminPage } from './pages/admin/_AdminPage';
 import { FormListPage } from './pages/form/list/_FormListPage';
 import { FormResponsePage } from './pages/form/response/_FormResponsePage';
+import { MyFormPage } from './pages/form/my/_MyFormPage';
 
 export default function Router() {
   return (
@@ -31,6 +32,7 @@ export default function Router() {
           <Route path="/form/response" element={<FormResponsePage />} />
           <Route path="/news/upload" element={<NewsUploadPage />} />
           <Route path="/admin" element={<AdminPage />} />
+          <Route path="/form/my" element={<MyFormPage />} />
         </Route>
         <Route path="/start" element={<StartPage />} />
         <Route path="/login" element={<LoginPage />} />
