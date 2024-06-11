@@ -4,6 +4,7 @@ import { useAuthStore } from '../../stores/auth-stores';
 import { ErrorResponse } from '../../api/types';
 import { UserInfoResponse } from '../../api/user/types';
 import { AxiosError } from 'axios';
+import { getToken } from '../../utils/handleAuth';
 
 export const useGetUserInfo = () => {
   const { isLoggedIn } = useAuthStore();
@@ -11,6 +12,7 @@ export const useGetUserInfo = () => {
   return useQuery<UserInfoResponse, AxiosError<ErrorResponse>>({
     queryFn: () => User.getUserInfo(),
     queryKey: ['user-info', isLoggedIn],
-    enabled: isLoggedIn,
+    enabled: isLoggedIn && getToken() !== null,
+    gcTime: 0,
   });
 };
