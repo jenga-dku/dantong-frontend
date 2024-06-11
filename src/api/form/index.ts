@@ -38,4 +38,12 @@ export const Form = {
     );
     return response.data;
   },
+  async getAnswerListOfQuestion(questionID: number): Promise<FormAnswer[]> {
+    const response = await API.get(`/reply/${questionID}`, {
+      headers: {
+        Authorization: `Bearer ${getToken()}`,
+      },
+    });
+    return response.data;
+  },
 };
