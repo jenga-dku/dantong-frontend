@@ -10,6 +10,7 @@ export const useGetForm = (id: number) =>
   useQuery({
     queryFn: () => Form.get(id),
     queryKey: ['form'],
+    gcTime: 0,
   });
 
 export const useSubmitForm = () => {
@@ -44,5 +45,12 @@ export const useGetInfiniteFormList = ({ size }: { size: number }) =>
     initialPageParam: 0,
     getNextPageParam: (lastPage, allPages) =>
       lastPage.length ? allPages.length : undefined,
+    gcTime: 0,
+  });
+
+export const useGetAnswerListOfQuestion = (questionID: number) =>
+  useQuery({
+    queryFn: () => Form.getAnswerListOfQuestion(questionID),
+    queryKey: [`question-${questionID}`, { questionID }],
     gcTime: 0,
   });
