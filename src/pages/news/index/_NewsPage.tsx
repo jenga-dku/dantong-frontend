@@ -1,13 +1,13 @@
 import { useEffect } from 'react';
-import { useGetInfinitePostList } from '../../query-hooks/post';
+import { useGetInfinitePostList } from '../../../query-hooks/post';
 import { FilterNav } from './FilterNav';
 import { PostItem } from './PostItem';
-import { PostDetailResponse } from '../../api/post/types';
+import { PostDetailResponse } from '../../../api/post/types';
 import { useSearchParams } from 'react-router-dom';
-import { isInCategory } from '../../utils/isInCategory';
-import { useIntersectionObserver } from '../../hooks/useIntersectionObserver';
-import { Intersection } from '../../components/Intersection';
-import { Loader } from '../../components/Loader';
+import { isInCategory } from '../../../utils/isInCategory';
+import { useIntersectionObserver } from '../../../hooks/useIntersectionObserver';
+import { Intersection } from '../../../components/Intersection';
+import { Loader } from '../../../components/Loader';
 
 export const NewsPage = () => {
   const [searchParams] = useSearchParams();

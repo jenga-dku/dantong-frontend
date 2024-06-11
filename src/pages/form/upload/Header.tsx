@@ -1,11 +1,11 @@
 import { GoChevronRight } from 'react-icons/go';
-import { Box } from '../../components/Box';
-import { PeriodPicker } from '../../components/period-picker';
+import { Box } from '../../../components/Box';
+import { PeriodPicker } from '../../../components/period-picker';
 import { useEffect, useState } from 'react';
 import { PostListModal, PostModalState } from './PostListModal';
-import { FormUpload } from '../../api/form-upload/types';
-import { getFormattedDate } from '../../utils/getFormattedDate';
-import { Period } from '../../types/period-picker/period';
+import { FormUpload } from '../../../api/form-upload/types';
+import { getFormattedDate } from '../../../utils/getFormattedDate';
+import { Period } from '../../../types/period-picker/period';
 
 export const Header = ({
   periodState,

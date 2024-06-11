@@ -1,12 +1,12 @@
 import React from 'react';
-import { Button } from '../../components/Button';
-import { useGetInfinitePostList } from '../../query-hooks/post';
-import { getCategoryKoreanName } from '../../utils/getCategoryKoreanName';
-import { FormUpload } from '../../api/form-upload/types';
-import { useIntersectionObserver } from '../../hooks/useIntersectionObserver';
-import { PostDetailResponse } from '../../api/post/types';
-import { Loader } from '../../components/Loader';
-import { Intersection } from '../../components/Intersection';
+import { Button } from '../../../components/Button';
+import { useGetInfinitePostList } from '../../../query-hooks/post';
+import { getCategoryKoreanName } from '../../../utils/getCategoryKoreanName';
+import { FormUpload } from '../../../api/form-upload/types';
+import { useIntersectionObserver } from '../../../hooks/useIntersectionObserver';
+import { PostDetailResponse } from '../../../api/post/types';
+import { Loader } from '../../../components/Loader';
+import { Intersection } from '../../../components/Intersection';
 
 export type PostModalState = {
   visible: boolean;
