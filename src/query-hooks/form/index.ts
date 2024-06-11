@@ -1,4 +1,4 @@
-import { useMutation, useQuery } from '@tanstack/react-query';
+import { useInfiniteQuery, useMutation, useQuery } from '@tanstack/react-query';
 import { ErrorResponse } from '../../api/types';
 import { useModal } from '../../hooks/useModal';
 import { FormAnswer } from '../../api/form/types';
@@ -35,3 +35,14 @@ export const useSubmitForm = () => {
       }),
   });
 };
+
+export const useGetInfiniteFormList = ({ size }: { size: number }) =>
+  useInfiniteQuery({
+    queryKey: ['infiniteFormList'],
+    queryFn: ({ pageParam: pageNum }) =>
+      Form.getInfiniteFormList({ page: pageNum, size }),
+    initialPageParam: 0,
+    getNextPageParam: (lastPage, allPages) =>
+      lastPage.length ? allPages.length : undefined,
+    gcTime: 0,
+  });

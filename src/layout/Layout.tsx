@@ -1,9 +1,9 @@
-import { TopBar } from './TopBar';
-import { Nav } from './Nav';
+import { TopBar } from '../components/TopBar';
+import { Nav } from '../components/Nav';
 import { Outlet, useLocation } from 'react-router-dom';
 import { useEffect, useRef } from 'react';
 import { useTopBarStore } from '../stores/topBar-stores';
-import { Axios } from './Axios';
+import { Axios } from '../components/Axios';
 
 export const Layout = ({ className }: { className?: string }) => {
   const layoutRef = useRef<HTMLDivElement>(null);
@@ -18,7 +18,7 @@ export const Layout = ({ className }: { className?: string }) => {
   // 페이지 전환시 로직
   useEffect(() => {
     isBackButtonVisible && setIsBackButtonVisible(false); // 뒤로가기 버튼 true인 경우에 false로 초기화
-    isNotificationButtonVisible && setIsNotificationButtonVisible(true);
+    isNotificationButtonVisible || setIsNotificationButtonVisible(true);
     layoutRef.current?.scrollTo({ top: 0, behavior: 'smooth' });
   }, [location]);
 
