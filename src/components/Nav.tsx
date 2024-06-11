@@ -11,7 +11,7 @@ export const Nav = () => {
   const pageType = pathname.split('?')[0].split('/')[1];
   const { userInfo } = useAuthStore();
   const isAdminMenu = (link: string) =>
-    userInfo.role.indexOf('ROLE_ADMIN') > 0 && link === 'settings';
+    link === 'settings' && userInfo.role.includes('ROLE_ADMIN');
 
   return (
     <div className="fixed bottom-0 z-50 box-border flex h-[55px] w-full max-w-[400px] rounded-t-[20px] bg-white shadow-[0_-2px_5px_1px_rgba(0,0,0,0.05)]">
