@@ -39,7 +39,7 @@ export const FormListLayout = <T extends FormListItem>({
             key={surveyId}
             className="flex cursor-pointer flex-col gap-2"
             onClick={() => {
-              navigate(`/form/response?formId=${surveyId}`);
+              navigate(`/form/response?id=${surveyId}`);
             }}
           >
             <p className="text-xs text-gray-500">

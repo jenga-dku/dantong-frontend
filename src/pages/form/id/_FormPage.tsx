@@ -1,29 +1,25 @@
 import { useEffect, useState } from 'react';
 import { useGetForm, useSubmitForm } from '../../../query-hooks/form';
-import { Box } from '../../../components/Box';
-import { handleDateFormat } from '../../../utils/handleDateFomat';
 import { SubmitButton } from '../../../components/SubmitButton';
 import { useTopBarStore } from '../../../stores/topBar-stores';
 import { useParams } from 'react-router-dom';
-import { CiCalendar } from 'react-icons/ci';
 import { FormAnswer } from '../../../api/form/types';
 import { useModal } from '../../../hooks/useModal';
 import { useAuthStore } from '../../../stores/auth-stores';
+import { FormLayout } from '../../../layout/FormLayout';
+import { QuestionBox } from './QuestionBox';
+import { SubjectiveInput } from './SubjectiveInput';
+import { MultipleInput } from './MultipleInput';
 
 export const FormPage = () => {
   const { id: formID } = useParams();
-  const { data, isSuccess } = useGetForm(Number(formID));
+  const { data: formInfo, isSuccess: isLoadFormSuccess } = useGetForm(
+    Number(formID),
+  );
   const [userAnswerList, setUserAnswerList] = useState<FormAnswer[]>([]);
   const { mutate: postAnswer } = useSubmitForm();
   const { open } = useModal();
   const { isLoggedIn } = useAuthStore();
-  const { setIsBackButtonVisible, setIsNotificationButtonVisible } =
-    useTopBarStore();
-
-  useEffect(() => {
-    setIsBackButtonVisible(true);
-    setIsNotificationButtonVisible(false);
-  }, []);
 
   const submitForm = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -60,61 +56,40 @@ export const FormPage = () => {
     ]);
   };
 
-  return isSuccess ? (
-    <form
-      className="group-[]: flex flex-col gap-5"
-      onSubmit={(e) => {
-        submitForm(e);
-      }}
-    >
-      <Box className="flex-col gap-1">
-        <h1 className="text-lg font-bold">{data?.title}</h1>
-        <p className="text-sm">{data?.description}</p>
-        <p className="mt-2 flex items-center gap-1 text-xs leading-none">
-          <CiCalendar size={17} />
-          {` ~ ${handleDateFormat(data?.endTime)}`}
-        </p>
-      </Box>
-      {data?.surveyItems.map(
-        ({ surveyItemId, tag, title, description, options }, index) => (
-          <Box key={`SurveryItem-${surveyItemId}`} className="flex-col gap-3">
-            <div>
-              <p className="mb-2">{title}</p>
-              <p className="text-[0.8rem] text-zinc-500">{description}</p>
-            </div>
-            {tag === 'SUBJECTIVE' && (
-              <input
-                type="text"
-                placeholder="답변"
-                name={`${surveyItemId}`}
-                onChange={(e) => {
-                  handleInputChange(e);
-                }}
-                className="rounded-lg border-[1px] border-solid bg-zinc-50 p-2 text-sm"
-              />
-            )}
-            {tag === 'MULTIPLE' && (
-              <div className="flex flex-col gap-2">
-                {options.map((option) => (
-                  <label className="flex cursor-pointer items-center gap-1 text-[16px]">
-                    <input
-                      name={`${surveyItemId}`}
-                      type="radio"
-                      value={option}
-                      onChange={(e) => {
-                        handleInputChange(e);
-                      }}
-                    />
-                    <p className="ml-[-1px] scale-[0.8]">{option}</p>
-                  </label>
-                ))}
-              </div>
-            )}
-          </Box>
-        ),
-      )}
-      <SubmitButton content="제출" />
-    </form>
+  return isLoadFormSuccess ? (
+    <FormLayout formInfo={formInfo}>
+      <form
+        className="flex flex-col gap-5"
+        onSubmit={(e) => {
+          submitForm(e);
+        }}
+      >
+        {formInfo?.surveyItems.map(
+          ({ surveyItemId, tag, title, description, options }) => (
+            <QuestionBox
+              key={`SurveryItem-${surveyItemId}`}
+              title={title}
+              description={description}
+            >
+              {tag === 'SUBJECTIVE' && (
+                <SubjectiveInput
+                  surveyItemId={surveyItemId}
+                  onChange={handleInputChange}
+                />
+              )}
+              {tag === 'MULTIPLE' && (
+                <MultipleInput
+                  options={options}
+                  surveyItemId={surveyItemId}
+                  onChange={handleInputChange}
+                />
+              )}
+            </QuestionBox>
+          ),
+        )}
+        <SubmitButton content="제출" />
+      </form>
+    </FormLayout>
   ) : (
     <></>
   );
