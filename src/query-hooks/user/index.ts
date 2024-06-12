@@ -5,7 +5,6 @@ import { ErrorResponse } from '../../api/types';
 import { UserInfoResponse } from '../../api/user/types';
 import { AxiosError } from 'axios';
 import { getToken } from '../../utils/handleAuth';
-import { FormListItem } from '../../api/form/types';
 import { PostDetailResponse } from '../../api/post/types';
 
 export const useGetUserInfo = () => {

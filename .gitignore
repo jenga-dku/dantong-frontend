@@ -2,6 +2,9 @@
 
 /src/data.ts
 .env
+surge.crt
+surge.key
+surge.pem
 
 # dependencies
 /node_modules

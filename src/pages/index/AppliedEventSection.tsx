@@ -11,7 +11,7 @@ export const AppliedEventSection = () => {
   return (
     <>
       {isLoggedIn && isLoadSuccess && (
-        <Section title="신청한 행사">
+        <Section title="신청 내역">
           <TicketCarousel data={appliedEventList} />
         </Section>
       )}

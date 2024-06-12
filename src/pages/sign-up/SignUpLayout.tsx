@@ -13,7 +13,7 @@ export const SignUpLayout = ({
 
   return (
     <div
-      className={`grid h-full w-full gap-8 p-8 ${isInSuccessPage && 'gradientBackground'}`}
+      className={`pwa-layout grid h-full w-full gap-8 p-8 ${isInSuccessPage && 'gradientBackground'}`}
     >
       {children[step]}
     </div>

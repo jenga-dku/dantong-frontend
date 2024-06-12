@@ -4,7 +4,7 @@ import { Button } from '../../components/Button';
 export const StartPage = () => {
   const navigate = useNavigate();
   return (
-    <div className="grid h-full w-full grid-cols-1 items-end p-5">
+    <div className="pwa-layout grid h-full w-full grid-cols-1 items-end p-5">
       <div className="header mb-[-2rem] flex w-full flex-col items-center">
         <p className="mb-3 font-SejongHospitalLight text-lg leading-none text-primary">
           단국인을 위한 <br /> 학생회 소통 플랫폼
