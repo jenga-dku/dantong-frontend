@@ -1,5 +1,6 @@
 import { getToken } from '../../utils/handleAuth';
 import { API } from '../api';
+import { PostDetailResponse } from '../post/types';
 import { UserInfoResponse } from './types';
 
 export const User = {
@@ -10,5 +11,13 @@ export const User = {
       },
     });
     return response?.data ?? null;
+  },
+  async getAppliedEventList(): Promise<PostDetailResponse[]> {
+    const response = await API.get(`/survey/ticket`, {
+      headers: {
+        Authorization: `Bearer ${getToken()}`,
+      },
+    });
+    return response.data;
   },
 };

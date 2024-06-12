@@ -35,12 +35,14 @@ export type PostDetailResponse = {
   title: string;
   description: string;
   content: string;
-  date: string;
+  startTime: string;
+  endTime: string;
   status: PostStatus;
   category: 'EVENT' | 'NOTICE' | 'PARTNERSHIP';
   postFileResponse: PostFileResponse[];
   userResponse: UserInfoResponse;
   surveySummaryResponse: FormSummaryResponse;
+  surveyId: number;
 };
 
 export type FormSummaryResponse = {
