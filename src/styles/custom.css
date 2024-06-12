@@ -44,8 +44,8 @@ body {
 
 @media all and (display-mode: standalone) {
   .navBar {
-    height: 90px;
-    padding-bottom: 30px;
+    height: 75px;
+    padding-bottom: 15px;
   }
 
   .pwa-layout {

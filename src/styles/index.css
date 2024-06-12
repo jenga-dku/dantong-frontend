@@ -8,6 +8,7 @@ body {
   height: 100dvh;
   margin: 0;
   padding: 0;
+  overscroll-behavior: none;
 }
 html {
   -ms-content-zooming: none;

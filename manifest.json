@@ -20,7 +20,7 @@
   ],
   "start_url": "start",
   "display": "standalone",
-  "theme_color": "#000000",
+  "theme_color": "#ffffff",
   "background_color": "#ffffff",
   "description": "단통 PWA 입니다",
   "id": "dantong",
