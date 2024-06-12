@@ -1,16 +1,18 @@
 import { ReactNode, useEffect } from 'react';
 import { useTopBarStore } from '../stores/topBar-stores';
 import { Box } from '../components/Box';
-import { CiCalendar } from 'react-icons/ci';
+import { CiCalendar, CiFloppyDisk } from 'react-icons/ci';
 import { handleDateFormat } from '../utils/handleDateFomat';
 import { FormResponse } from '../api/form/types';
 
 export const FormLayout = ({
   formInfo,
   children,
+  exportButton,
 }: {
   formInfo: FormResponse;
   children: ReactNode;
+  exportButton?: ReactNode;
 }) => {
   const { setIsBackButtonVisible, setIsNotificationButtonVisible } =
     useTopBarStore();
@@ -28,6 +30,10 @@ export const FormLayout = ({
         <p className="mt-2 flex items-center gap-1 text-xs leading-none">
           <CiCalendar size={17} />
           {` ~ ${handleDateFormat(formInfo.endTime)}`}
+        </p>
+        <p className="mt-2 flex items-center gap-1 text-xs leading-none">
+          <CiFloppyDisk size={17} />
+          {exportButton}
         </p>
       </Box>
       {children}
