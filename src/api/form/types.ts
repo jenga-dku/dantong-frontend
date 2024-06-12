@@ -1,4 +1,5 @@
 import { PostStatus } from '../../types/post-status';
+import { Question } from '../form-upload/types';
 
 export type FormResponse = {
   title: string;
@@ -35,4 +36,26 @@ export type FormListItem = {
   endTime: string;
   status: PostStatus;
   submitCount: number;
+};
+
+export type AllUsersReplyResponse = {
+  surveyItemResponse: {
+    surveyItemId: number;
+    title: string;
+    tag: string;
+    options: string[];
+    description: string;
+  };
+  replies: FormAnswer[];
+};
+
+export type MySubmitResponse = {
+  surveyId: number;
+  surveyReplies: MySubmitItemDetail[];
+};
+
+export type MySubmitItemDetail = {
+  surveyReplyId: number;
+  surveyItem: Question & { surveyItemId: number };
+  content: string;
 };

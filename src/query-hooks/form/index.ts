@@ -54,3 +54,35 @@ export const useGetAnswerListOfQuestion = (questionID: number) =>
     queryKey: [`question-${questionID}`, { questionID }],
     gcTime: 0,
   });
+
+export const useGetInfiniteMyFormList = ({ size }: { size: number }) =>
+  useInfiniteQuery({
+    queryKey: ['infiniteMyFormList'],
+    queryFn: ({ pageParam: pageNum }) =>
+      Form.getInfiniteMyFormList({ page: pageNum, size }),
+    initialPageParam: 0,
+    getNextPageParam: (lastPage, allPages) =>
+      lastPage.length ? allPages.length : undefined,
+    gcTime: 0,
+  });
+
+export const useGetMyAnswer = (questionID: number) =>
+  useQuery({
+    queryFn: () => Form.getMyAnswer(questionID),
+    queryKey: [`answer-${questionID}`, { questionID }],
+    gcTime: 0,
+  });
+
+export const useGetAllUsersReply = (formID: number) =>
+  useQuery({
+    queryFn: () => Form.getAllUsersReply(formID),
+    queryKey: [`all-users-answer-${formID}`, { formID }],
+    gcTime: 0,
+  });
+
+export const useGetMySubmit = (formID: number) =>
+  useQuery({
+    queryFn: () => Form.getMySubmit(formID),
+    queryKey: [`my-submit-${formID}`, { formID }],
+    gcTime: 0,
+  });

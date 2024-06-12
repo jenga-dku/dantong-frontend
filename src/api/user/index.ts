@@ -1,7 +1,7 @@
 import { getToken } from '../../utils/handleAuth';
 import { API } from '../api';
 import { PostDetailResponse } from '../post/types';
-import { UserInfoResponse } from './types';
+import { ModifiedUserInfo, UserInfoResponse } from './types';
 
 export const User = {
   async getUserInfo(): Promise<UserInfoResponse> {
@@ -19,5 +19,13 @@ export const User = {
       },
     });
     return response.data;
+  },
+  async patchUserInfo(data: ModifiedUserInfo) {
+    const response = await API.patch(`/user/edit`, data, {
+      headers: {
+        Authorization: `Bearer ${getToken()}`,
+      },
+    });
+    return response?.data ?? null;
   },
 };

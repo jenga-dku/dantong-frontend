@@ -1,7 +1,7 @@
-import { FormListLayout } from '../../../layout/FormListLayout';
-import { FormListItem } from '../../../api/form/types';
-import { useGetInfiniteFormList } from '../../../query-hooks/form';
-import { useIntersectionObserver } from '../../../hooks/useIntersectionObserver';
+import { FormListLayout } from '../../../../layout/FormListLayout';
+import { FormListItem } from '../../../../api/form/types';
+import { useGetInfiniteFormList } from '../../../../query-hooks/form';
+import { useIntersectionObserver } from '../../../../hooks/useIntersectionObserver';
 
 export const FormListPage = () => {
   const formListState = useGetInfiniteFormList({
@@ -16,6 +16,7 @@ export const FormListPage = () => {
   return (
     <FormListLayout<FormListItem>
       title="응답현황"
+      pageID="list"
       list={formList ?? []}
       intersection={intersection}
       isFetching={isFetching}

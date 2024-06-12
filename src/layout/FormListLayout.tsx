@@ -11,11 +11,13 @@ import { Loader } from '../components/Loader';
 
 export const FormListLayout = <T extends FormListItem>({
   title,
+  pageID,
   list,
   intersection,
   isFetching,
 }: {
   title: string;
+  pageID: string;
   list: T[];
   intersection: (target: HTMLDivElement) => void;
   isFetching: boolean;
@@ -39,7 +41,7 @@ export const FormListLayout = <T extends FormListItem>({
             key={surveyId}
             className="flex cursor-pointer flex-col gap-2"
             onClick={() => {
-              navigate(`/form/response?id=${surveyId}`);
+              navigate(`/form/${pageID}/response?id=${surveyId}`);
             }}
           >
             <p className="text-xs text-gray-500">
@@ -53,10 +55,12 @@ export const FormListLayout = <T extends FormListItem>({
               >
                 {status}
               </span>
-              <span className="gap-1 bg-blue-50 ">
-                <PiUsersLight className="text-sm" />
-                {submitCount}
-              </span>
+              {submitCount && (
+                <span className="gap-1 bg-blue-50 ">
+                  <PiUsersLight className="text-sm" />
+                  {submitCount}
+                </span>
+              )}
             </div>
           </Box>
         ),
