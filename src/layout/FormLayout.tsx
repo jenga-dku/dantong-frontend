@@ -35,6 +35,7 @@ export const FormLayout = ({
         {exportButton && (
           <p className="mt-2 flex items-center gap-1 text-xs leading-none">
             <CiFloppyDisk size={17} />
+            {exportButton}
           </p>
         )}
       </Box>

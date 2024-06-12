@@ -12,9 +12,11 @@ import { FormUploadPage } from './pages/form/upload/_FormUploadPage';
 import { NewsUploadPage } from './pages/news/upload/_NewsUploadPage';
 import { CalendarPage } from './pages/calendar/_CalendarPage';
 import { AdminPage } from './pages/admin/_AdminPage';
-import { FormListPage } from './pages/form/list/_FormListPage';
-import { FormResponsePage } from './pages/form/response/_FormResponsePage';
-import { MyFormPage } from './pages/form/my/_MyFormPage';
+import { FormListPage } from './pages/form/list/index/_FormListPage';
+import { FormResponsePage } from './pages/form/list/response/_FormResponsePage';
+import { MyFormPage } from './pages/form/my/index/_MyFormPage';
+import { ProfilePage } from './pages/profile/_ProfilePage';
+import { MyResponsePage } from './pages/form/my/response/_MyResponsePage';
 
 export default function Router() {
   return (
@@ -29,10 +31,12 @@ export default function Router() {
           <Route path="/form/:id" element={<FormPage />} />
           <Route path="/form/list" element={<FormListPage />} />
           <Route path="/form/upload" element={<FormUploadPage />} />
-          <Route path="/form/response" element={<FormResponsePage />} />
+          <Route path="/form/list/response" element={<FormResponsePage />} />
           <Route path="/news/upload" element={<NewsUploadPage />} />
           <Route path="/admin" element={<AdminPage />} />
           <Route path="/form/my" element={<MyFormPage />} />
+          <Route path="/form/my/response" element={<MyResponsePage />} />
+          <Route path="/profile" element={<ProfilePage />} />
         </Route>
         <Route path="/start" element={<StartPage />} />
         <Route path="/login" element={<LoginPage />} />

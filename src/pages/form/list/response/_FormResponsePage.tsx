@@ -1,20 +1,21 @@
 import { useSearchParams } from 'react-router-dom';
-import { FormLayout } from '../../../layout/FormLayout';
-import { useGetForm } from '../../../query-hooks/form';
-import { Loader } from '../../../components/Loader';
-import { QuestionBox } from '../id/QuestionBox';
+import { FormLayout } from '../../../../layout/FormLayout';
+import { useGetAllUsersReply, useGetForm } from '../../../../query-hooks/form';
+import { Loader } from '../../../../components/Loader';
+import { QuestionBox } from '../../id/QuestionBox';
 import { Answer } from './Answer';
-import { API_BASE_URL } from '../../../constant';
+import { API_BASE_URL } from '../../../../constant';
 
 export const FormResponsePage = () => {
   const [searchParams] = useSearchParams();
-
   const formID = Number(searchParams.get('id'));
   const {
     data: formInfo,
     isSuccess: isLoadFormSuccess,
-    isFetching,
+    isFetching: isLoadingForm,
   } = useGetForm(formID);
+
+  const { data: replyResponse } = useGetAllUsersReply(formID);
 
   return isLoadFormSuccess ? (
     <FormLayout
@@ -28,15 +29,17 @@ export const FormResponsePage = () => {
         </a>
       }
     >
-      {formInfo.surveyItems.map(
-        ({ surveyItemId: questionID, title, description }) => (
+      {replyResponse?.map(
+        ({ surveyItemResponse: { title, description }, replies }) => (
           <QuestionBox title={title} description={description}>
-            <Answer questionID={questionID} />
+            {replies.map(({ content }) => (
+              <Answer content={content} />
+            ))}
           </QuestionBox>
         ),
       )}
     </FormLayout>
   ) : (
-    <Loader loading={isFetching} type="clip" size={55} />
+    <Loader loading={isLoadingForm} type="clip" size={55} />
   );
 };

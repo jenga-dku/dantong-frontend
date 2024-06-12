@@ -1,4 +1,5 @@
 import { HTMLAttributes } from 'react';
+import { handleCustomCSS } from '../utils/handleCustomCSS';
 
 type Button = HTMLAttributes<HTMLButtonElement> & {
   content: string;
@@ -23,7 +24,10 @@ export const Button = ({
 }: Button) => {
   return (
     <button
-      className={`btn-primary btn border-none text-white ${SIZE[size ?? 'full']} ${className}`}
+      className={handleCustomCSS(
+        `btn-primary btn border-none text-white ${SIZE[size ?? 'full']}`,
+        className ?? '',
+      )}
       disabled={disabled ?? false}
       onClick={onClick}
       {...props}

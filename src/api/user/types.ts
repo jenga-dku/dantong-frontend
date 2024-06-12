@@ -7,3 +7,9 @@ export type UserInfoResponse = {
   phoneNumber: string;
   userRole: string;
 };
+
+export type ModifiedUserInfo = {
+  name: string;
+  major: string;
+  phoneNumber: string;
+};
