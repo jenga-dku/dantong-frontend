@@ -1,7 +1,7 @@
 import { Box as EventInfoBox } from '../../components/Box';
 import { Box as DetailInfoBox } from '../../components/Box';
 
-export const Ticket = () => (
+export const EmptyTicket = ({ isLoggedIn }: { isLoggedIn?: boolean }) => (
   <>
     <div className="flex h-[140px] items-center justify-center opacity-50">
       <EventInfoBox className="box-border h-full w-2/3 flex-col gap-2 px-2 py-3">
@@ -38,7 +38,7 @@ export const Ticket = () => (
       </DetailInfoBox>
     </div>
     <p className="relative top-[-85px] flex w-full justify-center">
-      로그인 이후 이용 가능
+      {isLoggedIn ? '신청 내역이 없습니다' : '로그인 이후 이용 가능합니다'}
     </p>
   </>
 );
