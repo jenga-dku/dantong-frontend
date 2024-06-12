@@ -42,6 +42,17 @@ body {
   display: none !important;
 }
 
+@media all and (display-mode: standalone) {
+  .navBar {
+    height: 90px;
+    padding-bottom: 30px;
+  }
+
+  .pwa-layout {
+    padding-bottom: 75px;
+  }
+}
+
 input[type='password']::placeholder {
   font-family: 'NanumSquareBold';
 }

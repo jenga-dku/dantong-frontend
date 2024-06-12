@@ -17,7 +17,7 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <ModalProvider>
-        <div className="absolute flex h-full w-full max-w-[400px] overflow-hidden bg-white">
+        <div className="layout absolute flex h-full w-full max-w-[400px] overflow-hidden bg-white">
           <Router />
         </div>
       </ModalProvider>
