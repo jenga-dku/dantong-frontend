@@ -31,10 +31,12 @@ export const FormLayout = ({
           <CiCalendar size={17} />
           {` ~ ${handleDateFormat(formInfo.endTime)}`}
         </p>
-        <p className="mt-2 flex items-center gap-1 text-xs leading-none">
-          <CiFloppyDisk size={17} />
-          {exportButton}
-        </p>
+
+        {exportButton && (
+          <p className="mt-2 flex items-center gap-1 text-xs leading-none">
+            <CiFloppyDisk size={17} />
+          </p>
+        )}
       </Box>
       {children}
     </div>
