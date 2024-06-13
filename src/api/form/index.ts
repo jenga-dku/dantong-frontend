@@ -80,7 +80,7 @@ export const Form = {
     return response.data;
   },
   async getMySubmit(formID: number): Promise<MySubmitResponse> {
-    const response = await API.get(`/submit/${formID}`, {
+    const response = await API.get(`/submit/user/${formID}`, {
       headers: {
         Authorization: `Bearer ${getToken()}`,
       },
