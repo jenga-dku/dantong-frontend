@@ -77,7 +77,7 @@ export const TicketCarousel = ({ data }: { data: PostDetailResponse[] }) => {
                 </div>
                 <button
                   onClick={() => {
-                    navigate(`/form/my?id=${surveyId}`);
+                    navigate(`/form/my/response?id=${surveyId}`);
                   }}
                   className="btn-primary btn-outline btn h-9 min-h-9 whitespace-nowrap border-[1.5px]"
                 >

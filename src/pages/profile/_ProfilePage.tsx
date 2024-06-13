@@ -56,8 +56,8 @@ export const ProfilePage = () => {
         <div className="w-fit rounded-2xl bg-zinc-200 p-1 text-[80px] text-white">
           <HiUser />
         </div>
-        <div className="flex flex-col gap-2">
-          <p className="w-fit rounded-md text-xs text-primary">
+        <div className="flex w-[calc(100%-95px)] flex-col gap-2">
+          <p className="w-full rounded-md text-xs text-primary">
             <select
               className="select h-fit min-h-fit w-full p-0 text-gray-400"
               name="major"
