@@ -1,5 +1,5 @@
-import { Content } from '../Content';
-import { InputContainer } from '../InputContainer';
+import { Content } from '../_components/Content';
+import { InputContainer } from '../_components/InputContainer';
 
 type userInfoInputAttr = {
   id: 'name' | 'studentID' | 'phoneNumber' | 'major';

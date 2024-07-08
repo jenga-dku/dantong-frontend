@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { Content } from '../Content';
-import { Input } from '../Input';
+import { Content } from '../_components/Content';
+import { Input } from '../_components/Input';
 import { Button } from '../../../components/Button';
 import {
   usePostMail,
