@@ -1,11 +1,11 @@
 import { useEffect, useRef } from 'react';
-import { Button } from '../../components/Button';
+import { Button } from '../../../components/Button';
 import { Input } from './Input';
 import {
   SignUpInfoKey,
   useSignUpInfoStore,
-} from '../../stores/signUpInfo-stores';
-import { MAJOR } from '../../types/major';
+} from '../../../stores/signUpInfo-stores';
+import { MAJOR } from '../../../types/major';
 
 export type userInfoInputAttr = {
   id: SignUpInfoKey;
@@ -15,18 +15,18 @@ export type userInfoInputAttr = {
 
 export const InputContainer = ({
   inputAttrList,
-  onNext,
   containerID,
+  onNext,
 }: {
   inputAttrList: userInfoInputAttr[];
-  onNext: () => void;
   containerID: 'info' | 'password';
+  onNext: () => void;
 }) => {
-  const inputContainerRef = useRef<HTMLDivElement>(null);
   const { signUpInfo, setSignUpInfo } = useSignUpInfoStore();
   const { activatedInputIndex, setActivatedInputIndex } = useSignUpInfoStore();
-  const isEntryCompleted =
+  const isLastInputIndex =
     activatedInputIndex[containerID] === inputAttrList.length;
+  const inputContainerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const currentInput =
@@ -34,8 +34,8 @@ export const InputContainer = ({
     currentInput?.focus();
   }, [activatedInputIndex]);
 
-  const focusOnNextInput = () => {
-    !isEntryCompleted &&
+  const activateNextInput = () => {
+    !isLastInputIndex &&
       setActivatedInputIndex({
         ...activatedInputIndex,
         // 해당하는 InputContainer 타입의 활성화된 Input Index에 1을 더하여 다음 Input을 표시한다.
@@ -63,18 +63,18 @@ export const InputContainer = ({
                     setSignUpInfo({ ...signUpInfo, [id]: e.target.value });
                   }}
                   onKeyDown={(e) => {
-                    if (e.key === 'Enter' && !isEntryCompleted) {
-                      focusOnNextInput();
+                    if (e.key === 'Enter' && !isLastInputIndex) {
+                      activateNextInput();
                     }
                   }}
                   additionalElement={
                     inputIndex !== 0 ||
-                    isEntryCompleted || (
+                    isLastInputIndex || (
                       <Button
                         content="확인"
                         size="fit"
                         onClick={() => {
-                          focusOnNextInput();
+                          activateNextInput();
                         }}
                         disabled={signUpInfo[id].length === 0}
                       />
@@ -93,7 +93,7 @@ export const InputContainer = ({
                     name="category"
                     onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
                       setSignUpInfo({ ...signUpInfo, [id]: e.target.value });
-                      focusOnNextInput();
+                      activateNextInput();
                     }}
                   >
                     <option disabled selected>
@@ -108,7 +108,7 @@ export const InputContainer = ({
             </>
           ))}
       </div>
-      {isEntryCompleted && (
+      {isLastInputIndex && (
         <Button
           content="다음"
           onClick={() => {

@@ -1,4 +1,4 @@
-import { Outlet, useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { SignUpLayout } from './SignUpLayout';
 import { MailEntryPage } from './email/_MailEntryPage';
 import { useEffect, useState } from 'react';
@@ -8,11 +8,11 @@ import { SignUpSuccessPage } from './success/_SignUpSuccessPage';
 import { usePostSignUpInfo } from '../../query-hooks/sign-up';
 
 export const SignUpPage = () => {
-  const [step, setStep] = useState(0);
-  const { pathname } = useLocation();
-  const steps = ['email', 'info', 'password', 'success'];
   const navigate = useNavigate();
   const { mutate: postSignUpInfo } = usePostSignUpInfo();
+  const { pathname } = useLocation();
+  const [step, setStep] = useState(0);
+  const steps = ['email', 'info', 'password', 'success'];
 
   useEffect(() => {
     const pageName = pathname.split('?')[0].split('/sign-up/')[1];
@@ -27,13 +27,8 @@ export const SignUpPage = () => {
     <SignUpLayout step={step}>
       <MailEntryPage />
       <InfoEntryPage onNext={() => navigate('/sign-up/password')} />
-      <PasswordEntryPage
-        onNext={() => {
-          submitSignUpInfo();
-        }}
-      />
+      <PasswordEntryPage onNext={() => submitSignUpInfo()} />
       <SignUpSuccessPage onNext={() => navigate('/login')} />
-      <Outlet />
     </SignUpLayout>
   );
 };
