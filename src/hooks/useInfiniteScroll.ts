@@ -1,7 +1,7 @@
 import { InfiniteData, UseInfiniteQueryResult } from '@tanstack/react-query';
 import { useCallback, useMemo, useRef } from 'react';
 
-export const useIntersectionObserver = <T>({
+export const useInfiniteScroll = <T>({
   data,
   isLoading,
   fetchNextPage,

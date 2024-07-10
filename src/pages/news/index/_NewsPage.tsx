@@ -5,7 +5,7 @@ import { PostItem } from './PostItem';
 import { PostDetailResponse } from '../../../api/post/types';
 import { useSearchParams } from 'react-router-dom';
 import { isInCategory } from '../../../utils/isInCategory';
-import { useIntersectionObserver } from '../../../hooks/useIntersectionObserver';
+import { useInfiniteScroll } from '../../../hooks/useInfiniteScroll';
 import { Intersection } from '../../../components/Intersection';
 import { Loader } from '../../../components/Loader';
 
@@ -21,7 +21,7 @@ export const NewsPage = () => {
     list: postList,
     intersection,
     isFetching,
-  } = useIntersectionObserver<PostDetailResponse>(postListState);
+  } = useInfiniteScroll<PostDetailResponse>(postListState);
 
   useEffect(() => {
     updatePostList();

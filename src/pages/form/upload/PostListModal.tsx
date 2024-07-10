@@ -3,7 +3,7 @@ import { Button } from '../../../components/Button';
 import { useGetInfinitePostList } from '../../../query-hooks/post';
 import { getCategoryKoreanName } from '../../../utils/getCategoryKoreanName';
 import { FormUpload } from '../../../api/form-upload/types';
-import { useIntersectionObserver } from '../../../hooks/useIntersectionObserver';
+import { useInfiniteScroll } from '../../../hooks/useInfiniteScroll';
 import { PostDetailResponse } from '../../../api/post/types';
 import { Loader } from '../../../components/Loader';
 import { Intersection } from '../../../components/Intersection';
@@ -22,14 +22,14 @@ export const PostListModal = ({
 }) => {
   const postListState = useGetInfinitePostList({
     category: '',
-    size: 5,
+    size: 3,
   });
 
   const {
     list: postList,
     intersection,
     isFetching,
-  } = useIntersectionObserver<PostDetailResponse>(postListState);
+  } = useInfiniteScroll<PostDetailResponse>(postListState);
 
   return (
     <div className="absolute left-0 top-0 z-[51] flex  h-full w-full flex-col items-center justify-center bg-[#00000080]">
@@ -75,7 +75,7 @@ export const PostListModal = ({
           onClick={() => {
             updatePostModalState((prev) => ({ ...prev, visible: false }));
           }}
-          className="h-[40px] min-h-[40px] p-0 text-[0.9rem] font-normal"
+          className="h-[40px] min-h-[40px] p-0 text-[0.9rem] font-normal text-white"
         />
       </div>
     </div>
