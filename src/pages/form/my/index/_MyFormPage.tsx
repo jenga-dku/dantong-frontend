@@ -1,6 +1,6 @@
 import { FormListLayout } from '../../../../layout/FormListLayout';
 import { FormListItem } from '../../../../api/form/types';
-import { useIntersectionObserver } from '../../../../hooks/useIntersectionObserver';
+import { useInfiniteScroll } from '../../../../hooks/useInfiniteScroll';
 import { useGetInfiniteMyFormList } from '../../../../query-hooks/form';
 
 export const MyFormPage = () => {
@@ -11,7 +11,7 @@ export const MyFormPage = () => {
     list: formList,
     intersection,
     isFetching,
-  } = useIntersectionObserver<FormListItem>(formListState);
+  } = useInfiniteScroll<FormListItem>(formListState);
 
   return (
     <FormListLayout<FormListItem>
