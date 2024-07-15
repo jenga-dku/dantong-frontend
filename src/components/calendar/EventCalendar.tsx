@@ -2,7 +2,7 @@ import './styles.css';
 import { Calendar, momentLocalizer } from 'react-big-calendar';
 import moment from 'moment';
 import { Toolbar } from './Toolbar';
-import { events } from '../../data';
+import { events } from './data';
 import { useState } from 'react';
 import { BottomSheet } from 'react-spring-bottom-sheet';
 import 'react-spring-bottom-sheet/dist/style.css';
