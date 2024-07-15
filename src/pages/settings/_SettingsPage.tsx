@@ -64,7 +64,7 @@ export const SettingsPage = () => {
         )
       ) : (
         <div className="flex flex-col items-center justify-center gap-8 rounded-xl bg-white px-3 pb-5 pt-10  shadow-lg">
-          <p className="">로그인 후 이용 가능합니다!🥲</p>
+          <p>로그인 후 이용 가능합니다</p>
           <Button
             onClick={() => {
               navigate('/start');
