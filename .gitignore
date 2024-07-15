@@ -2,9 +2,7 @@
 
 /src/data.ts
 .env
-surge.crt
-surge.key
-surge.pem
+dantong-fe.pem
 
 # dependencies
 /node_modules
