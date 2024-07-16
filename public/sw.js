@@ -19,15 +19,12 @@ self.addEventListener('activate', (event) => {
   event.waitUntil(self.clients.claim());
 });
 
-    registration.showNotification('Hello!', {
-      body: 'This is a push notification!',
-    }),
-      self.addEventListener('push', () => {
-        event.waitUntil(
-          registration.showNotification('Hello!', {
-            body: 'This is a push notification!',
-          }),
-        );
-      });
+self.addEventListener('push', () => {
+    event.waitUntil(
+        registration.showNotification('Hello!', {
+        body: 'This is a push notification!',
+        }),
+    );
+});
 
 workbox.precaching.precacheAndRoute(self.__WB_MANIFEST || []);
