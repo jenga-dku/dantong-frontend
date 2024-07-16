@@ -2,6 +2,7 @@
 
 .env
 dantong-fe.pem
+/build
 
 # dependencies
 /node_modules
