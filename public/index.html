@@ -32,6 +32,11 @@
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
     <title>단통</title>
+    <script>
+      if (typeof navigator.serviceWorker !== 'undefined') {
+        navigator.serviceWorker.register('sw.js')
+      }
+    </script>
     <script type="module">
       import 'https://cdn.jsdelivr.net/npm/@pwabuilder/pwaupdate';
       const el = document.createElement('pwa-update');
