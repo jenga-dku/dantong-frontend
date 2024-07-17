@@ -6,7 +6,7 @@ export const Loader = ({
   type,
   className,
 }: {
-  loading: boolean;
+  loading?: boolean;
   size?: number;
   type?: string;
   className?: string;
