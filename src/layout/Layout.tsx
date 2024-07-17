@@ -1,9 +1,10 @@
 import { TopBar } from '../components/TopBar';
 import { Nav } from '../components/Nav';
 import { Outlet, useLocation } from 'react-router-dom';
-import { useEffect, useRef } from 'react';
+import { Suspense, useEffect, useRef } from 'react';
 import { useTopBarStore } from '../stores/topBar-stores';
 import { Axios } from '../components/Axios';
+import { Loader } from '../components/Loader';
 
 export const Layout = ({ className }: { className?: string }) => {
   const layoutRef = useRef<HTMLDivElement>(null);
@@ -29,7 +30,9 @@ export const Layout = ({ className }: { className?: string }) => {
         ref={layoutRef}
         className={`flex w-full flex-col overflow-auto bg-[#EBF4FF] px-5 pb-[100px] pt-[60px] ${className}`}
       >
-        <Outlet />
+        <Suspense fallback={<Loader type="clip" />}>
+          <Outlet />
+        </Suspense>
       </div>
       <Nav />
       <Axios />

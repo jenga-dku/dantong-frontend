@@ -1,22 +1,7 @@
+import { lazy } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { LoginPage } from './pages/login/_LoginPage';
-import { StartPage } from './pages/start/_StartPage';
-import { SignUpPage } from './pages/sign-up/_SignUpPage';
-import { HomePage } from './pages/index/_HomePage';
 import { Layout } from './layout/Layout';
-import { NewsPage } from './pages/news/index/_NewsPage';
-import { PostPage } from './pages/post/_PostPage';
-import { SettingsPage } from './pages/settings/_SettingsPage';
-import { FormPage } from './pages/form/id/_FormPage';
-import { FormUploadPage } from './pages/form/upload/_FormUploadPage';
-import { NewsUploadPage } from './pages/news/upload/_NewsUploadPage';
-import { CalendarPage } from './pages/calendar/_CalendarPage';
-import { AdminPage } from './pages/admin/_AdminPage';
-import { FormListPage } from './pages/form/list/index/_FormListPage';
-import { FormResponsePage } from './pages/form/list/response/_FormResponsePage';
-import { MyFormPage } from './pages/form/my/index/_MyFormPage';
-import { ProfilePage } from './pages/profile/_ProfilePage';
-import { MyResponsePage } from './pages/form/my/response/_MyResponsePage';
+import { FallbackLayout } from './layout/FallbackLayout';
 
 export default function Router() {
   return (
@@ -38,10 +23,103 @@ export default function Router() {
           <Route path="/form/my/response" element={<MyResponsePage />} />
           <Route path="/profile" element={<ProfilePage />} />
         </Route>
-        <Route path="/start" element={<StartPage />} />
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/sign-up/:id" element={<SignUpPage />} />
+        <Route path="/" element={<FallbackLayout />}>
+          <Route path="/start" element={<StartPage />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/sign-up/:id" element={<SignUpPage />} />
+        </Route>
       </Routes>
     </BrowserRouter>
   );
 }
+
+const HomePage = lazy(() =>
+  import('./pages/index/_HomePage').then(({ HomePage }) => ({
+    default: HomePage,
+  })),
+);
+
+const LoginPage = lazy(() =>
+  import('./pages/login/_LoginPage').then(({ LoginPage }) => ({
+    default: LoginPage,
+  })),
+);
+const StartPage = lazy(() =>
+  import('./pages/start/_StartPage').then(({ StartPage }) => ({
+    default: StartPage,
+  })),
+);
+const SignUpPage = lazy(() =>
+  import('./pages/sign-up/_SignUpPage').then(({ SignUpPage }) => ({
+    default: SignUpPage,
+  })),
+);
+const NewsPage = lazy(() =>
+  import('./pages/news/index/_NewsPage').then(({ NewsPage }) => ({
+    default: NewsPage,
+  })),
+);
+const PostPage = lazy(() =>
+  import('./pages/post/_PostPage').then(({ PostPage }) => ({
+    default: PostPage,
+  })),
+);
+const SettingsPage = lazy(() =>
+  import('./pages/settings/_SettingsPage').then(({ SettingsPage }) => ({
+    default: SettingsPage,
+  })),
+);
+const FormPage = lazy(() =>
+  import('./pages/form/id/_FormPage').then(({ FormPage }) => ({
+    default: FormPage,
+  })),
+);
+const FormUploadPage = lazy(() =>
+  import('./pages/form/upload/_FormUploadPage').then(({ FormUploadPage }) => ({
+    default: FormUploadPage,
+  })),
+);
+const NewsUploadPage = lazy(() =>
+  import('./pages/news/upload/_NewsUploadPage').then(({ NewsUploadPage }) => ({
+    default: NewsUploadPage,
+  })),
+);
+const CalendarPage = lazy(() =>
+  import('./pages/calendar/_CalendarPage').then(({ CalendarPage }) => ({
+    default: CalendarPage,
+  })),
+);
+const AdminPage = lazy(() =>
+  import('./pages/admin/_AdminPage').then(({ AdminPage }) => ({
+    default: AdminPage,
+  })),
+);
+const FormListPage = lazy(() =>
+  import('./pages/form/list/index/_FormListPage').then(({ FormListPage }) => ({
+    default: FormListPage,
+  })),
+);
+const FormResponsePage = lazy(() =>
+  import('./pages/form/list/response/_FormResponsePage').then(
+    ({ FormResponsePage }) => ({
+      default: FormResponsePage,
+    }),
+  ),
+);
+const MyFormPage = lazy(() =>
+  import('./pages/form/my/index/_MyFormPage').then(({ MyFormPage }) => ({
+    default: MyFormPage,
+  })),
+);
+const ProfilePage = lazy(() =>
+  import('./pages/profile/_ProfilePage').then(({ ProfilePage }) => ({
+    default: ProfilePage,
+  })),
+);
+const MyResponsePage = lazy(() =>
+  import('./pages/form/my/response/_MyResponsePage').then(
+    ({ MyResponsePage }) => ({
+      default: MyResponsePage,
+    }),
+  ),
+);
