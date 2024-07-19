@@ -18,8 +18,8 @@ export const PostSection = () => {
                 <PostItem data={postData} />
               </SwiperSlide>
             ))
-          : Array.from({ length: 2 }).map(() => (
-              <SwiperSlide>
+          : Array.from({ length: 2 }).map((_, index) => (
+              <SwiperSlide key={`post-${index}`}>
                 <Box className="skeleton_loading h-[17rem] w-[17rem] flex-col p-0">
                   <div className="h-[17rem]" />
                   <div className="h-[4rem] bg-white" />
