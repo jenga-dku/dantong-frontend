@@ -2,7 +2,7 @@ import { HTMLAttributes, ReactNode } from 'react';
 import { handleCustomCSS } from '../utils/handleCustomCSS';
 
 type Box = HTMLAttributes<HTMLDivElement> & {
-  children: ReactNode;
+  children?: ReactNode;
   className?: string;
 };
 
