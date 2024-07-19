@@ -1,9 +1,13 @@
-import { useInfiniteQuery, useQuery } from '@tanstack/react-query';
+import {
+  useInfiniteQuery,
+  useQuery,
+  useSuspenseQuery,
+} from '@tanstack/react-query';
 import { Post } from '../../api/post';
 import { FilterCategory } from '../../types/news-category';
 
 export const useGetPostList = (category: string) =>
-  useQuery({
+  useSuspenseQuery({
     queryFn: () => Post.getPostList(category),
     queryKey: ['postList'],
   });
