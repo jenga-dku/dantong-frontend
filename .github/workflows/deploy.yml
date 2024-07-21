@@ -20,7 +20,7 @@ jobs:
       - name: Install Craco
         run: npm i @craco/craco -g
       - name: Build
-        run: craco build
+        run: CI=false craco build
       - name: zip create
         run: zip -qq -r ./build.zip .
         shell: bash
