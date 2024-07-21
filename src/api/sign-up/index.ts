@@ -1,8 +1,8 @@
-import { API } from '../api';
+import { API } from '@api/api';
 import { SignUpInfo, VerificationResponse } from './types';
 
 export const SignUp = {
-  async postMail(studentID: string) { 
+  async postMail(studentID: string) {
     const response = await API.post('/user/email', { studentId: studentID });
     return response.data;
   },

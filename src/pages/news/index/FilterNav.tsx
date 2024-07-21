@@ -1,6 +1,6 @@
-import { Box } from '../../../components/Box';
+import { Box } from '@components/Box';
 import { useNavigate, useSearchParams } from 'react-router-dom';
-import { FilterNavDataList } from '../../../types/news-filter-nav';
+import { FilterNavDataList } from '@src/types/news-filter-nav';
 
 export const FilterNav = () => {
   const navigate = useNavigate();

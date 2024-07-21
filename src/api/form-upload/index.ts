@@ -1,6 +1,6 @@
-import { API } from '../api';
+import { API } from '@api/api';
 import { FormUpload } from './types';
-import { getToken } from '../../utils/handleAuth';
+import { getToken } from '@utils/handleAuth';
 
 export const Form = {
   async create(form: FormUpload) {

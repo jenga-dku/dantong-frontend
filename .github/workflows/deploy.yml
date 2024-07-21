@@ -16,9 +16,9 @@ jobs:
           echo "REACT_APP_API_URL=${{ secrets.REACT_APP_API_URL }}" >> .env
           echo "WDS_SOCKET_PORT=${{ secrets.WDS_SOCKET_PORT }}" >> .env
       - name: Install Dependencies
-        run: npm install --legacy-peer-deps --frozen-lockfile
+        run: npm install -f
       - name: Build
-        run: npm run build
+        run: craco run build
       - name: zip create
         run: zip -qq -r ./build.zip .
         shell: bash

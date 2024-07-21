@@ -4,7 +4,7 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import { Navigation, Pagination } from 'swiper/modules';
-import { PostFileResponse } from '../../api/post/types';
+import { PostFileResponse } from '@api/post/types';
 
 export const Carousel = ({ data }: { data: PostFileResponse[] }) => {
   return (

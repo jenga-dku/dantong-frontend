@@ -1,4 +1,4 @@
-import SvgSprite from '../assets/svg/SvgSprite.svg';
+import SvgSprite from '@assets/svg/SvgSprite.svg';
 
 export const SvgIcon = ({ id }: { id: string }) => {
   return (

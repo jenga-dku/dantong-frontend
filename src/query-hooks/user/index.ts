@@ -1,12 +1,12 @@
 import { useMutation, useQuery } from '@tanstack/react-query';
-import { User } from '../../api/user';
-import { useAuthStore } from '../../stores/auth-stores';
-import { ErrorResponse } from '../../api/types';
-import { ModifiedUserInfo, UserInfoResponse } from '../../api/user/types';
+import { User } from '@api/user';
+import { useAuthStore } from '@stores/auth-stores';
+import { ErrorResponse } from '@api/types';
+import { ModifiedUserInfo, UserInfoResponse } from '@api/user/types';
 import { AxiosError } from 'axios';
-import { getToken } from '../../utils/handleAuth';
-import { PostDetailResponse } from '../../api/post/types';
-import { useModal } from '../../hooks/useModal';
+import { getToken } from '@utils/handleAuth';
+import { PostDetailResponse } from '@api/post/types';
+import { useModal } from '@hooks/useModal';
 import { useNavigate } from 'react-router-dom';
 
 export const useGetUserInfo = () => {

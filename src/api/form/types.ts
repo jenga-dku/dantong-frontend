@@ -1,4 +1,4 @@
-import { PostStatus } from '../../types/post-status';
+import { PostStatus } from '@src/types/post-status';
 import { Question } from '../form-upload/types';
 
 export type FormResponse = {

@@ -3,8 +3,8 @@ import {
   useQuery,
   useSuspenseQuery,
 } from '@tanstack/react-query';
-import { Post } from '../../api/post';
-import { FilterCategory } from '../../types/news-category';
+import { Post } from '@api/post';
+import { FilterCategory } from '@src/types/news-category';
 
 export const useGetPostList = (category: string) =>
   useSuspenseQuery({

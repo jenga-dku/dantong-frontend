@@ -1,13 +1,13 @@
 import { useNavigate } from 'react-router-dom';
-import { Box } from '../components/Box';
-import { handleDateFormat } from '../utils/handleDateFomat';
-import { useTopBarStore } from '../stores/topBar-stores';
+import { Box } from '@components/Box';
+import { handleDateFormat } from '@utils/handleDateFomat';
+import { useTopBarStore } from '@stores/topBar-stores';
 import { useEffect } from 'react';
 import { PiUsersLight } from 'react-icons/pi';
-import { POST_STATUS_COLOR } from '../types/post-status';
-import { FormListItem } from '../api/form/types';
-import { Intersection } from '../components/Intersection';
-import { Loader } from '../components/Loader';
+import { POST_STATUS_COLOR } from '@src/types/post-status';
+import { FormListItem } from '@api/form/types';
+import { Intersection } from '@components/Intersection';
+import { Loader } from '@components/Loader';
 
 export const FormListLayout = <T extends FormListItem>({
   title,

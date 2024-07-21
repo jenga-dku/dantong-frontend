@@ -6,7 +6,7 @@ import { events } from './data';
 import { useState } from 'react';
 import { BottomSheet } from 'react-spring-bottom-sheet';
 import 'react-spring-bottom-sheet/dist/style.css';
-import { SelectedDay } from '../../types/calendar';
+import { SelectedDay } from '@src/types/calendar';
 
 export const EventCalendar = () => {
   const localizer = momentLocalizer(moment);

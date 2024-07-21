@@ -1,4 +1,4 @@
-import { Major } from '../../types/major';
+import { Major } from '@src/types/major';
 
 export type UserInfoResponse = {
   name: string;
