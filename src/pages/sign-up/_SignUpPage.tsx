@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 import { InfoEntryPage } from './info/_InfoEntryPage';
 import { PasswordEntryPage } from './password/_PasswordEntryPage';
 import { SignUpSuccessPage } from './success/_SignUpSuccessPage';
-import { usePostSignUpInfo } from '../../query-hooks/sign-up';
+import { usePostSignUpInfo } from '@query-hooks/sign-up';
 
 export const SignUpPage = () => {
   const navigate = useNavigate();

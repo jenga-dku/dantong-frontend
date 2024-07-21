@@ -1,4 +1,4 @@
-import { EventCalendar } from '../../components/calendar/EventCalendar';
+import { EventCalendar } from '@components/calendar/EventCalendar';
 
 export const CalendarPage = () => {
   return <EventCalendar />;

@@ -1,7 +1,7 @@
-import { FormListLayout } from '../../../../layout/FormListLayout';
-import { FormListItem } from '../../../../api/form/types';
-import { useInfiniteScroll } from '../../../../hooks/useInfiniteScroll';
-import { useGetInfiniteMyFormList } from '../../../../query-hooks/form';
+import { FormListLayout } from '@layout/FormListLayout';
+import { FormListItem } from '@api/form/types';
+import { useInfiniteScroll } from '@hooks/useInfiniteScroll';
+import { useGetInfiniteMyFormList } from '@query-hooks/form';
 
 export const MyFormPage = () => {
   const formListState = useGetInfiniteMyFormList({

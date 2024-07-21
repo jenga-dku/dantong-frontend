@@ -1,6 +1,6 @@
 import { useContext, useEffect, useRef } from 'react';
 import { ModalContext } from './ModalProvider';
-import { ModalState } from '../../types/modal';
+import { ModalState } from '@src/types/modal';
 import { RxCross2 } from 'react-icons/rx';
 
 export const Modal = ({ title, desc, visible, option }: ModalState) => {

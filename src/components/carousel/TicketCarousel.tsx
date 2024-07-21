@@ -4,12 +4,12 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import { Navigation, Pagination } from 'swiper/modules';
-import { PostDetailResponse } from '../../api/post/types';
-import { Box as EventInfoBox } from '../../components/Box';
-import { Box as DetailInfoBox } from '../../components/Box';
+import { PostDetailResponse } from '@api/post/types';
+import { Box as EventInfoBox } from '@components/Box';
+import { Box as DetailInfoBox } from '@components/Box';
 import { Link, useNavigate } from 'react-router-dom';
 import { FaChevronRight } from 'react-icons/fa6';
-import { handleDateFormat } from '../../utils/handleDateFomat';
+import { handleDateFormat } from '@utils/handleDateFomat';
 
 export const TicketCarousel = ({ data }: { data: PostDetailResponse[] }) => {
   const navigate = useNavigate();

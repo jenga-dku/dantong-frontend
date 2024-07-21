@@ -1,4 +1,4 @@
-import { FilterCategory } from '../types/news-category';
+import { FilterCategory } from '@src/types/news-category';
 
 const isCategory = (test: string): test is FilterCategory => {
   return (

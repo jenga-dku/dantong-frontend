@@ -1,14 +1,10 @@
 import { ReactNode, useEffect, useState } from 'react';
-import { Box } from '../../../components/Box';
+import { Box } from '@components/Box';
 import 'react-datepicker/dist/react-datepicker.css';
-import { Period } from '../../../types/period-picker/period';
+import { Period } from '@src/types/period-picker/period';
 import { TbPlus } from 'react-icons/tb';
-import {
-  FormUpload,
-  Question,
-  QuestionType,
-} from '../../../api/form-upload/types';
-import { SubmitButton } from '../../../components/SubmitButton';
+import { FormUpload, Question, QuestionType } from '@api/form-upload/types';
+import { SubmitButton } from '@components/SubmitButton';
 import { RiListRadio } from 'react-icons/ri';
 import { RxCross2 } from 'react-icons/rx';
 import { BsTextareaT } from 'react-icons/bs';
@@ -17,10 +13,10 @@ import {
   QuestionTypeButtonChangeEvent,
 } from './QuestionTypeButton';
 import { Header } from './Header';
-import { useTopBarStore } from '../../../stores/topBar-stores';
+import { useTopBarStore } from '@stores/topBar-stores';
 import { PiTrashLight } from 'react-icons/pi';
-import { useModal } from '../../../hooks/useModal';
-import { useCreateForm } from '../../../query-hooks/form-upload';
+import { useModal } from '@hooks/useModal';
+import { useCreateForm } from '@query-hooks/form-upload';
 
 export const FormUploadPage = () => {
   const defaultQuestion: Question = {

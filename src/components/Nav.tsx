@@ -3,7 +3,7 @@ import { IoIosPaper } from 'react-icons/io';
 import { IoCalendarClear } from 'react-icons/io5';
 import { FiMenu } from 'react-icons/fi';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { useAuthStore } from '../stores/auth-stores';
+import { useAuthStore } from '@stores/auth-stores';
 
 export const Nav = () => {
   const navigate = useNavigate();

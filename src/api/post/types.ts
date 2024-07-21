@@ -1,4 +1,4 @@
-import { PostStatus } from '../../types/post-status';
+import { PostStatus } from '@src/types/post-status';
 import { UserInfoResponse } from '../user/types';
 
 export type PostListResponse = {

@@ -1,6 +1,6 @@
-import { Category } from '../types/news-category';
-import { POST_STATUS_COLOR, PostStatus } from '../types/post-status';
-import { getCategoryKoreanName } from '../utils/getCategoryKoreanName';
+import { Category } from '@src/types/news-category';
+import { POST_STATUS_COLOR, PostStatus } from '@src/types/post-status';
+import { getCategoryKoreanName } from '@utils/getCategoryKoreanName';
 
 export const PostHeader = ({
   status,

@@ -1,5 +1,5 @@
-import { getToken } from '../../utils/handleAuth';
-import { API } from '../api';
+import { getToken } from '@utils/handleAuth';
+import { API } from '@api/api';
 import { PageParams } from '../types';
 import {
   AllUsersReplyResponse,

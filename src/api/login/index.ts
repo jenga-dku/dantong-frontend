@@ -1,4 +1,4 @@
-import { API } from '../api';
+import { API } from '@api/api';
 import { LoginInfo } from './types';
 
 export const Login = {

@@ -1,5 +1,5 @@
 import { Editor as ToastEditor } from '@toast-ui/react-editor';
-import { useEffect, useRef } from 'react';
+import { useRef } from 'react';
 import '@toast-ui/editor/dist/toastui-editor.css';
 
 export const Editor = ({
