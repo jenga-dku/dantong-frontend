@@ -17,6 +17,8 @@ jobs:
           echo "WDS_SOCKET_PORT=${{ secrets.WDS_SOCKET_PORT }}" >> .env
       - name: Install Dependencies
         run: npm install -f
+      - name: Install Craco
+        run: npm i @craco/craco -g
       - name: Build
         run: craco build
       - name: zip create
