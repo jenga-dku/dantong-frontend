@@ -18,7 +18,7 @@ jobs:
       - name: Install Dependencies
         run: npm install -f
       - name: Build
-        run: craco run build
+        run: craco build
       - name: zip create
         run: zip -qq -r ./build.zip .
         shell: bash
