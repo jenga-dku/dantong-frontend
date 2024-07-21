@@ -54,6 +54,7 @@ export const FormUploadPage = () => {
   const { mutate: createForm } = useCreateForm();
   const uploadForm = () => {
     console.log(formUploadInfo);
+    setFormUploadInfo((prev) => ({ ...prev, surveyItems: questionList }));
     open({
       title: '폼 생성',
       desc: '폼을 생성하시겠습니까?',
@@ -75,17 +76,16 @@ export const FormUploadPage = () => {
 
   const handleQuestionInputChange = (
     e: React.ChangeEvent<HTMLInputElement>,
-    index: number,
+    questionIndex: number,
   ) => {
-    setQuestionList((prev) => [
-      ...prev.slice(0, index),
-      { ...prev[index], [e.target.name]: e.target.value },
-      ...prev.slice(index + 1),
-    ]);
+    setQuestionList(
+      questionList.map((questionValue, qIndex) =>
+        qIndex === questionIndex
+          ? { ...questionList[questionIndex], [e.target.name]: e.target.value }
+          : questionValue,
+      ),
+    );
   };
-  useEffect(() => {
-    setFormUploadInfo((prev) => ({ ...prev, surveyItems: questionList }));
-  }, [questionList]);
 
   type QuestionTypeButton = { type: QuestionType; icon: ReactNode };
   const questionTypeList: QuestionTypeButton[] = [
@@ -98,24 +98,24 @@ export const FormUploadPage = () => {
         periodState={periodState}
         formUploadInfoState={formUploadInfoState}
       />
-      {questionList.map(({ tag: questionType, options }, index) => (
-        <Box className="flex flex-col gap-3" key={`question-${index}`}>
+      {questionList.map(({ tag: questionType, options }, questionIndex) => (
+        <Box className="flex flex-col gap-3" key={`question-${questionIndex}`}>
           <div className="flex justify-between text-zinc-400">
             <div className="flex gap-3">
               {questionTypeList.map(({ type, icon }) => (
                 <QuestionTypeButton
-                  index={index}
+                  index={questionIndex}
                   icon={icon}
                   value={type}
-                  checked={questionList[index].tag === type}
+                  checked={questionList[questionIndex].tag === type}
                   onChange={(e: QuestionTypeButtonChangeEvent) => {
-                    setQuestionList((prev) => {
-                      return [
-                        ...prev.slice(0, index),
-                        { ...prev[index], tag: e.target.value },
-                        ...prev.slice(index + 1),
-                      ];
-                    });
+                    setQuestionList(
+                      questionList.map((questionValue, qIndex) =>
+                        qIndex === questionIndex
+                          ? { ...questionList[qIndex], tag: e.target.value }
+                          : questionValue,
+                      ),
+                    );
                   }}
                 />
               ))}
@@ -123,10 +123,11 @@ export const FormUploadPage = () => {
             <button>
               <RxCross2
                 onClick={() => {
-                  setQuestionList((prev) => [
-                    ...prev.slice(0, index),
-                    ...prev.slice(index + 1),
-                  ]);
+                  setQuestionList(
+                    questionList.filter(
+                      (_, qIndex) => questionIndex !== qIndex,
+                    ),
+                  );
                 }}
               />
             </button>
@@ -135,9 +136,9 @@ export const FormUploadPage = () => {
             type="text"
             name="title"
             placeholder="질문을 입력해주세요"
-            value={questionList[index].title}
+            value={questionList[questionIndex].title}
             onChange={(e) => {
-              handleQuestionInputChange(e, index);
+              handleQuestionInputChange(e, questionIndex);
             }}
           />
           <input
@@ -145,9 +146,9 @@ export const FormUploadPage = () => {
             name="description"
             className="ml-[-35px] scale-[0.8] text-[16px] text-zinc-500"
             placeholder="설명을 입력해주세요"
-            value={questionList[index].description}
+            value={questionList[questionIndex].description}
             onChange={(e) => {
-              handleQuestionInputChange(e, index);
+              handleQuestionInputChange(e, questionIndex);
             }}
           />
           {questionType === 'SUBJECTIVE' ? (
@@ -167,18 +168,21 @@ export const FormUploadPage = () => {
                       type="text"
                       value={option}
                       onChange={(e) =>
-                        setQuestionList((prev) => [
-                          ...prev.slice(0, index),
-                          {
-                            ...prev[index],
-                            options: [
-                              ...options.slice(0, optionIndex),
-                              e.target.value,
-                              ...options.slice(optionIndex + 1),
-                            ],
-                          },
-                          ...prev.slice(index + 1),
-                        ])
+                        setQuestionList(
+                          questionList.map((questionValue, qIndex) =>
+                            qIndex === questionIndex
+                              ? {
+                                  ...questionList[qIndex],
+                                  options: questionList[qIndex].options.map(
+                                    (optionValue, oIndex) =>
+                                      oIndex === optionIndex
+                                        ? e.target.value
+                                        : optionValue,
+                                  ),
+                                }
+                              : questionValue,
+                          ),
+                        )
                       }
                       placeholder="옵션을 입력해주세요"
                       className="ml-[-10px] scale-[0.8]"
@@ -187,17 +191,18 @@ export const FormUploadPage = () => {
                   <button className="text-zinc-400">
                     <PiTrashLight
                       onClick={() => {
-                        setQuestionList((prev) => [
-                          ...prev.slice(0, index),
-                          {
-                            ...prev[index],
-                            options: [
-                              ...options.slice(0, optionIndex),
-                              ...options.slice(optionIndex + 1),
-                            ],
-                          },
-                          ...prev.slice(index + 1),
-                        ]);
+                        setQuestionList(
+                          questionList.map((questionValue, qIndex) =>
+                            qIndex === questionIndex
+                              ? {
+                                  ...questionList[qIndex],
+                                  options: questionList[qIndex].options.filter(
+                                    (_, oIndex) => oIndex !== optionIndex,
+                                  ),
+                                }
+                              : questionValue,
+                          ),
+                        );
                       }}
                     />
                   </button>
@@ -206,12 +211,12 @@ export const FormUploadPage = () => {
               <button
                 onClick={() => {
                   setQuestionList((prev) => [
-                    ...prev.slice(0, index),
+                    ...prev.slice(0, questionIndex),
                     {
-                      ...prev[index],
+                      ...prev[questionIndex],
                       options: [...options, ''],
                     },
-                    ...prev.slice(index + 1),
+                    ...prev.slice(questionIndex + 1),
                   ]);
                 }}
                 className="flex cursor-pointer items-center text-[16px]"
