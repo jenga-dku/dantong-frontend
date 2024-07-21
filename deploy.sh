@@ -4,4 +4,4 @@ REPOSITORY=/home/ubuntu/deploy
 
 cd $REPOSITORY
 
-sudo npm install --legacy-peer-deps
+sudo npm install -f

@@ -3,10 +3,10 @@ import {
   PiNotePencilLight,
   PiNotebookLight,
 } from 'react-icons/pi';
-import { MenuContainer } from '../../components/MenuContainer';
-import { Button } from '../../components/Button';
-import { removeToken } from '../../utils/handleAuth';
-import { useAuthStore } from '../../stores/auth-stores';
+import { MenuContainer } from '@components/MenuContainer';
+import { Button } from '@components/Button';
+import { removeToken } from '@utils/handleAuth';
+import { useAuthStore } from '@stores/auth-stores';
 import { useNavigate } from 'react-router-dom';
 
 export const AdminPage = () => {

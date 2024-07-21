@@ -1,7 +1,7 @@
 import { lazy } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { Layout } from './layout/Layout';
-import { FallbackLayout } from './layout/FallbackLayout';
+import { Layout } from '@layout/Layout';
+import { FallbackLayout } from '@layout/FallbackLayout';
 
 export default function Router() {
   return (

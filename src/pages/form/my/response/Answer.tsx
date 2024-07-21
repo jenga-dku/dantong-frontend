@@ -1,5 +1,5 @@
-import { Loader } from '../../../../components/Loader';
-import { useGetMyAnswer } from '../../../../query-hooks/form';
+import { Loader } from '@components/Loader';
+import { useGetMyAnswer } from '@query-hooks/form';
 
 export const Answer = ({ questionID }: { questionID: number }) => {
   const {

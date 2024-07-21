@@ -1,7 +1,7 @@
 import { ReactNode, createContext, useState } from 'react';
 import ReactDOM from 'react-dom';
 import { Modal } from './Modal';
-import { ModalState } from '../../types/modal';
+import { ModalState } from '@src/types/modal';
 
 const modalRoot = document.getElementById('modal-root') as HTMLElement;
 export const ModalContext = createContext({

@@ -1,4 +1,4 @@
-import { Category } from '../../types/news-category';
+import { Category } from '@src/types/news-category';
 
 export type NewsUpload = {
   title: string;

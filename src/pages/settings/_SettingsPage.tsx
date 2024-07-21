@@ -1,12 +1,12 @@
 import { useNavigate } from 'react-router-dom';
-import { Button } from '../../components/Button';
-import { useGetUserInfo } from '../../query-hooks/user';
+import { Button } from '@components/Button';
+import { useGetUserInfo } from '@query-hooks/user';
 import { HiUser } from 'react-icons/hi';
-import { getMajorKoreanName } from '../../utils/getMajorKoreanName';
+import { getMajorKoreanName } from '@utils/getMajorKoreanName';
 import { PiLockKeyLight, PiCalendarCheckLight } from 'react-icons/pi';
-import { removeToken } from '../../utils/handleAuth';
-import { useAuthStore } from '../../stores/auth-stores';
-import { MenuContainer } from '../../components/MenuContainer';
+import { removeToken } from '@utils/handleAuth';
+import { useAuthStore } from '@stores/auth-stores';
+import { MenuContainer } from '@components/MenuContainer';
 
 export const SettingsPage = () => {
   const navigate = useNavigate();

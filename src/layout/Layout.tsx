@@ -1,9 +1,9 @@
-import { TopBar } from '../components/TopBar';
-import { Nav } from '../components/Nav';
+import { TopBar } from '@components/TopBar';
+import { Nav } from '@components/Nav';
 import { Outlet, useLocation } from 'react-router-dom';
 import { Suspense, useEffect, useRef } from 'react';
-import { useTopBarStore } from '../stores/topBar-stores';
-import { Axios } from '../components/Axios';
+import { useTopBarStore } from '@stores/topBar-stores';
+import { Axios } from '@components/Axios';
 
 export const Layout = ({ className }: { className?: string }) => {
   const layoutRef = useRef<HTMLDivElement>(null);

@@ -1,5 +1,5 @@
 import { HTMLAttributes } from 'react';
-import { handleCustomCSS } from '../utils/handleCustomCSS';
+import { handleCustomCSS } from '@utils/handleCustomCSS';
 
 type Button = HTMLAttributes<HTMLButtonElement> & {
   content: string;

@@ -1,6 +1,6 @@
-import { Box } from '../../components/Box';
-import { ReactComponent as NewsIcon } from '../../assets/svg/News.svg';
-import { useAuthStore } from '../../stores/auth-stores';
+import { Box } from '@components/Box';
+import { ReactComponent as NewsIcon } from '@assets/svg/News.svg';
+import { useAuthStore } from '@stores/auth-stores';
 
 export const WelcomeBox = () => {
   const { isLoggedIn, userInfo } = useAuthStore();

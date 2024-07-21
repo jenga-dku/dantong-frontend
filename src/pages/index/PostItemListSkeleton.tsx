@@ -1,5 +1,5 @@
-import { Box } from '../../components/Box';
-import HorizontalScrollBox from '../../components/HorizontalScrollBox';
+import { Box } from '@components/Box';
+import HorizontalScrollBox from '@components/HorizontalScrollBox';
 import { SwiperSlide } from 'swiper/react';
 
 export default function PostItemsSkeleton() {

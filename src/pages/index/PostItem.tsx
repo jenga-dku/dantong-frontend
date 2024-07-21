@@ -1,7 +1,7 @@
-import { Box } from '../../components/Box';
-import CouncilLogo from '../../assets/image/CouncilLogo.png';
+import { Box } from '@components/Box';
+import CouncilLogo from '@assets/image/CouncilLogo.png';
 import { useNavigate } from 'react-router-dom';
-import { PostDetailResponse } from '../../api/post/types';
+import { PostDetailResponse } from '@api/post/types';
 
 export const PostItem = ({
   data: { postId, title, postFileResponse },

@@ -1,6 +1,6 @@
 import { NavigateAction, ToolbarProps } from 'react-big-calendar';
 import { CalendarEvent, CalendarResource } from './types';
-import { getMonthInKorean } from '../../utils/getMonthInKorean';
+import { getMonthInKorean } from '@utils/getMonthInKorean';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa6';
 
 export const Toolbar = (

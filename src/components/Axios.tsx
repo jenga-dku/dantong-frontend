@@ -1,10 +1,10 @@
 import { AxiosError } from 'axios';
-import { API } from '../api/api';
-import { ErrorResponse } from '../api/types';
-import { removeToken } from '../utils/handleAuth';
-import { useModal } from '../hooks/useModal';
+import { API } from '@api/api';
+import { ErrorResponse } from '@api/types';
+import { removeToken } from '@utils/handleAuth';
+import { useModal } from '@hooks/useModal';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { useAuthStore } from '../stores/auth-stores';
+import { useAuthStore } from '@stores/auth-stores';
 
 export const Axios = () => {
   const { open } = useModal();

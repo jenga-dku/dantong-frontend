@@ -1,4 +1,4 @@
-import { MONTH, MonthInEnglish } from '../types/month';
+import { MONTH, MonthInEnglish } from '@src/types/month';
 
 const isMonth = (test: string): test is MonthInEnglish => {
   return (

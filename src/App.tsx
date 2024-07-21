@@ -1,7 +1,7 @@
 import React from 'react';
 import Router from './Router';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { ModalProvider } from './components/modal/ModalProvider';
+import { ModalProvider } from '@components/modal/ModalProvider';
 
 const queryClient = new QueryClient({
   defaultOptions: {

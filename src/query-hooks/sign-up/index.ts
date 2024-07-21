@@ -1,10 +1,10 @@
 import { UseMutationOptions, useMutation } from '@tanstack/react-query';
-import { SignUp } from '../../api/sign-up';
-import { useSignUpInfoStore } from '../../stores/signUpInfo-stores';
+import { SignUp } from '@api/sign-up';
+import { useSignUpInfoStore } from '@stores/signUpInfo-stores';
 import { AxiosError } from 'axios';
-import { Verification, VerificationResponse } from '../../api/sign-up/types';
+import { Verification, VerificationResponse } from '@api/sign-up/types';
 import { useNavigate } from 'react-router-dom';
-import { ErrorResponse } from '../../api/types';
+import { ErrorResponse } from '@api/types';
 
 export const usePostMail = (
   options?: UseMutationOptions<void, AxiosError, string>,
