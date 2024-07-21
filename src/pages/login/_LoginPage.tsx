@@ -1,4 +1,4 @@
-import { Button } from '../../components/Button';
+import { Button } from '@components/Button';
 import { Input } from './Input';
 import { LoginInfo } from '../../api/login/types';
 import { useEffect, useState } from 'react';
