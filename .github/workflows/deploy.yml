@@ -16,7 +16,7 @@ jobs:
           echo "REACT_APP_API_URL=${{ secrets.REACT_APP_API_URL }}" >> .env
           echo "WDS_SOCKET_PORT=${{ secrets.WDS_SOCKET_PORT }}" >> .env
       - name: Install Dependencies
-        run: craco install -f
+        run: npm install -f
       - name: Build
         run: craco run build
       - name: zip create
