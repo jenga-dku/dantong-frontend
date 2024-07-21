@@ -3,7 +3,7 @@
        "baseUrl":".",
        "paths":{
           "@/*":[
-             "src/*"
+            "src/*"
           ],
           "@api/*":[
             "src/api/*"
@@ -18,7 +18,7 @@
              "src/hooks/*"
           ],
           "@layout/*":[
-             "src/layout/"
+             "src/layout/*"
           ],
           "@pages/*":[
              "src/pages/*"
@@ -32,7 +32,7 @@
           "@styles/*":[
              "src/styles/*"
           ],
-          "@types/*":[
+          "@src/types/*":[
              "src/types/*"
           ],
           "@utils/*":[

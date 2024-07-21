@@ -1,10 +1,10 @@
-import { Box } from '../../components/Box';
-import { PostHeader } from '../../components/PostHeader';
-import { Carousel } from '../../components/carousel/Carousel';
+import { Box } from '@components/Box';
+import { PostHeader } from '@components/PostHeader';
+import { Carousel } from '@components/carousel/Carousel';
 import parse from 'html-react-parser';
-import { Button } from '../../components/Button';
-import { useTopBarStore } from '../../stores/topBar-stores';
-import { useGetPostDetail } from '../../query-hooks/post';
+import { Button } from '@components/Button';
+import { useTopBarStore } from '@stores/topBar-stores';
+import { useGetPostDetail } from '@query-hooks/post';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 

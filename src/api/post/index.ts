@@ -1,5 +1,5 @@
-import { FilterCategory } from '../../types/news-category';
-import { API } from '../api';
+import { FilterCategory } from '@src/types/news-category';
+import { API } from '@api/api';
 import { PageParams } from '../types';
 import { PostDetailResponse, PostListResponse } from './types';
 

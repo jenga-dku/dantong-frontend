@@ -1,12 +1,12 @@
 import { HiUser } from 'react-icons/hi';
-import { getMajorKoreanName } from '../../utils/getMajorKoreanName';
-import { Button } from '../../components/Button';
-import { useGetUserInfo, usePatchUserInfo } from '../../query-hooks/user';
-import { MAJOR } from '../../types/major';
+import { getMajorKoreanName } from '@utils/getMajorKoreanName';
+import { Button } from '@components/Button';
+import { useGetUserInfo, usePatchUserInfo } from '@query-hooks/user';
+import { MAJOR } from '@src/types/major';
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { ModifiedUserInfo } from '../../api/user/types';
-import { useModal } from '../../hooks/useModal';
+import { ModifiedUserInfo } from '@api/user/types';
+import { useModal } from '@hooks/useModal';
 
 export const ProfilePage = () => {
   const { data: userInfo, isSuccess: isUserInfoLoadedSuccess } =

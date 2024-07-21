@@ -1,6 +1,6 @@
 import { ReactDatePickerCustomHeaderProps } from 'react-datepicker';
 import { GoTriangleLeft, GoTriangleRight } from 'react-icons/go';
-import { months } from '../../types/month';
+import { months } from '@src/types/month';
 export const renderCustomHeader = ({
   date,
   decreaseMonth,

@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
-import { Box } from '../../../components/Box';
-import { PostHeader } from '../../../components/PostHeader';
-import { PostDetailResponse } from '../../../api/post/types';
+import { Box } from '@components/Box';
+import { PostHeader } from '@components/PostHeader';
+import { PostDetailResponse } from '@api/post/types';
 
 export const PostItem = ({
   data: { postId, title, status, category, postFileResponse },

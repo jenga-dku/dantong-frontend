@@ -1,5 +1,5 @@
 import { ChangeEvent, HTMLAttributes, ReactNode } from 'react';
-import { QuestionType } from '../../../api/form-upload/types';
+import { QuestionType } from '@api/form-upload/types';
 
 export type QuestionTypeButtonChangeEvent = ChangeEvent<HTMLInputElement> & {
   target: { value: QuestionType };

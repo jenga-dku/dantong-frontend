@@ -1,16 +1,13 @@
 import { useState } from 'react';
 import { Content } from '../_components/Content';
 import { Input } from '../_components/Input';
-import { Button } from '../../../components/Button';
-import {
-  usePostMail,
-  usePostVerificationCode,
-} from '../../../query-hooks/sign-up';
-import { useSignUpInfoStore } from '../../../stores/signUpInfo-stores';
-import { VerificationResponse } from '../../../api/sign-up/types';
+import { Button } from '@components/Button';
+import { usePostMail, usePostVerificationCode } from '@query-hooks/sign-up';
+import { useSignUpInfoStore } from '@stores/signUpInfo-stores';
+import { VerificationResponse } from '@api/sign-up/types';
 import { useNavigate } from 'react-router-dom';
-import { useModal } from '../../../hooks/useModal';
-import { Loader } from '../../../components/Loader';
+import { useModal } from '@hooks/useModal';
+import { Loader } from '@components/Loader';
 
 export const MailEntry = ({
   updateIsVerified,

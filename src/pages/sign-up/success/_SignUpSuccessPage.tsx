@@ -1,6 +1,6 @@
-import { Button } from '../../../components/Button';
-import { ReactComponent as WelcomeIcon } from '../../../assets/svg/Welcome.svg';
-import { useSignUpInfoStore } from '../../../stores/signUpInfo-stores';
+import { Button } from '@components/Button';
+import { ReactComponent as WelcomeIcon } from '@assets/svg/Welcome.svg';
+import { useSignUpInfoStore } from '@stores/signUpInfo-stores';
 
 export const SignUpSuccessPage = ({ onNext }: { onNext: () => void }) => {
   const { signUpInfo } = useSignUpInfoStore();

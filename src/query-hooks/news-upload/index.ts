@@ -1,10 +1,10 @@
 import { useMutation } from '@tanstack/react-query';
 import { AxiosError } from 'axios';
-import { ErrorResponse } from '../../api/types';
-import { useModal } from '../../hooks/useModal';
+import { ErrorResponse } from '@api/types';
+import { useModal } from '@hooks/useModal';
 import { useNavigate } from 'react-router-dom';
-import { NewsUpload } from '../../api/news-upload/types';
-import { News } from '../../api/news-upload';
+import { NewsUpload } from '@api/news-upload/types';
+import { News } from '@api/news-upload';
 
 export const usePostNews = () => {
   const { open } = useModal();

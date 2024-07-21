@@ -1,11 +1,8 @@
 import { useEffect, useRef } from 'react';
-import { Button } from '../../../components/Button';
+import { Button } from '@components/Button';
 import { Input } from './Input';
-import {
-  SignUpInfoKey,
-  useSignUpInfoStore,
-} from '../../../stores/signUpInfo-stores';
-import { MAJOR } from '../../../types/major';
+import { SignUpInfoKey, useSignUpInfoStore } from '@stores/signUpInfo-stores';
+import { MAJOR } from '@src/types/major';
 
 export type userInfoInputAttr = {
   id: SignUpInfoKey;

@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
-import { ReactComponent as EmailVerificationIcon } from '../../../assets/svg/EmailVerification.svg';
+import { ReactComponent as EmailVerificationIcon } from '@assets/svg/EmailVerification.svg';
 import { Content } from '../_components/Content';
-import { Button } from '../../../components/Button';
+import { Button } from '@components/Button';
 
 export const MailVerification = () => {
   const navigate = useNavigate();

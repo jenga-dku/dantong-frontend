@@ -1,7 +1,7 @@
 import { Section } from './Section';
-import { useAuthStore } from '../../stores/auth-stores';
-import { useGetAppliedEvents } from '../../query-hooks/user';
-import { TicketCarousel } from '../../components/carousel/TicketCarousel';
+import { useAuthStore } from '@/stores/auth-stores';
+import { useGetAppliedEvents } from '@/query-hooks/user';
+import { TicketCarousel } from '@/components/carousel/TicketCarousel';
 import { EmptyTicket } from './EmptyTicket';
 
 export const AppliedEventSection = () => {
