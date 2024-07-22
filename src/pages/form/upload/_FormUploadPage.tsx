@@ -1,4 +1,4 @@
-import { ReactNode, useEffect, useState } from 'react';
+import { ReactNode, useEffect, useReducer, useState } from 'react';
 import { Box } from '@components/Box';
 import 'react-datepicker/dist/react-datepicker.css';
 import { Period } from '@src/types/period-picker/period';
@@ -18,17 +18,87 @@ import { PiTrashLight } from 'react-icons/pi';
 import { useModal } from '@hooks/useModal';
 import { useCreateForm } from '@query-hooks/form-upload';
 
-export const FormUploadPage = () => {
-  const defaultQuestion: Question = {
-    tag: 'SUBJECTIVE',
-    title: '',
-    description: '',
-    options: [''],
-  };
+const initialQuestionState: Question = {
+  tag: 'SUBJECTIVE',
+  title: '',
+  description: '',
+  options: [''],
+};
 
-  const [questionList, setQuestionList] = useState<Question[]>([
-    defaultQuestion,
-  ]);
+type ActionType = {
+  type: string;
+  questionIndex?: number;
+  questionType?: QuestionType;
+  inputName?: string;
+  inputValue?: string;
+  optionIndex?: number;
+  optionValue?: string;
+};
+
+export const FormUploadPage = () => {
+  const [questionList, dispatch] = useReducer(reducer, [initialQuestionState]);
+
+  function reducer(state: Question[], action: ActionType): Question[] {
+    switch (action.type) {
+      case 'handleInputChange':
+        return state.map((questionValue, qIndex) =>
+          qIndex === action.questionIndex!
+            ? {
+                ...questionValue,
+                [action.inputName!]: action.inputValue,
+              }
+            : questionValue,
+        );
+      case 'handleOptionChange':
+        return state.map((questionValue, qIndex) =>
+          qIndex === action.questionIndex
+            ? {
+                ...questionValue,
+                options: questionValue.options.map((oValue, oIndex) =>
+                  oIndex === action.optionIndex! ? action.optionValue! : oValue,
+                ),
+              }
+            : questionValue,
+        );
+      case 'changeQuestionType':
+        return state.map((questionValue, qIndex) =>
+          qIndex === action.questionIndex
+            ? {
+                ...questionValue,
+                tag: action.questionType!,
+              }
+            : questionValue,
+        );
+      case 'deleteQuestion':
+        return state.filter((_, qIndex) => action.questionIndex !== qIndex);
+      case 'deleteOption':
+        return state.map((questionValue, qIndex) =>
+          qIndex === action.questionIndex!
+            ? {
+                ...questionValue,
+                options: questionValue.options.filter(
+                  (_, oIndex) => action.optionIndex !== oIndex,
+                ),
+              }
+            : questionValue,
+        );
+      case 'createQuestion':
+        return [...state, initialQuestionState];
+
+      case 'createOption':
+        return state.map((questionValue, qIndex) =>
+          qIndex === action.questionIndex!
+            ? {
+                ...questionValue,
+                options: [...questionValue.options, ''],
+              }
+            : questionValue,
+        );
+
+      default:
+        return state;
+    }
+  }
 
   const periodState = useState<Period>({
     start: new Date(),
@@ -48,9 +118,10 @@ export const FormUploadPage = () => {
 
   const { open } = useModal();
   const { mutate: createForm } = useCreateForm();
+
   const uploadForm = () => {
-    console.log(formUploadInfo);
     setFormUploadInfo((prev) => ({ ...prev, surveyItems: questionList }));
+    console.log(formUploadInfo);
     open({
       title: '폼 생성',
       desc: '폼을 생성하시겠습니까?',
@@ -69,19 +140,6 @@ export const FormUploadPage = () => {
       isNotificationButtonVisible: false,
     });
   }, []);
-
-  const handleQuestionInputChange = (
-    e: React.ChangeEvent<HTMLInputElement>,
-    questionIndex: number,
-  ) => {
-    setQuestionList(
-      questionList.map((questionValue, qIndex) =>
-        qIndex === questionIndex
-          ? { ...questionList[questionIndex], [e.target.name]: e.target.value }
-          : questionValue,
-      ),
-    );
-  };
 
   type QuestionTypeButton = { type: QuestionType; icon: ReactNode };
   const questionTypeList: QuestionTypeButton[] = [
@@ -105,13 +163,11 @@ export const FormUploadPage = () => {
                   value={type}
                   checked={questionList[questionIndex].tag === type}
                   onChange={(e: QuestionTypeButtonChangeEvent) => {
-                    setQuestionList(
-                      questionList.map((questionValue, qIndex) =>
-                        qIndex === questionIndex
-                          ? { ...questionList[qIndex], tag: e.target.value }
-                          : questionValue,
-                      ),
-                    );
+                    dispatch({
+                      type: 'changeQuestionType',
+                      questionIndex,
+                      questionType: e.target.value,
+                    });
                   }}
                 />
               ))}
@@ -119,11 +175,10 @@ export const FormUploadPage = () => {
             <button>
               <RxCross2
                 onClick={() => {
-                  setQuestionList(
-                    questionList.filter(
-                      (_, qIndex) => questionIndex !== qIndex,
-                    ),
-                  );
+                  dispatch({
+                    type: 'deleteQuestion',
+                    questionIndex,
+                  });
                 }}
               />
             </button>
@@ -134,7 +189,12 @@ export const FormUploadPage = () => {
             placeholder="질문을 입력해주세요"
             value={questionList[questionIndex].title}
             onChange={(e) => {
-              handleQuestionInputChange(e, questionIndex);
+              dispatch({
+                type: 'handleInputChange',
+                questionIndex,
+                inputName: e.target.name,
+                inputValue: e.target.value,
+              });
             }}
           />
           <input
@@ -144,7 +204,12 @@ export const FormUploadPage = () => {
             placeholder="설명을 입력해주세요"
             value={questionList[questionIndex].description}
             onChange={(e) => {
-              handleQuestionInputChange(e, questionIndex);
+              dispatch({
+                type: 'handleInputChange',
+                questionIndex,
+                inputName: e.target.name,
+                inputValue: e.target.value,
+              });
             }}
           />
           {questionType === 'SUBJECTIVE' ? (
@@ -163,23 +228,14 @@ export const FormUploadPage = () => {
                     <input
                       type="text"
                       value={option}
-                      onChange={(e) =>
-                        setQuestionList(
-                          questionList.map((questionValue, qIndex) =>
-                            qIndex === questionIndex
-                              ? {
-                                  ...questionList[qIndex],
-                                  options: questionList[qIndex].options.map(
-                                    (optionValue, oIndex) =>
-                                      oIndex === optionIndex
-                                        ? e.target.value
-                                        : optionValue,
-                                  ),
-                                }
-                              : questionValue,
-                          ),
-                        )
-                      }
+                      onChange={(e) => {
+                        dispatch({
+                          type: 'handleOptionChange',
+                          questionIndex,
+                          optionIndex,
+                          optionValue: e.target.value,
+                        });
+                      }}
                       placeholder="옵션을 입력해주세요"
                       className="ml-[-10px] scale-[0.8]"
                     />
@@ -187,18 +243,11 @@ export const FormUploadPage = () => {
                   <button className="text-zinc-400">
                     <PiTrashLight
                       onClick={() => {
-                        setQuestionList(
-                          questionList.map((questionValue, qIndex) =>
-                            qIndex === questionIndex
-                              ? {
-                                  ...questionList[qIndex],
-                                  options: questionList[qIndex].options.filter(
-                                    (_, oIndex) => oIndex !== optionIndex,
-                                  ),
-                                }
-                              : questionValue,
-                          ),
-                        );
+                        dispatch({
+                          type: 'deleteOption',
+                          questionIndex,
+                          optionIndex,
+                        });
                       }}
                     />
                   </button>
@@ -206,14 +255,10 @@ export const FormUploadPage = () => {
               ))}
               <button
                 onClick={() => {
-                  setQuestionList((prev) => [
-                    ...prev.slice(0, questionIndex),
-                    {
-                      ...prev[questionIndex],
-                      options: [...options, ''],
-                    },
-                    ...prev.slice(questionIndex + 1),
-                  ]);
+                  dispatch({
+                    type: 'createOption',
+                    questionIndex: questionIndex,
+                  });
                 }}
                 className="flex cursor-pointer items-center text-[16px]"
               >
@@ -229,7 +274,9 @@ export const FormUploadPage = () => {
       <div className="flex w-full justify-end">
         <button
           onClick={() => {
-            setQuestionList((prev) => [...prev, defaultQuestion]);
+            dispatch({
+              type: 'createQuestion',
+            });
           }}
           className="btn fixed bottom-[70px] flex h-[60px] w-[60px] items-center justify-center rounded-full bg-white p-3 text-[30rem] font-bold text-primary shadow-[1px_2px_10px_0px_rgba(0,0,0,0.1)]"
         >
