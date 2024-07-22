@@ -1,21 +1,3 @@
-@font-face {
-  font-family: 'SejongHospitalBold';
-  font-style: normal;
-  src: url('../assets/font/SejongHospitalBold.ttf') format('truetype');
-}
-
-@font-face {
-  font-family: 'NanumSquareRegular';
-  font-style: normal;
-  src: url('../assets/font/NanumSquareRegular.ttf') format('truetype');
-}
-
-@font-face {
-  font-family: 'NanumSquareBold';
-  font-style: normal;
-  src: url('../assets/font/NanumSquareBold.ttf') format('truetype');
-}
-
 body {
   background-color: #f1f1f1;
   font-family: 'NanumSquareRegular';
