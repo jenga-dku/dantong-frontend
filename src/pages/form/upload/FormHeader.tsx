@@ -7,7 +7,7 @@ import { FormUpload } from '@api/form-upload/types';
 import { getFormattedDate } from '@utils/getFormattedDate';
 import { Period } from '@src/types/period-picker/period';
 
-export const Header = ({
+export const FormHeader = ({
   periodState,
   formUploadInfoState,
 }: {
