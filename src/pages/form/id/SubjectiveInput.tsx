@@ -10,6 +10,6 @@ export const SubjectiveInput = ({
     placeholder="답변"
     name={`${surveyItemId}`}
     onChange={onChange}
-    className="rounded-lg border-[1px] border-solid bg-zinc-50 p-2 text-sm"
+    className="rounded-lg border-[1px] border-solid bg-zinc-50 p-2"
   />
 );
