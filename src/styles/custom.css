@@ -5,12 +5,6 @@
 }
 
 @font-face {
-  font-family: 'SejongHospitalLight';
-  font-style: normal;
-  src: url('../assets/font/SejongHospitalLight.ttf') format('truetype');
-}
-
-@font-face {
   font-family: 'NanumSquareRegular';
   font-style: normal;
   src: url('../assets/font/NanumSquareRegular.ttf') format('truetype');
@@ -20,12 +14,6 @@
   font-family: 'NanumSquareBold';
   font-style: normal;
   src: url('../assets/font/NanumSquareBold.ttf') format('truetype');
-}
-
-@font-face {
-  font-family: 'NanumSquareEB';
-  font-style: normal;
-  src: url('../assets/font/NanumSquareEB.ttf') format('truetype');
 }
 
 body {

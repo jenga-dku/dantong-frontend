@@ -28,10 +28,8 @@ module.exports = {
     },
     fontFamily: {
       SejongHospitalBold: ['SejongHospitalBold'],
-      SejongHospitalLight: ['SejongHospitalLight'],
       NanumSquareRegular: ['NanumSquareRegular'],
-      NanumSquareBold: ['NanumSquareBold'],
-      NanumSquareEB: ['NanumSquareEB'],
+      NanumSquareBold: ['NanumSquareBold']
     },
   },
   daisyui: {
