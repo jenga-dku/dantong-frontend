@@ -7,21 +7,29 @@ import { useAuthStore } from '@stores/auth-stores';
 import { useModal } from '@/hooks/modal/useModal';
 import { useNavigate } from 'react-router-dom';
 import { UserInfoResponse } from '@/api/user/types';
+import { useLoadingModal } from '@/hooks/modal/useLoadingMoadl';
 
 export const usePostLoginInfo = () => {
   const { setIsLoggedIn, setUserInfo, isLoggedIn } = useAuthStore();
   const { open } = useModal();
+  const { openLoadingModal, closeLoadingModal } = useLoadingModal();
   const navigate = useNavigate();
   const queryClient = useQueryClient();
 
   return useMutation({
     mutationFn: (data: LoginInfo) => Login.post(data),
-    onSuccess: async ({ accessToken, refreshToken }) => {
+    onMutate: () => {
+      openLoadingModal('로그인 중');
+    },
+    onSuccess: ({ accessToken, refreshToken }) => {
       localStorage.setItem('accessToken', accessToken);
       localStorage.setItem('refreshToken', refreshToken);
       setIsLoggedIn(true);
+      console.log('성공');
     },
-    onError: ({ response }: AxiosError<ErrorResponse>) => {
+    onError: async ({ response }: AxiosError<ErrorResponse>) => {
+      closeLoadingModal();
+
       open({
         title: '로그인 오류',
         desc: response?.data.message[0],
@@ -40,7 +48,10 @@ export const usePostLoginInfo = () => {
               studentID: studentId,
             });
           })
-          .finally(() => navigate('/'));
+          .finally(() => {
+            closeLoadingModal();
+            navigate('/');
+          });
       }
     },
   });
