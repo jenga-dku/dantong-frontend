@@ -2,7 +2,7 @@ import { AxiosError } from 'axios';
 import { API } from '@api/api';
 import { ErrorResponse } from '@api/types';
 import { removeToken } from '@utils/handleAuth';
-import { useModal } from '@hooks/useModal';
+import { useModal } from '@/hooks/modal/useModal';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useAuthStore } from '@stores/auth-stores';
 
