@@ -4,7 +4,7 @@ import { LoginInfo } from '@api/login/types';
 import { AxiosError } from 'axios';
 import { ErrorResponse } from '@api/types';
 import { useAuthStore } from '@stores/auth-stores';
-import { useModal } from '@hooks/useModal';
+import { useModal } from '@/hooks/modal/useModal';
 import { useNavigate } from 'react-router-dom';
 import { UserInfoResponse } from '@/api/user/types';
 

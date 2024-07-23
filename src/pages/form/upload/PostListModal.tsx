@@ -3,7 +3,7 @@ import { Button } from '@components/Button';
 import { useGetInfinitePostList } from '@query-hooks/post';
 import { getCategoryKoreanName } from '@utils/getCategoryKoreanName';
 import { FormUpload } from '@api/form-upload/types';
-import { useInfiniteScroll } from '@hooks/useInfiniteScroll';
+import { useInfiniteScroll } from '@/hooks/useInfiniteScroll';
 import { PostDetailResponse } from '@api/post/types';
 import { Loader } from '@components/Loader';
 import { Intersection } from '@components/Intersection';

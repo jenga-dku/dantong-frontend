@@ -17,7 +17,7 @@ import { NewsUpload } from '@api/news-upload/types';
 import { getFormattedDate } from '@utils/getFormattedDate';
 import { PeriodPicker } from '@components/period-picker';
 import { usePostNews } from '@query-hooks/news-upload';
-import { useModal } from '@hooks/useModal';
+import { useModal } from '@/hooks/modal/useModal';
 
 export const NewsUploadPage = () => {
   const [desc, setDesc] = useState('');

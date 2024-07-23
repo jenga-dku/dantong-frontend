@@ -6,7 +6,7 @@ import { ModifiedUserInfo, UserInfoResponse } from '@api/user/types';
 import { AxiosError } from 'axios';
 import { getToken } from '@utils/handleAuth';
 import { PostDetailResponse } from '@api/post/types';
-import { useModal } from '@hooks/useModal';
+import { useModal } from '@/hooks/modal/useModal';
 import { useNavigate } from 'react-router-dom';
 
 export const useGetUserInfo = () => {

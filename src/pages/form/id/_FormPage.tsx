@@ -3,7 +3,7 @@ import { useGetForm, useSubmitForm } from '@query-hooks/form';
 import { SubmitButton } from '@components/SubmitButton';
 import { useParams } from 'react-router-dom';
 import { FormAnswer } from '@api/form/types';
-import { useModal } from '@hooks/useModal';
+import { useModal } from '@/hooks/modal/useModal';
 import { useAuthStore } from '@stores/auth-stores';
 import { FormLayout } from '@layout/FormLayout';
 import { QuestionBox } from './QuestionBox';
