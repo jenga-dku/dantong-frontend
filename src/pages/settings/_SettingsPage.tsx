@@ -4,14 +4,16 @@ import { useGetUserInfo } from '@query-hooks/user';
 import { HiUser } from 'react-icons/hi';
 import { getMajorKoreanName } from '@utils/getMajorKoreanName';
 import { PiLockKeyLight, PiCalendarCheckLight } from 'react-icons/pi';
-import { removeToken } from '@utils/handleAuth';
 import { useAuthStore } from '@stores/auth-stores';
 import { MenuContainer } from '@components/MenuContainer';
+import useAuth from '@/hooks/useAuth';
 
 export const SettingsPage = () => {
   const navigate = useNavigate();
   const { data: userInfo } = useGetUserInfo();
-  const { isLoggedIn, setIsLoggedIn, setUserInfo } = useAuthStore();
+  const { isLoggedIn } = useAuthStore();
+  const { logout } = useAuth();
+
   const menuList = [
     {
       id: 'profile',
@@ -46,20 +48,7 @@ export const SettingsPage = () => {
               </div>
             </div>
             <MenuContainer menuList={menuList} />
-            <Button
-              content="로그아웃"
-              size="full"
-              onClick={() => {
-                removeToken();
-                setUserInfo({
-                  name: '',
-                  role: '',
-                  studentID: '',
-                });
-                setIsLoggedIn(false);
-                navigate('/start');
-              }}
-            />
+            <Button content="로그아웃" size="full" onClick={logout} />
           </div>
         )
       ) : (
