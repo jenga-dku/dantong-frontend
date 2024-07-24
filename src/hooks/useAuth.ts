@@ -17,7 +17,7 @@ export default function useAuth() {
     });
     setIsLoggedIn(false);
     navigate('/start');
-    queryClient.removeQueries({ queryKey: ['user-info'] });
+    queryClient.setQueryData(['user-info', true], {});
   };
 
   return { logout };

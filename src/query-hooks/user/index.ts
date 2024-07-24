@@ -15,7 +15,7 @@ export const useGetUserInfo = () => {
   return useQuery<UserInfoResponse, AxiosError<ErrorResponse>>({
     queryFn: () => User.getUserInfo(),
     queryKey: ['user-info', isLoggedIn],
-    enabled: isLoggedIn && getToken() !== null,
+    enabled: isLoggedIn,
   });
 };
 
