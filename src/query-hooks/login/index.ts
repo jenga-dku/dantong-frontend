@@ -8,6 +8,8 @@ import { useModal } from '@/hooks/modal/useModal';
 import { useNavigate } from 'react-router-dom';
 import { UserInfoResponse } from '@/api/user/types';
 import { useLoadingModal } from '@/hooks/modal/useLoadingMoadl';
+import { useEffect } from 'react';
+import { useGetUserInfo } from '../user';
 
 export const usePostLoginInfo = () => {
   const { setIsLoggedIn, setUserInfo, isLoggedIn } = useAuthStore();
@@ -15,6 +17,16 @@ export const usePostLoginInfo = () => {
   const { openLoadingModal, closeLoadingModal } = useLoadingModal();
   const navigate = useNavigate();
   const queryClient = useQueryClient();
+  const { data: userInfo } = useGetUserInfo();
+
+  useEffect(() => {
+    userInfo &&
+      setUserInfo({
+        name: userInfo.name,
+        role: userInfo.userRole,
+        studentID: userInfo.studentId,
+      });
+  }, [userInfo]);
 
   return useMutation({
     mutationFn: (data: LoginInfo) => Login.post(data),
@@ -40,15 +52,6 @@ export const usePostLoginInfo = () => {
             queryKey: ['user-info', true],
           })
           .then(() => {
-            const { name, userRole, studentId }: UserInfoResponse =
-              queryClient.getQueryData(['user-info', true])!;
-            setUserInfo({
-              name: name,
-              role: userRole,
-              studentID: studentId,
-            });
-          })
-          .finally(() => {
             closeLoadingModal();
             navigate('/');
           });
