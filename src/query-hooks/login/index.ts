@@ -25,11 +25,9 @@ export const usePostLoginInfo = () => {
       localStorage.setItem('accessToken', accessToken);
       localStorage.setItem('refreshToken', refreshToken);
       setIsLoggedIn(true);
-      console.log('성공');
     },
-    onError: async ({ response }: AxiosError<ErrorResponse>) => {
+    onError: ({ response }: AxiosError<ErrorResponse>) => {
       closeLoadingModal();
-
       open({
         title: '로그인 오류',
         desc: response?.data.message[0],
@@ -37,11 +35,13 @@ export const usePostLoginInfo = () => {
     },
     onSettled: async () => {
       if (isLoggedIn) {
-        await queryClient
-          .refetchQueries({ queryKey: ['user-info'] })
+        return await queryClient
+          .invalidateQueries({
+            queryKey: ['user-info', true],
+          })
           .then(() => {
             const { name, userRole, studentId }: UserInfoResponse =
-              queryClient.getQueryData(['user-info', isLoggedIn])!;
+              queryClient.getQueryData(['user-info', true])!;
             setUserInfo({
               name: name,
               role: userRole,
