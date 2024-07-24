@@ -6,7 +6,7 @@ import { MAJOR } from '@src/types/major';
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { ModifiedUserInfo } from '@api/user/types';
-import { useModal } from '@hooks/useModal';
+import { useModal } from '@/hooks/modal/useModal';
 
 export const ProfilePage = () => {
   const { data: userInfo, isSuccess: isUserInfoLoadedSuccess } =

@@ -5,7 +5,7 @@ import { Period } from '@src/types/period-picker/period';
 import { FormUpload, Question } from '@api/form-upload/types';
 import { SubmitButton } from '@components/SubmitButton';
 import { useTopBarStore } from '@stores/topBar-stores';
-import { useModal } from '@hooks/useModal';
+import { useModal } from '@/hooks/modal/useModal';
 import { useCreateForm } from '@query-hooks/form-upload';
 import { FormUploadActionType } from '@/types/form';
 import { FormHeader } from './FormHeader';
