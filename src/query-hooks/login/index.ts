@@ -6,7 +6,6 @@ import { ErrorResponse } from '@api/types';
 import { useAuthStore } from '@stores/auth-stores';
 import { useModal } from '@/hooks/modal/useModal';
 import { useNavigate } from 'react-router-dom';
-import { UserInfoResponse } from '@/api/user/types';
 import { useLoadingModal } from '@/hooks/modal/useLoadingMoadl';
 import { useEffect } from 'react';
 import { useGetUserInfo } from '../user';
@@ -24,7 +23,7 @@ export const usePostLoginInfo = () => {
       setUserInfo({
         name: userInfo.name,
         role: userInfo.userRole,
-        studentID: userInfo.studentId,
+        studentId: userInfo.studentId,
       });
   }, [userInfo]);
 

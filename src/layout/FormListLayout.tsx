@@ -11,13 +11,13 @@ import { Loader } from '@components/Loader';
 
 export const FormListLayout = <T extends FormListItem>({
   title,
-  pageID,
+  pageId,
   list,
   intersection,
   isFetching,
 }: {
   title: string;
-  pageID: string;
+  pageId: string;
   list: T[];
   intersection: (target: HTMLDivElement) => void;
   isFetching: boolean;
@@ -41,7 +41,7 @@ export const FormListLayout = <T extends FormListItem>({
             key={surveyId}
             className="flex cursor-pointer flex-col gap-2"
             onClick={() => {
-              navigate(`/form/${pageID}/response?id=${surveyId}`);
+              navigate(`/form/${pageId}/response?id=${surveyId}`);
             }}
           >
             <p className="text-xs text-gray-500">

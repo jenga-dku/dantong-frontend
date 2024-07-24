@@ -76,13 +76,6 @@ export const EventCalendar = () => {
               </li>
             ))}
           </ul>
-          {/* <p className="flex w-full justify-center py-5">
-            {selectedDay}
-          </p>
-          <div>
-            <span>시작</span>
-            <span>{selectedDay?.startTime.toLocaleDateString()}</span>
-          </div> */}
         </div>
       </BottomSheet>
     </div>

@@ -12,13 +12,7 @@ export const SignUpSuccessPage = ({ onNext }: { onNext: () => void }) => {
         <WelcomeIcon width="120" />
         <strong className="text-[#555] ">환영해요 {signUpInfo.name}님!</strong>
       </div>
-      <Button
-        onClick={() => {
-          onNext();
-        }}
-        content="로그인"
-        size="full"
-      />
+      <Button onClick={onNext} content="로그인" />
     </div>
   );
 };

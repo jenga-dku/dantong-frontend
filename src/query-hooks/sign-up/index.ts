@@ -10,7 +10,7 @@ export const usePostMail = (
   options?: UseMutationOptions<void, AxiosError, string>,
 ) => {
   return useMutation({
-    mutationFn: (studentID: string) => SignUp.postMail(studentID),
+    mutationFn: (studentId: string) => SignUp.postMail(studentId),
     ...options,
   });
 };
@@ -43,13 +43,7 @@ export const usePostVerificationCode = (
 export const usePostSignUpInfo = () => {
   const { signUpInfo } = useSignUpInfoStore();
   const { signUpToken } = useSignUpInfoStore();
-  const {
-    studentID: studentId,
-    password,
-    name,
-    phoneNumber,
-    major,
-  } = signUpInfo;
+  const { studentId, password, name, phoneNumber, major } = signUpInfo;
   const navigate = useNavigate();
   return useMutation({
     mutationFn: () =>

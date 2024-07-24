@@ -10,8 +10,8 @@ import {
 } from './types';
 
 export const Form = {
-  async get(id: number): Promise<FormResponse> {
-    const response = await API.get(`/survey/${id}`);
+  async get(Id: number): Promise<FormResponse> {
+    const response = await API.get(`/survey/${Id}`);
     return response.data;
   },
   async getInfiniteFormList({
@@ -29,11 +29,11 @@ export const Form = {
     const list = (await response.data.content) as FormListItem[];
     return list;
   },
-  async submit(formID: number, answerList: FormAnswer[]) {
+  async submit(formId: number, answerList: FormAnswer[]) {
     const response = await API.post(
       '/submit',
       {
-        surveyId: formID,
+        surveyId: formId,
         replyRequest: answerList,
       },
       {
@@ -44,8 +44,8 @@ export const Form = {
     );
     return response.data;
   },
-  async getAnswerListOfQuestion(questionID: number): Promise<FormAnswer[]> {
-    const response = await API.get(`/reply/${questionID}`, {
+  async getAnswerListOfQuestion(questionId: number): Promise<FormAnswer[]> {
+    const response = await API.get(`/reply/${questionId}`, {
       headers: {
         Authorization: `Bearer ${getToken()}`,
       },
@@ -67,20 +67,20 @@ export const Form = {
     const list = (await response.data.content) as FormListItem[];
     return list;
   },
-  async getMyAnswer(questionID: number): Promise<FormAnswer> {
-    const response = await API.get(`/reply/user/${questionID}`, {
+  async getMyAnswer(questionId: number): Promise<FormAnswer> {
+    const response = await API.get(`/reply/user/${questionId}`, {
       headers: {
         Authorization: `Bearer ${getToken()}`,
       },
     });
     return response.data;
   },
-  async getAllUsersReply(formID: number): Promise<AllUsersReplyResponse[]> {
-    const response = await API.get(`/reply/all/${formID}`);
+  async getAllUsersReply(formId: number): Promise<AllUsersReplyResponse[]> {
+    const response = await API.get(`/reply/all/${formId}`);
     return response.data;
   },
-  async getMySubmit(formID: number): Promise<MySubmitResponse> {
-    const response = await API.get(`/submit/user/${formID}`, {
+  async getMySubmit(formId: number): Promise<MySubmitResponse> {
+    const response = await API.get(`/submit/user/${formId}`, {
       headers: {
         Authorization: `Bearer ${getToken()}`,
       },

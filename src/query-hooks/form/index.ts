@@ -19,12 +19,12 @@ export const useSubmitForm = () => {
 
   return useMutation({
     mutationFn: ({
-      formID,
+      formId,
       answerList,
     }: {
-      formID: number;
+      formId: number;
       answerList: FormAnswer[];
-    }) => Form.submit(formID, answerList),
+    }) => Form.submit(formId, answerList),
     onSuccess: () => {
       navigate('/news');
       open({ title: '폼 제출 완료', desc: '폼이 성공적으로 제출되었습니다.' });
@@ -48,10 +48,10 @@ export const useGetInfiniteFormList = ({ size }: { size: number }) =>
     gcTime: 0,
   });
 
-export const useGetAnswerListOfQuestion = (questionID: number) =>
+export const useGetAnswerListOfQuestion = (questionId: number) =>
   useQuery({
-    queryFn: () => Form.getAnswerListOfQuestion(questionID),
-    queryKey: [`question-${questionID}`, { questionID }],
+    queryFn: () => Form.getAnswerListOfQuestion(questionId),
+    queryKey: [`question-${questionId}`, { questionId }],
     gcTime: 0,
   });
 
@@ -66,23 +66,23 @@ export const useGetInfiniteMyFormList = ({ size }: { size: number }) =>
     gcTime: 0,
   });
 
-export const useGetMyAnswer = (questionID: number) =>
+export const useGetMyAnswer = (questionId: number) =>
   useQuery({
-    queryFn: () => Form.getMyAnswer(questionID),
-    queryKey: [`answer-${questionID}`, { questionID }],
+    queryFn: () => Form.getMyAnswer(questionId),
+    queryKey: [`answer-${questionId}`, { questionId }],
     gcTime: 0,
   });
 
-export const useGetAllUsersReply = (formID: number) =>
+export const useGetAllUsersReply = (formId: number) =>
   useQuery({
-    queryFn: () => Form.getAllUsersReply(formID),
-    queryKey: [`all-users-answer-${formID}`, { formID }],
+    queryFn: () => Form.getAllUsersReply(formId),
+    queryKey: [`all-users-answer-${formId}`, { formId }],
     gcTime: 0,
   });
 
-export const useGetMySubmit = (formID: number) =>
+export const useGetMySubmit = (formId: number) =>
   useQuery({
-    queryFn: () => Form.getMySubmit(formID),
-    queryKey: [`my-submit-${formID}`, { formID }],
+    queryFn: () => Form.getMySubmit(formId),
+    queryKey: [`my-submit-${formId}`, { formId }],
     gcTime: 0,
   });

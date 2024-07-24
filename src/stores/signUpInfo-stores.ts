@@ -2,7 +2,7 @@ import { create } from 'zustand';
 
 export type SignUpInfoKey =
   | 'name'
-  | 'studentID'
+  | 'studentId'
   | 'phoneNumber'
   | 'major'
   | 'password'
@@ -10,7 +10,7 @@ export type SignUpInfoKey =
 
 export type SignUpInfo = {
   name: string;
-  studentID: string;
+  studentId: string;
   phoneNumber: string;
   major: string;
   password: string;
@@ -33,7 +33,7 @@ export const useSignUpInfoStore = create<SignUpInfoState>((set) => ({
   signUpToken: '',
   signUpInfo: {
     name: '',
-    studentID: '',
+    studentId: '',
     phoneNumber: '',
     major: '',
     password: '',

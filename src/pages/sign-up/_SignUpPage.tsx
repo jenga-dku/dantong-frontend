@@ -27,7 +27,7 @@ export const SignUpPage = () => {
     <SignUpLayout step={step}>
       <MailEntryPage />
       <InfoEntryPage onNext={() => navigate('/sign-up/password')} />
-      <PasswordEntryPage onNext={() => submitSignUpInfo()} />
+      <PasswordEntryPage onNext={submitSignUpInfo} />
       <SignUpSuccessPage onNext={() => navigate('/login')} />
     </SignUpLayout>
   );

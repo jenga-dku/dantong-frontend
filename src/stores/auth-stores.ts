@@ -11,7 +11,7 @@ interface AuthState {
 interface UserInfo {
   name: string;
   role: string;
-  studentID: string;
+  studentId: string;
 }
 
 export const useAuthStore = create(
@@ -24,7 +24,7 @@ export const useAuthStore = create(
       userInfo: {
         name: '',
         role: '',
-        studentID: '',
+        studentId: '',
       },
       setUserInfo: (state: UserInfo) => {
         set({ userInfo: state });

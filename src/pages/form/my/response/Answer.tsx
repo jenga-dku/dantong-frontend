@@ -1,12 +1,12 @@
 import { Loader } from '@components/Loader';
 import { useGetMyAnswer } from '@query-hooks/form';
 
-export const Answer = ({ questionID }: { questionID: number }) => {
+export const Answer = ({ questionId }: { questionId: number }) => {
   const {
     data: answer,
     isSuccess: isAnswerListLoad,
     isFetching,
-  } = useGetMyAnswer(questionID);
+  } = useGetMyAnswer(questionId);
   return (
     <>
       {isAnswerListLoad ? (
