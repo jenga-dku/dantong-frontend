@@ -1,6 +1,6 @@
 import { useInfiniteQuery, useMutation, useQuery } from '@tanstack/react-query';
 import { ErrorResponse } from '@api/types';
-import { useModal } from '@hooks/useModal';
+import { useModal } from '@/hooks/modal/useModal';
 import { FormAnswer } from '@api/form/types';
 import { AxiosError } from 'axios';
 import { Form } from '@api/form';

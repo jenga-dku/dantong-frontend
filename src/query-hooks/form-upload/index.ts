@@ -1,7 +1,7 @@
 import { useMutation } from '@tanstack/react-query';
 import { AxiosError } from 'axios';
 import { ErrorResponse } from '@api/types';
-import { useModal } from '@hooks/useModal';
+import { useModal } from '@/hooks/modal/useModal';
 import { Form } from '@api/form-upload';
 import { FormUpload } from '@api/form-upload/types';
 import { useNavigate } from 'react-router-dom';
