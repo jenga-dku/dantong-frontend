@@ -34,7 +34,7 @@ export const Axios = () => {
                 setUserInfo({
                   name: '',
                   role: '',
-                  studentID: '',
+                  studentId: '',
                 });
                 navigate('/login');
               },

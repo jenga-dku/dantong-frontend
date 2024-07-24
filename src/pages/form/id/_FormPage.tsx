@@ -6,14 +6,12 @@ import { FormAnswer } from '@api/form/types';
 import { useModal } from '@/hooks/modal/useModal';
 import { useAuthStore } from '@stores/auth-stores';
 import { FormLayout } from '@layout/FormLayout';
-import { QuestionBox } from './QuestionBox';
-import { SubjectiveInput } from './SubjectiveInput';
-import { MultipleInput } from './MultipleInput';
+import { Question } from './Question';
 
 export const FormPage = () => {
-  const { id: formID } = useParams();
-  const { data: formInfo, isSuccess: isLoadFormSuccess } = useGetForm(
-    Number(formID),
+  const { id: formId } = useParams();
+  const { data: formInfo, isLoading: isFormLoading } = useGetForm(
+    Number(formId),
   );
   const [userAnswerList, setUserAnswerList] = useState<FormAnswer[]>([]);
   const { mutate: postAnswer } = useSubmitForm();
@@ -30,7 +28,7 @@ export const FormPage = () => {
             type: 'CONFIRM',
             confirmEvent: () => {
               postAnswer({
-                formID: Number(formID),
+                formId: Number(formId),
                 answerList: userAnswerList,
               });
             },
@@ -44,52 +42,35 @@ export const FormPage = () => {
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    const questionID = Number(name);
+    const questionId = Number(name);
 
     setUserAnswerList((prev) => [
-      ...prev.filter((item) => item.surveyItemId !== questionID),
+      ...prev.filter((item) => item.surveyItemId !== questionId),
       {
         content: value,
-        surveyItemId: questionID,
+        surveyItemId: questionId,
       },
     ]);
   };
 
-  return isLoadFormSuccess ? (
-    <FormLayout formInfo={formInfo}>
-      <form
-        className="flex flex-col gap-5"
-        onSubmit={(e) => {
-          submitForm(e);
-        }}
-      >
+  if (isFormLoading) return <></>;
+  return (
+    <FormLayout formInfo={formInfo!}>
+      <form className="flex flex-col gap-5" onSubmit={submitForm}>
         {formInfo?.surveyItems.map(
           ({ surveyItemId, tag, title, description, options }) => (
-            <QuestionBox
-              key={`SurveryItem-${surveyItemId}`}
+            <Question
+              surveyItemId={surveyItemId}
+              tag={tag}
               title={title}
               description={description}
-            >
-              {tag === 'SUBJECTIVE' && (
-                <SubjectiveInput
-                  surveyItemId={surveyItemId}
-                  onChange={handleInputChange}
-                />
-              )}
-              {tag === 'MULTIPLE' && (
-                <MultipleInput
-                  options={options}
-                  surveyItemId={surveyItemId}
-                  onChange={handleInputChange}
-                />
-              )}
-            </QuestionBox>
+              options={options}
+              handleInputChange={handleInputChange}
+            />
           ),
         )}
         <SubmitButton content="제출" />
       </form>
     </FormLayout>
-  ) : (
-    <></>
   );
 };

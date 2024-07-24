@@ -13,7 +13,7 @@ export default function useAuth() {
     setUserInfo({
       name: '',
       role: '',
-      studentID: '',
+      studentId: '',
     });
     setIsLoggedIn(false);
     navigate('/start');

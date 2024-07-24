@@ -16,7 +16,7 @@ export const MyFormPage = () => {
   return (
     <FormListLayout<FormListItem>
       title="신청내역"
-      pageID="my"
+      pageId="my"
       list={formList ?? []}
       intersection={intersection}
       isFetching={isFetching}

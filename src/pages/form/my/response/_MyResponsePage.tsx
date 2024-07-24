@@ -8,26 +8,26 @@ import { Answer } from '../../list/response/Answer';
 export const MyResponsePage = () => {
   const [searchParams] = useSearchParams();
 
-  const formID = Number(searchParams.get('id'));
+  const formId = Number(searchParams.get('id'));
   const {
     data: formInfo,
     isSuccess: isLoadFormSuccess,
     isFetching,
-  } = useGetForm(formID);
+  } = useGetForm(formId);
   const { data: mySubmit, isSuccess: isLoadSubmitSuccess } =
-    useGetMySubmit(formID);
+    useGetMySubmit(formId);
 
-  return isLoadFormSuccess && isLoadSubmitSuccess ? (
-    <FormLayout formInfo={formInfo!}>
-      {mySubmit?.surveyReplies.map(
-        ({ surveyItem: { title, description }, content }) => (
-          <QuestionBox title={title} description={description}>
-            <Answer content={content} />
-          </QuestionBox>
-        ),
-      )}
-    </FormLayout>
-  ) : (
-    <Loader loading={isFetching} type="clip" size={55} />
-  );
+  if (isLoadFormSuccess && isLoadSubmitSuccess)
+    return (
+      <FormLayout formInfo={formInfo!}>
+        {mySubmit?.surveyReplies.map(
+          ({ surveyItem: { title, description }, content }) => (
+            <QuestionBox title={title} description={description}>
+              <Answer content={content} />
+            </QuestionBox>
+          ),
+        )}
+      </FormLayout>
+    );
+  return <Loader loading={isFetching} type="clip" size={55} />;
 };

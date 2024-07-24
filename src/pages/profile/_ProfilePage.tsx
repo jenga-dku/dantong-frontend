@@ -1,17 +1,15 @@
-import { HiUser } from 'react-icons/hi';
-import { getMajorKoreanName } from '@utils/getMajorKoreanName';
-import { Button } from '@components/Button';
 import { useGetUserInfo, usePatchUserInfo } from '@query-hooks/user';
-import { MAJOR } from '@src/types/major';
-import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { ModifiedUserInfo } from '@api/user/types';
 import { useModal } from '@/hooks/modal/useModal';
+import { FooterButton } from './FooterButton';
+import { MajorSelect } from './MajorSelect';
+import { ProfileIcon } from '../../components/ProfileIcon';
+import { Input } from './Input';
 
 export const ProfilePage = () => {
   const { data: userInfo, isSuccess: isUserInfoLoadedSuccess } =
     useGetUserInfo();
-  const navigate = useNavigate();
   const { open } = useModal();
   const [modifedInfo, setModifiedInfo] = useState<ModifiedUserInfo>({
     name: '',
@@ -50,60 +48,30 @@ export const ProfilePage = () => {
       });
   }, [isUserInfoLoadedSuccess]);
 
+  if (!isUserInfoLoadedSuccess) return <></>;
+
   return (
     <div className="flex flex-col gap-4">
       <div className="flex items-center gap-3 rounded-xl bg-white p-3 shadow-lg">
-        <div className="w-fit rounded-2xl bg-zinc-200 p-1 text-[80px] text-white">
-          <HiUser />
-        </div>
+        <ProfileIcon />
         <div className="flex w-[calc(100%-95px)] flex-col gap-2">
-          <p className="w-full rounded-md text-xs text-primary">
-            <select
-              className="select h-fit min-h-fit w-full p-0 text-gray-400"
-              name="major"
-              onChange={handleInputChange}
-            >
-              <option disabled selected>
-                {getMajorKoreanName(userInfo?.majorName)}
-              </option>
-              {Object.entries(MAJOR)
-                .filter(([id]) => id !== userInfo?.majorName)
-                .map(([id, major]) => (
-                  <option value={id}>{major}</option>
-                ))}
-            </select>
-          </p>
-          <div className="flex items-center gap-1">
-            <input
-              name="name"
-              onChange={handleInputChange}
-              type="text"
-              placeholder={userInfo?.name}
-            />
-          </div>
-          <input
-            name="phoneNumber"
+          <MajorSelect
+            majorName={userInfo.majorName!}
+            handleInputChange={handleInputChange}
+          />
+          <Input
+            name="name"
+            placeholder={userInfo.name!}
             onChange={handleInputChange}
-            type="text"
-            placeholder={userInfo?.phoneNumber}
+          />
+          <Input
+            name="phoneNumber"
+            placeholder={userInfo.phoneNumber!}
+            onChange={handleInputChange}
           />
         </div>
       </div>
-      <div className="grid grid-cols-2 gap-3">
-        <Button
-          className="bg-zinc-300 text-sm hover:bg-zinc-400"
-          content="취소"
-          size="full"
-          onClick={() => {
-            navigate('/settings');
-          }}
-        />
-        <Button
-          className="text-sm text-white"
-          content="확인"
-          onClick={handlePatchEvent}
-        />
-      </div>
+      <FooterButton handlePatchEvent={handlePatchEvent} />
     </div>
   );
 };

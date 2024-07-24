@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { Content } from '../_components/Content';
-import { Input } from '../_components/Input';
+import { Content } from '../components/Content';
+import { Input } from '../components/Input';
 import { Button } from '@components/Button';
 import { usePostMail, usePostVerificationCode } from '@query-hooks/sign-up';
 import { useSignUpInfoStore } from '@stores/signUpInfo-stores';
@@ -15,7 +15,7 @@ export const MailEntry = ({
   updateIsVerified: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
   const [isSubmitButtonActive, setIsSubmitButtonActive] = useState(false);
-  const [studentID, setStudentID] = useState('');
+  const [studentId, setStudentId] = useState('');
   const [code, setCode] = useState('');
   const [isMailSent, setIsMailSent] = useState(false);
   const { signUpInfo, setSignUpInfo, setSignUpToken } = useSignUpInfoStore();
@@ -26,7 +26,7 @@ export const MailEntry = ({
   const { mutate: postMail } = usePostMail({
     onSuccess: () => {
       setIsMailSent(true);
-      setSignUpInfo({ ...signUpInfo, studentID });
+      setSignUpInfo({ ...signUpInfo, studentId });
       setIsMailPosting(false);
       open({
         title: '이메일 전송 완료',
@@ -61,15 +61,15 @@ export const MailEntry = ({
     },
   });
 
-  const submitStudentID = (e: React.FormEvent<HTMLFormElement>) => {
+  const submitStudentId = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    postMail(studentID);
+    postMail(studentId);
   };
 
   const verifyCode = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (code.length === 6) {
-      postCode({ studentId: studentID, emailCode: code });
+      postCode({ studentId: studentId, emailCode: code });
     } else {
       alert('6자리 인증코드를 입력해주세요');
     }
@@ -78,7 +78,7 @@ export const MailEntry = ({
   return (
     <form
       onSubmit={(e) => {
-        !isMailSent ? submitStudentID(e) : verifyCode(e);
+        !isMailSent ? submitStudentId(e) : verifyCode(e);
       }}
     >
       <Content
@@ -90,11 +90,11 @@ export const MailEntry = ({
         content={
           !isMailSent ? (
             <Input
-              value={studentID}
+              value={studentId}
               placeholder="32XXXXXX"
               onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                 setIsSubmitButtonActive(e.target.value.length > 0);
-                setStudentID(e.target.value);
+                setStudentId(e.target.value);
               }}
               additionalElement={
                 <p className="text-[#C4C4C4]">@dankook.ac.kr</p>

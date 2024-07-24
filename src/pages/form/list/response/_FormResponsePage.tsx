@@ -4,30 +4,21 @@ import { useGetAllUsersReply, useGetForm } from '@query-hooks/form';
 import { Loader } from '@components/Loader';
 import { QuestionBox } from '../../id/QuestionBox';
 import { Answer } from './Answer';
-import { API_BASE_URL } from '@/constant';
+import { ExportExcelButton } from './ExportExcelButton';
 
 export const FormResponsePage = () => {
   const [searchParams] = useSearchParams();
-  const formID = Number(searchParams.get('id'));
-  const {
-    data: formInfo,
-    isSuccess: isLoadFormSuccess,
-    isFetching: isLoadingForm,
-  } = useGetForm(formID);
+  const formId = Number(searchParams.get('id'));
+  const { data: formInfo, isFetching: isLoadingForm } = useGetForm(formId);
+  const { data: replyResponse } = useGetAllUsersReply(formId);
 
-  const { data: replyResponse } = useGetAllUsersReply(formID);
+  if (isLoadingForm)
+    return <Loader loading={isLoadingForm} type="clip" size={55} />;
 
-  return isLoadFormSuccess ? (
+  return (
     <FormLayout
       formInfo={formInfo!}
-      exportButton={
-        <a
-          href={`${API_BASE_URL}/excel/download?fileName=${formInfo.title}&surveyId=${formID}`}
-          className="cursor-pointer underline"
-        >
-          Excel로 저장하기
-        </a>
-      }
+      exportButton={<ExportExcelButton formId={formId} formInfo={formInfo!} />}
     >
       {replyResponse?.map(
         ({ surveyItemResponse: { title, description }, replies }) => (
@@ -39,7 +30,5 @@ export const FormResponsePage = () => {
         ),
       )}
     </FormLayout>
-  ) : (
-    <Loader loading={isLoadingForm} type="clip" size={55} />
   );
 };
