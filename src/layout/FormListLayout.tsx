@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import { Box } from '@components/Box';
+import { Box } from '@/components/ui/Box';
 import { handleDateFormat } from '@utils/handleDateFomat';
 import { useTopBarStore } from '@stores/topBar-stores';
 import { useEffect } from 'react';

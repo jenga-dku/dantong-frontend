@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react';
-import { Button } from '@components/Button';
+import { Button } from '@components/ui/Button';
 import { Input } from './Input';
 import { SignUpInfoKey, useSignUpInfoStore } from '@stores/signUpInfo-stores';
 import { EntryCompleteButton } from './EntryCompleteButton';

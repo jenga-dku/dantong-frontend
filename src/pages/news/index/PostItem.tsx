@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import { Box } from '@components/Box';
+import { Box } from '@/components/ui/Box';
 import { PostHeader } from '@components/PostHeader';
 import { PostDetailResponse } from '@api/post/types';
 

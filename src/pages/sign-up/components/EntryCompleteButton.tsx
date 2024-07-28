@@ -1,4 +1,4 @@
-import { Button } from '@/components/Button';
+import { Button } from '@components/ui/Button';
 import { SignUpInfoKey, useSignUpInfoStore } from '@/stores/signUpInfo-stores';
 
 export const EntryCompleteButton = ({

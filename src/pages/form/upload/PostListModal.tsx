@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button } from '@components/Button';
+import { Button } from '@components/ui/Button';
 import { useGetInfinitePostList } from '@query-hooks/post';
 import { getCategoryKoreanName } from '@utils/getCategoryKoreanName';
 import { FormUpload } from '@api/form-upload/types';

@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import { Button } from '@components/Button';
+import { Button } from '@components/ui/Button';
 import { useGetUserInfo } from '@query-hooks/user';
 import { useAuthStore } from '@stores/auth-stores';
 import { MenuContainer } from '@components/MenuContainer';

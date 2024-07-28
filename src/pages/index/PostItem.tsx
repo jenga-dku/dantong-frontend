@@ -1,4 +1,4 @@
-import { Box } from '@components/Box';
+import { Box } from '@/components/ui/Box';
 import CouncilLogo from '@assets/image/CouncilLogo.png';
 import { useNavigate } from 'react-router-dom';
 import { PostDetailResponse } from '@api/post/types';
