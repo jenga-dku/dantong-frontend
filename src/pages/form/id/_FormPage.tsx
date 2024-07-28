@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useGetForm, useSubmitForm } from '@query-hooks/form';
-import { SubmitButton } from '@components/SubmitButton';
+import { SubmitButton } from '@components/ui/Button';
 import { useParams } from 'react-router-dom';
 import { FormAnswer } from '@api/form/types';
 import { useModal } from '@/hooks/modal/useModal';

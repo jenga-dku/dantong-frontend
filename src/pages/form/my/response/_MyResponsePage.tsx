@@ -1,7 +1,7 @@
 import { useSearchParams } from 'react-router-dom';
 import { FormLayout } from '@layout/FormLayout';
 import { useGetForm, useGetMySubmit } from '@query-hooks/form';
-import { Loader } from '@components/Loader';
+import { Loader } from '@/components/ui/Loader';
 import { QuestionBox } from '../../id/QuestionBox';
 import { Answer } from '../../list/response/Answer';
 

@@ -7,7 +7,7 @@ import { PiUsersLight } from 'react-icons/pi';
 import { POST_STATUS_COLOR } from '@src/types/post-status';
 import { FormListItem } from '@api/form/types';
 import { Intersection } from '@components/Intersection';
-import { Loader } from '@components/Loader';
+import { Loader } from '@/components/ui/Loader';
 
 export const FormListLayout = <T extends FormListItem>({
   title,
