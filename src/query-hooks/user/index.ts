@@ -16,6 +16,8 @@ export const useGetUserInfo = () => {
     queryFn: () => User.getUserInfo(),
     queryKey: ['user-info', isLoggedIn],
     enabled: isLoggedIn,
+    gcTime: Infinity,
+    staleTime: Infinity,
   });
 };
 

@@ -8,21 +8,24 @@ import { ProfileIcon } from '@/components/ProfileIcon';
 import { UserInfoBox } from './UserInfoBox';
 import { menuList } from './menuList';
 import { useQueryClient } from '@tanstack/react-query';
+import { UserInfoResponse } from '@/api/user/types';
 
 export const SettingsPage = () => {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
   const { isLoggedIn } = useAuthStore();
   const { logout } = useAuth();
+  const { data: fetchedUserInfo } = useGetUserInfo();
+  const userInfo =
+    (queryClient.getQueryData(['user-info', true]) as UserInfoResponse) ??
+    fetchedUserInfo;
 
   if (isLoggedIn)
     return (
       <div className="flex flex-col gap-4">
         <div className="flex items-center gap-3 rounded-xl bg-white p-3 shadow-lg">
           <ProfileIcon />
-          <UserInfoBox
-            userInfo={queryClient.getQueryData(['user-info', true])!}
-          />
+          {userInfo && <UserInfoBox userInfo={userInfo!} />}
         </div>
         <MenuContainer menuList={menuList} />
         <Button content="로그아웃" size="full" onClick={logout} />
