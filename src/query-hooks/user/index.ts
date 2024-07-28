@@ -1,4 +1,4 @@
-import { useMutation, useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { User } from '@api/user';
 import { useAuthStore } from '@stores/auth-stores';
 import { ErrorResponse } from '@api/types';
@@ -32,16 +32,22 @@ export const useGetAppliedEvents = () => {
 export const usePatchUserInfo = () => {
   const { open } = useModal();
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
 
   return useMutation({
     mutationFn: (data: ModifiedUserInfo) => User.patchUserInfo(data),
-    onSuccess: () => {
-      navigate('/settings');
+    onSuccess: async () => {
+      await queryClient
+        .invalidateQueries({
+          queryKey: ['user-info', true],
+        })
+        .then(() => navigate('/settings'));
     },
     onError: ({ response }: AxiosError<ErrorResponse>) =>
       open({
         title: '오류',
         desc: response?.data.message[0],
       }),
+    onSettled: async () => {},
   });
 };
