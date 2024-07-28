@@ -1,4 +1,4 @@
-import { Box } from '@components/Box';
+import { Box } from '@/components/ui/Box';
 import HorizontalScrollBox from '@components/HorizontalScrollBox';
 import { SwiperSlide } from 'swiper/react';
 

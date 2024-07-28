@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Content } from '../components/Content';
 import { Input } from '../components/Input';
-import { Button } from '@components/Button';
+import { Button } from '@components/ui/Button';
 import { usePostMail, usePostVerificationCode } from '@query-hooks/sign-up';
 import { useSignUpInfoStore } from '@stores/signUpInfo-stores';
 import { VerificationResponse } from '@api/sign-up/types';
