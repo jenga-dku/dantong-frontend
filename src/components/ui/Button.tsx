@@ -3,7 +3,7 @@ import { cva, VariantProps } from 'class-variance-authority';
 import { cn } from '@/utils/cn';
 
 interface ButtonProps
-  extends HTMLAttributes<HTMLButtonElement>,
+  extends HTMLAttributes<HTMLButtonElement | HTMLInputElement>,
     VariantProps<typeof ButtonVariants> {
   children?: ReactNode;
   content: string;
@@ -41,5 +41,25 @@ export const Button = ({
     >
       {content}
     </button>
+  );
+};
+
+export const SubmitButton = ({
+  content,
+  onClick,
+  size,
+  disabled,
+  className,
+  ...props
+}: ButtonProps) => {
+  return (
+    <input
+      className={cn(ButtonVariants({ size }), className)}
+      disabled={disabled}
+      onClick={onClick}
+      type="submit"
+      value={content}
+      {...props}
+    />
   );
 };

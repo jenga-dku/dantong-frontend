@@ -3,7 +3,7 @@ import { Nav } from '@components/Nav';
 import { Outlet, useLocation } from 'react-router-dom';
 import { Suspense, useEffect, useRef } from 'react';
 import { useTopBarStore } from '@stores/topBar-stores';
-import { Axios } from '@components/Axios';
+import { Axios } from '@api/Axios';
 
 export const Layout = ({ className }: { className?: string }) => {
   const layoutRef = useRef<HTMLDivElement>(null);

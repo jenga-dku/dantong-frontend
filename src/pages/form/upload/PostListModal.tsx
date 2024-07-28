@@ -5,7 +5,7 @@ import { getCategoryKoreanName } from '@utils/getCategoryKoreanName';
 import { FormUpload } from '@api/form-upload/types';
 import { useInfiniteScroll } from '@/hooks/useInfiniteScroll';
 import { PostDetailResponse } from '@api/post/types';
-import { Loader } from '@components/Loader';
+import { Loader } from '@/components/ui/Loader';
 import { Intersection } from '@components/Intersection';
 
 export type PostModalState = {

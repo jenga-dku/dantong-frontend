@@ -7,7 +7,7 @@ import { useSignUpInfoStore } from '@stores/signUpInfo-stores';
 import { VerificationResponse } from '@api/sign-up/types';
 import { useNavigate } from 'react-router-dom';
 import { useModal } from '@/hooks/modal/useModal';
-import { Loader } from '@components/Loader';
+import { Loader } from '@/components/ui/Loader';
 
 export const MailEntry = ({
   updateIsVerified,
