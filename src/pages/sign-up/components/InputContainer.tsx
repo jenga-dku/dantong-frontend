@@ -1,7 +1,11 @@
 import { useEffect, useRef } from 'react';
 import { Button } from '@components/ui/Button';
 import { Input } from './Input';
-import { SignUpInfoKey, useSignUpInfoStore } from '@stores/signUpInfo-stores';
+import {
+  SignUpInfo,
+  SignUpInfoKey,
+  useSignUpInfoStore,
+} from '@stores/signUpInfo-stores';
 import { EntryCompleteButton } from './EntryCompleteButton';
 import { useActivateNextInput } from '../utils/useActivateNextInput';
 import { MajorSelect } from './MajorSelect';
@@ -28,9 +32,6 @@ export const InputContainer = ({
   const isLastInputIndex =
     activatedInputIndex[containerId] === inputAttrList.length;
 
-  const isEntryCompleteButtonVisible = (inputIndex: number) =>
-    inputIndex !== 0 || isLastInputIndex;
-
   const { activateNextInputIndex } = useActivateNextInput(
     containerId,
     isLastInputIndex,
@@ -39,8 +40,20 @@ export const InputContainer = ({
   useEffect(() => {
     const currentInput =
       inputContainerRef.current?.children[0]?.querySelector('input');
-    currentInput?.focus();
+    if (
+      !isLastInputIndex &&
+      inputAttrList[activatedInputIndex[containerId]].type !== 'select'
+    ) {
+      currentInput?.focus();
+    }
   }, [activatedInputIndex]);
+
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement>,
+    signUpInfoKey: keyof SignUpInfo,
+  ) => {
+    setSignUpInfo({ ...signUpInfo, [signUpInfoKey]: e.target.value });
+  };
 
   return (
     <div className="grid h-full grid-cols-1 grid-rows-[1fr_3fr] overflow-hidden">
@@ -50,7 +63,7 @@ export const InputContainer = ({
           .reverse()
           .map(({ id: signUpInfoKey, korName, type }, inputIndex) => (
             <>
-              {type === 'select ' && (
+              {type === 'select' && (
                 <MajorSelect activateNextInputIndex={activateNextInputIndex} />
               )}
               {(type === 'text' || type === 'password') && (
@@ -58,24 +71,24 @@ export const InputContainer = ({
                   key={`${containerId}-${signUpInfoKey}`}
                   type={type}
                   value={signUpInfo[signUpInfoKey]}
-                  className="text-2xl"
                   placeholder={korName}
                   label={korName}
                   onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                    setSignUpInfo({
-                      ...signUpInfo,
-                      [signUpInfoKey]: e.target.value,
-                    });
+                    handleInputChange(e, signUpInfoKey);
                   }}
                   onKeyDown={(e) => {
                     if (e.key === 'Enter' && !isLastInputIndex) {
                       activateNextInputIndex();
                     }
                   }}
-                  additionalElement={
+                  inputContent={
                     <EntryCompleteButton
                       signUpInfoKey={signUpInfoKey}
-                      visible={isEntryCompleteButtonVisible(inputIndex)}
+                      visible={
+                        signUpInfo[signUpInfoKey].length > 0 &&
+                        inputIndex === 0 &&
+                        !isLastInputIndex
+                      }
                       activateNextInput={activateNextInputIndex}
                     />
                   }

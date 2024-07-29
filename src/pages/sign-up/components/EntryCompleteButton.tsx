@@ -16,9 +16,7 @@ export const EntryCompleteButton = ({
       <Button
         content="확인"
         size="fit"
-        onClick={() => {
-          activateNextInput();
-        }}
+        onClick={activateNextInput}
         disabled={signUpInfo[signUpInfoKey].length === 0}
       />
     );
