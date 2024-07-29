@@ -96,9 +96,7 @@ export const MailEntry = ({
                 setIsSubmitButtonActive(e.target.value.length > 0);
                 setStudentId(e.target.value);
               }}
-              additionalElement={
-                <p className="text-[#C4C4C4]">@dankook.ac.kr</p>
-              }
+              inputContent={<p className="text-[#C4C4C4]">@dankook.ac.kr</p>}
             />
           ) : (
             <Input
@@ -117,7 +115,6 @@ export const MailEntry = ({
         className="mt-10"
         content="인증하기"
         disabled={!isSubmitButtonActive}
-        size="full"
       />
     </form>
   );

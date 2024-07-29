@@ -82,6 +82,7 @@ export const Input = ({
         {...props}
       />
       {children}
+      {inputContent}
     </label>
   );
 };
