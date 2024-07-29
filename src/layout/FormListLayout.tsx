@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import { Box } from '@components/Box';
+import { Box } from '@/components/ui/Box';
 import { handleDateFormat } from '@utils/handleDateFomat';
 import { useTopBarStore } from '@stores/topBar-stores';
 import { useEffect } from 'react';
@@ -7,7 +7,7 @@ import { PiUsersLight } from 'react-icons/pi';
 import { POST_STATUS_COLOR } from '@src/types/post-status';
 import { FormListItem } from '@api/form/types';
 import { Intersection } from '@components/Intersection';
-import { Loader } from '@components/Loader';
+import { Loader } from '@/components/ui/Loader';
 
 export const FormListLayout = <T extends FormListItem>({
   title,
@@ -39,7 +39,7 @@ export const FormListLayout = <T extends FormListItem>({
         ({ surveyId, title, startTime, endTime, submitCount, status }) => (
           <Box
             key={surveyId}
-            className="flex cursor-pointer flex-col gap-2"
+            className="clickable flex-col gap-2"
             onClick={() => {
               navigate(`/form/${pageId}/response?id=${surveyId}`);
             }}

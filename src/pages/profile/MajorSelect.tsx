@@ -12,8 +12,8 @@ export const MajorSelect = ({
 }) => (
   <div className="w-full rounded-md text-xs text-primary">
     <select
-      className="select h-fit min-h-fit w-full p-0 text-gray-400"
-      name="major"
+      className="select select-bordered h-fit min-h-fit w-full p-3 text-gray-400"
+      name="majorName"
       onChange={handleInputChange}
     >
       <option disabled selected>

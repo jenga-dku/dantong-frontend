@@ -1,9 +1,9 @@
 import 'react-datepicker/dist/react-datepicker.css';
 import { useEffect, useReducer, useState } from 'react';
-import { Box } from '@components/Box';
+import { Box } from '@/components/ui/Box';
 import { Period } from '@src/types/period-picker/period';
 import { FormUpload, Question } from '@api/form-upload/types';
-import { SubmitButton } from '@components/SubmitButton';
+import { SubmitButton } from '@components/ui/Button';
 import { useTopBarStore } from '@stores/topBar-stores';
 import { useModal } from '@/hooks/modal/useModal';
 import { useCreateForm } from '@query-hooks/form-upload';

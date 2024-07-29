@@ -1,30 +1,11 @@
-import { ReactNode } from 'react';
+import { Input as DefaultInput, InputProps } from '@/components/ui/Input';
 
-export const Input = ({
-  label,
-  children,
-  maxLength,
-  type,
-  onChange,
-}: {
-  label: string;
-  children?: ReactNode;
-  maxLength?: number;
-  type?: string;
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-}) => {
-  return (
-    <label className="flex h-[3.2rem] w-full items-center justify-between rounded-lg p-3 shadow-[1px_0.5px_1px_0.3px_rgba(0,0,0,0.2)]">
-      <p className="absolute ml-2 mt-[-3rem] text-sm">{label}</p>
-      <input
-        type={type ?? 'text'}
-        onChange={(e) => {
-          onChange(e);
-        }}
-        className="bg-white px-1 text-black"
-        maxLength={maxLength}
-      />
-      {children}
-    </label>
-  );
+export const Input: React.FC<InputProps> = ({ ...props }) => {
+  return <DefaultInput {...props} shadow="shadow" style={INPUT_STYLE} />;
+};
+
+const INPUT_STYLE = {
+  labelStyle: 'flex-row items-center p-3',
+  textStyle: 'absolute mt-[-2.5rem] text-xs text-[#999]',
+  inputStyle: 'bg-white px-1 text-black',
 };
