@@ -13,7 +13,7 @@ export const User = {
     return response?.data ?? null;
   },
   async getAppliedEventList(): Promise<PostDetailResponse[]> {
-    const response = await API.get(`/survey/ticket`, {
+    const response = await API.get(`/survey/my/ticket`, {
       headers: {
         Authorization: `Bearer ${getToken()}`,
       },
