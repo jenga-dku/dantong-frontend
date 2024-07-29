@@ -7,7 +7,7 @@ import { useSearchParams } from 'react-router-dom';
 import { isInCategory } from '@utils/isInCategory';
 import { useInfiniteScroll } from '@/hooks/useInfiniteScroll';
 import { Intersection } from '@components/Intersection';
-import { Loader } from '@components/Loader';
+import { Loader } from '@/components/ui/Loader';
 
 export const NewsPage = () => {
   const [searchParams] = useSearchParams();

@@ -1,13 +1,13 @@
 import { useState } from 'react';
 import { Content } from '../components/Content';
 import { Input } from '../components/Input';
-import { Button } from '@components/Button';
+import { Button } from '@components/ui/Button';
 import { usePostMail, usePostVerificationCode } from '@query-hooks/sign-up';
 import { useSignUpInfoStore } from '@stores/signUpInfo-stores';
 import { VerificationResponse } from '@api/sign-up/types';
 import { useNavigate } from 'react-router-dom';
 import { useModal } from '@/hooks/modal/useModal';
-import { Loader } from '@components/Loader';
+import { Loader } from '@/components/ui/Loader';
 
 export const MailEntry = ({
   updateIsVerified,
@@ -96,9 +96,7 @@ export const MailEntry = ({
                 setIsSubmitButtonActive(e.target.value.length > 0);
                 setStudentId(e.target.value);
               }}
-              additionalElement={
-                <p className="text-[#C4C4C4]">@dankook.ac.kr</p>
-              }
+              inputContent={<p className="text-[#C4C4C4]">@dankook.ac.kr</p>}
             />
           ) : (
             <Input
@@ -117,7 +115,6 @@ export const MailEntry = ({
         className="mt-10"
         content="인증하기"
         disabled={!isSubmitButtonActive}
-        size="full"
       />
     </form>
   );
