@@ -39,7 +39,7 @@ export const FormListLayout = <T extends FormListItem>({
         ({ surveyId, title, startTime, endTime, submitCount, status }) => (
           <Box
             key={surveyId}
-            className="flex cursor-pointer flex-col gap-2"
+            className="clickable flex-col gap-2"
             onClick={() => {
               navigate(`/form/${pageId}/response?id=${surveyId}`);
             }}
