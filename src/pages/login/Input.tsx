@@ -5,7 +5,7 @@ export const Input: React.FC<InputProps> = ({ ...props }) => {
 };
 
 const INPUT_STYLE = {
-  labelStyle: 'flex-row items-center p-3',
+  labelStyle: 'flex-row items-center p-3 justify-between',
   textStyle: 'absolute mt-[-2.5rem] text-xs text-[#999]',
   inputStyle: 'bg-white px-1 text-black',
 };

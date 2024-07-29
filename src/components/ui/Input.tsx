@@ -79,6 +79,7 @@ export const Input = ({
         maxLength={maxLength}
         name={name}
         placeholder={placeholder}
+        autoComplete="off"
         {...props}
       />
       {children}
