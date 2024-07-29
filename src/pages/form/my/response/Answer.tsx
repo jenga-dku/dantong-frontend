@@ -1,4 +1,4 @@
-import { Loader } from '@/components/ui/Loader';
+import { Loader } from '@components/Loader';
 import { useGetMyAnswer } from '@query-hooks/form';
 
 export const Answer = ({ questionId }: { questionId: number }) => {

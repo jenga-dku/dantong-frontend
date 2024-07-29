@@ -1,4 +1,4 @@
-import { Button } from '@components/ui/Button';
+import { Button } from '@/components/Button';
 import { SignUpInfoKey, useSignUpInfoStore } from '@/stores/signUpInfo-stores';
 
 export const EntryCompleteButton = ({
@@ -16,7 +16,9 @@ export const EntryCompleteButton = ({
       <Button
         content="확인"
         size="fit"
-        onClick={activateNextInput}
+        onClick={() => {
+          activateNextInput();
+        }}
         disabled={signUpInfo[signUpInfoKey].length === 0}
       />
     );

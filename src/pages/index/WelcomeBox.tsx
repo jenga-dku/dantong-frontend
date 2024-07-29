@@ -1,4 +1,4 @@
-import { Box } from '@/components/ui/Box';
+import { Box } from '@components/Box';
 import { ReactComponent as NewsIcon } from '@assets/svg/News.svg';
 import { useAuthStore } from '@stores/auth-stores';
 

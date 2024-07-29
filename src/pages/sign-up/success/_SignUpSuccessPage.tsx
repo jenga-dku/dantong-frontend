@@ -1,4 +1,4 @@
-import { Button } from '@components/ui/Button';
+import { Button } from '@components/Button';
 import { ReactComponent as WelcomeIcon } from '@assets/svg/Welcome.svg';
 import { useSignUpInfoStore } from '@stores/signUpInfo-stores';
 

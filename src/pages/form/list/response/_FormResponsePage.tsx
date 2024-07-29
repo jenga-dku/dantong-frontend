@@ -1,7 +1,7 @@
 import { useSearchParams } from 'react-router-dom';
 import { FormLayout } from '@layout/FormLayout';
 import { useGetAllUsersReply, useGetForm } from '@query-hooks/form';
-import { Loader } from '@/components/ui/Loader';
+import { Loader } from '@components/Loader';
 import { QuestionBox } from '../../id/QuestionBox';
 import { Answer } from './Answer';
 import { ExportExcelButton } from './ExportExcelButton';

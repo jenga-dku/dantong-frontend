@@ -1,5 +1,5 @@
 import { MenuContainer } from '@components/MenuContainer';
-import { Button } from '@components/ui/Button';
+import { Button } from '@components/Button';
 import { menuList } from './menList';
 import useAuth from '@/hooks/useAuth';
 

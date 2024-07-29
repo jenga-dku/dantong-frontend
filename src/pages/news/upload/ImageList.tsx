@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/free-mode';
-import { Box } from '@/components/ui/Box';
+import { Box } from '@components/Box';
 import Sortable from 'sortablejs';
 
 export default function ImageList({

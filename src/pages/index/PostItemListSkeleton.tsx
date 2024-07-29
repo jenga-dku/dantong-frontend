@@ -1,4 +1,4 @@
-import { Box } from '@/components/ui/Box';
+import { Box } from '@components/Box';
 import HorizontalScrollBox from '@components/HorizontalScrollBox';
 import { SwiperSlide } from 'swiper/react';
 
@@ -9,7 +9,7 @@ export default function PostItemsSkeleton() {
         <SwiperSlide>
           <Box
             key={index}
-            className="skeleton h-[17rem] w-[17rem] flex-col overflow-hidden p-0"
+            className="skeleton_loading h-[17rem] w-[17rem] flex-col overflow-hidden p-0"
           >
             <div className="h-[17rem]" />
             <div className="box-border h-[4rem] bg-white" />

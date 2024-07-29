@@ -1,5 +1,5 @@
 import { GoChevronRight } from 'react-icons/go';
-import { Box } from '@/components/ui/Box';
+import { Box } from '@components/Box';
 import { PeriodPicker } from '@components/period-picker';
 import { useEffect, useState } from 'react';
 import { PostListModal, PostModalState } from './PostListModal';

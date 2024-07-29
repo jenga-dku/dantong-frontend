@@ -1,4 +1,4 @@
-import { Box } from '@/components/ui/Box';
+import { Box } from '@components/Box';
 import CouncilLogo from '@assets/image/CouncilLogo.png';
 import { useNavigate } from 'react-router-dom';
 import { PostDetailResponse } from '@api/post/types';
@@ -13,10 +13,10 @@ export const PostItem = ({
   return (
     <Box
       key={postId}
-      className="clickable skeleton h-[17rem] w-[17rem] flex-col p-0"
       onClick={() => {
         navigate(`/news/${postId}`);
       }}
+      className={`skeleton_loading h-[17rem] w-[17rem] cursor-pointer flex-col overflow-hidden p-0`}
     >
       <div
         className="h-[17rem] bg-[#e5e5e5] bg-cover"

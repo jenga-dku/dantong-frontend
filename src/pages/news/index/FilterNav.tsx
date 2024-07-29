@@ -1,4 +1,4 @@
-import { Box } from '@/components/ui/Box';
+import { Box } from '@components/Box';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { FilterNavDataList } from '@src/types/news-filter-nav';
 

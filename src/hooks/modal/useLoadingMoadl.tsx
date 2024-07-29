@@ -1,4 +1,4 @@
-import { Loader } from '@/components/ui/Loader';
+import { Loader } from '@/components/Loader';
 import { useModal } from './useModal';
 
 export const useLoadingModal = () => {

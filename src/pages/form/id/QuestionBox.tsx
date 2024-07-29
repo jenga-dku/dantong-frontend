@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-import { Box } from '@/components/ui/Box';
+import { Box } from '@components/Box';
 
 export const QuestionBox = ({
   title,

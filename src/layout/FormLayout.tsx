@@ -1,6 +1,6 @@
 import { ReactNode, useEffect } from 'react';
 import { useTopBarStore } from '@stores/topBar-stores';
-import { Box } from '@/components/ui/Box';
+import { Box } from '@components/Box';
 import { CiCalendar, CiFloppyDisk } from 'react-icons/ci';
 import { handleDateFormat } from '@utils/handleDateFomat';
 import { FormResponse } from '@api/form/types';

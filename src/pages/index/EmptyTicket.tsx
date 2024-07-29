@@ -1,5 +1,5 @@
-import { Box as EventInfoBox } from '@/components/ui/Box';
-import { Box as DetailInfoBox } from '@/components/ui/Box';
+import { Box as EventInfoBox } from '@components/Box';
+import { Box as DetailInfoBox } from '@components/Box';
 
 export const EmptyTicket = ({ isLoggedIn }: { isLoggedIn?: boolean }) => (
   <>

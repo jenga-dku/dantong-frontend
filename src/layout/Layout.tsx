@@ -3,28 +3,9 @@ import { Nav } from '@components/Nav';
 import { Outlet, useLocation } from 'react-router-dom';
 import { Suspense, useEffect, useRef } from 'react';
 import { useTopBarStore } from '@stores/topBar-stores';
-import { Axios } from '@api/Axios';
-import { HTMLAttributes, ReactNode } from 'react';
-import { cva, VariantProps } from 'class-variance-authority';
-import { cn } from '@/utils/cn';
+import { Axios } from '@components/Axios';
 
-export const LayoutVariants = cva(
-  `flex w-full flex-col overflow-auto bg-[#EBF4FF] px-5 pb-[100px] pt-[60px]`,
-  {
-    variants: {},
-    defaultVariants: {
-      variant: 'default',
-    },
-  },
-);
-
-interface LayoutProps
-  extends HTMLAttributes<HTMLDivElement>,
-    VariantProps<typeof LayoutVariants> {
-  children?: ReactNode;
-}
-
-export const Layout = ({ className, ...props }: LayoutProps) => {
+export const Layout = ({ className }: { className?: string }) => {
   const layoutRef = useRef<HTMLDivElement>(null);
   const location = useLocation();
   const {
@@ -44,7 +25,10 @@ export const Layout = ({ className, ...props }: LayoutProps) => {
   return (
     <>
       <TopBar />
-      <div className={cn(LayoutVariants(), className)} {...props}>
+      <div
+        ref={layoutRef}
+        className={`flex w-full flex-col overflow-auto bg-[#EBF4FF] px-5 pb-[100px] pt-[60px] ${className}`}
+      >
         <Suspense>
           <Outlet />
         </Suspense>
