@@ -1,15 +1,14 @@
-import { HTMLAttributes, ReactNode } from 'react';
+import { HTMLAttributes } from 'react';
 import { cva, VariantProps } from 'class-variance-authority';
-import { cn } from '@/utils/cn';
+import { cn } from '../../utils/cn';
 
-interface ButtonProps
+export interface ButtonProps
   extends HTMLAttributes<HTMLButtonElement | HTMLInputElement>,
     VariantProps<typeof ButtonVariants> {
-  children?: ReactNode;
   content: string;
   onClick?: () => void;
   disabled?: boolean;
-  className?: string;
+  size?: 'full' | 'fit';
 }
 
 export const ButtonVariants = cva(`btn-primary btn border-none text-white`, {
