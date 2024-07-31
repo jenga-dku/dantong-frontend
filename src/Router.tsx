@@ -22,6 +22,7 @@ export default function Router() {
           <Route path="/form/my" element={<MyFormPage />} />
           <Route path="/form/my/response" element={<MyResponsePage />} />
           <Route path="/profile" element={<ProfilePage />} />
+          <Route path="/friend" element={<FriendPage />} />
         </Route>
         <Route path="/" element={<FallbackLayout />}>
           <Route path="/start" element={<StartPage />} />
@@ -122,4 +123,9 @@ const MyResponsePage = lazy(() =>
       default: MyResponsePage,
     }),
   ),
+);
+const FriendPage = lazy(() =>
+  import('./pages/friend/_FriendPage').then(({ FriendPage }) => ({
+    default: FriendPage,
+  })),
 );
