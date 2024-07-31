@@ -13,14 +13,13 @@ export const AppliedEventSection = () => {
     <>
       <Section title="신청 내역">
         {isLoadSuccess ? (
-          isLoggedIn &&
-          (appliedEventList.length === 0 ? (
-            <EmptyTicket isLoggedIn />
+          appliedEventList.length === 0 ? (
+            <EmptyTicket isLoggedIn={isLoggedIn} />
           ) : (
             <TicketCarousel data={appliedEventList} />
-          ))
+          )
         ) : (
-          <EmptyTicket />
+          <EmptyTicket isLoggedIn={isLoggedIn} />
         )}
       </Section>
     </>

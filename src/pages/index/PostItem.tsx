@@ -13,7 +13,7 @@ export const PostItem = ({
   return (
     <Box
       key={postId}
-      className="clickable skeleton h-[17rem] w-[17rem] flex-col p-0"
+      className="clickable skeleton h-[17rem] w-[17rem] flex-col bg-[#e5e5e5] p-0"
       onClick={() => {
         navigate(`/news/${postId}`);
       }}

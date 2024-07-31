@@ -37,8 +37,7 @@ module.exports = {
         '200%': '200% 100%',
       },
       backgroundPosition: {
-        'right-0': '100% 0',
-        'left-0': '-100% 0',
+       '100-0': '100% 0',
       },
       backgroundImage: {
         'skeleton-loading': 'linear-gradient(120deg, #e5e5e5 30%, #f0f0f0 38%, #f0f0f0 40%, #e5e5e5 48%)',

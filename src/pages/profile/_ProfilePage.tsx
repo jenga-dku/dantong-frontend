@@ -78,13 +78,13 @@ export const ProfilePage = () => {
             name="name"
             placeholder={userInfo.name!}
             onChange={handleInputChange}
-            outline="outline"
+            outline
           />
           <Input
             name="phoneNumber"
             placeholder={userInfo.phoneNumber!}
             onChange={handleInputChange}
-            outline="outline"
+            outline
           />
         </Box>
         <FooterButton handlePatchEvent={handlePatchEvent} />
