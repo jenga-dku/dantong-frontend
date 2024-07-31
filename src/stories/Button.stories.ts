@@ -3,7 +3,7 @@ import { fn } from '@storybook/test';
 import { Button } from '../components/ui/Button';
 
 const meta = {
-  title: 'Example/Button',
+  title: 'Button/DefaultButton',
   component: Button,
   parameters: {
     layout: 'padded',
