@@ -7,6 +7,6 @@
     @apply cursor-pointer transform active:scale-95 transition-transform;
   }
   .skeleton {
-    @apply bg-skeleton-loading bg-200% bg-right-0 animate-load;
+    @apply bg-skeleton-loading bg-200% bg-100-0 animate-load;
   }
 }

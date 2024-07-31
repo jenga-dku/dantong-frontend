@@ -1,16 +1,16 @@
 import { HTMLAttributes, ReactNode } from 'react';
 import { cva, VariantProps } from 'class-variance-authority';
-import { cn } from '@/utils/cn';
+import { cn } from '../../utils/cn';
 
 export const LabelVariants = cva(`flex flex-col w-full rounded-lg p-3`, {
   variants: {
     shadow: {
       default: '',
-      shadow: 'shadow-[1px_0.5px_1px_0.3px_rgba(0,0,0,0.2)]',
+      true: 'shadow-[1px_0.5px_1px_0.3px_rgba(0,0,0,0.2)]',
     },
     outline: {
       default: '',
-      outline: 'border-[1px] border-solid border-zinc-300',
+      true: 'border-[1px] border-solid border-zinc-300',
     },
   },
   defaultVariants: {
@@ -19,19 +19,25 @@ export const LabelVariants = cva(`flex flex-col w-full rounded-lg p-3`, {
   },
 });
 
-export const InputVariants = cva(`bg-white px-1 text-black`, {
-  variants: {},
-  defaultVariants: {
-    variant: 'default',
+export const InputVariants = cva(
+  `bg-white px-1 text-black focus:outline-none`,
+  {
+    variants: {},
+    defaultVariants: {
+      variant: 'default',
+    },
   },
-});
+);
 
-export const TextVariants = cva(`bg-white px-1 text-black`, {
-  variants: {},
-  defaultVariants: {
-    variant: 'default',
+export const TextVariants = cva(
+  `bg-white px-1 text-black absolute mt-[-1.2rem] text-xs text-[#999]`,
+  {
+    variants: {},
+    defaultVariants: {
+      variant: 'default',
+    },
   },
-});
+);
 
 export interface InputProps
   extends Omit<HTMLAttributes<HTMLLabelElement | HTMLInputElement>, 'style'>,
@@ -39,9 +45,8 @@ export interface InputProps
     VariantProps<typeof InputVariants>,
     VariantProps<typeof TextVariants> {
   label?: string;
-  children?: ReactNode;
   maxLength?: number;
-  type?: string;
+  type?: 'text' | 'password';
   style?: {
     textStyle?: string;
     labelStyle?: string;
@@ -50,15 +55,16 @@ export interface InputProps
   name: string;
   inputContent?: string | ReactNode;
   placeholder?: string;
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  outline?: boolean;
+  shadow?: boolean;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 export const Input = ({
   label,
-  children,
   maxLength,
   type = 'text',
-  onChange,
+  onChange = () => {},
   style,
   name,
   inputContent,
@@ -79,9 +85,9 @@ export const Input = ({
         maxLength={maxLength}
         name={name}
         placeholder={placeholder}
+        autoComplete="off"
         {...props}
       />
-      {children}
       {inputContent}
     </label>
   );
