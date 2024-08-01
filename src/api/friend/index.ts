@@ -1,0 +1,19 @@
+import { PageParams } from '../types';
+import { API } from '../api';
+import { getToken } from '@/utils/handleAuth';
+import { FriendListItem } from './types';
+
+export const Friend = {
+  async getInfiniteFormList({
+    page,
+    size,
+  }: PageParams): Promise<FriendListItem[]> {
+    const response = await API.get(`/friend/list?page=${page}&size=${size}`, {
+      headers: {
+        Authorization: `Bearer ${getToken()}`,
+      },
+    });
+    const list = (await response.data.content) as FriendListItem[];
+    return list;
+  },
+};

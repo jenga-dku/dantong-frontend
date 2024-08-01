@@ -47,7 +47,7 @@ export const MailEntry = ({
           '인증 이메일을 확인해주세요'
         ),
         option: {
-          type: 'DISABLE_CANCLE',
+          type: 'DISABLE_CANCEL',
         },
       });
     },

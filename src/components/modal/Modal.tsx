@@ -27,7 +27,7 @@ export const Modal = ({ title, desc, visible, option }: ModalState) => {
         method="dialog"
         className="modal-box w-[calc(100%-20px)] max-w-[380px] justify-self-center overflow-hidden"
       >
-        {option?.type !== 'DISABLE_CANCLE' && (
+        {option?.type !== 'DISABLE_CANCEL' && (
           <RxCross2
             className="absolute right-5 cursor-pointer"
             onClick={() => {
@@ -39,10 +39,21 @@ export const Modal = ({ title, desc, visible, option }: ModalState) => {
           <h3 className="text-lg font-bold">{title}</h3>
           <div className="flex w-full">{desc}</div>
         </div>
-        <div className="modal-action">
-          {option?.type !== 'DISABLE_CANCLE' && (
+        <div className="modal-action flex w-full">
+          {option?.type && 'CONFIRM_CANCEL' && (
             <button
-              className="btn w-full"
+              className="btn flex-1"
+              onClick={() => {
+                option?.confirmEvent && option?.confirmEvent();
+                handleClose();
+              }}
+            >
+              취소
+            </button>
+          )}
+          {option?.type !== 'DISABLE_CANCEL' && (
+            <button
+              className="btn flex-1"
               onClick={() => {
                 option?.confirmEvent && option?.confirmEvent();
                 handleClose();

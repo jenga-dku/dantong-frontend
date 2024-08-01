@@ -10,3 +10,11 @@
     @apply bg-skeleton-loading bg-200% bg-100-0 animate-load;
   }
 }
+
+.tabs-boxed .tab-active:not(.tab-disabled):not([disabled]), .tabs-boxed :is(input:checked),     .tabs-boxed .tab-active:not(.tab-disabled):not([disabled]):hover, .tabs-boxed :is(input:checked):hover  {
+  color: white;
+}
+
+.btn:focus-visible {
+  outline: none;
+}
