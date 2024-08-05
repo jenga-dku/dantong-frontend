@@ -50,13 +50,15 @@ export const TabPageLayout = ({
       onTouchStart={touchStart}
       onTouchEnd={touchEnd}
     >
-      <Box className="shrink-0 flex-col gap-5">
+      <Box className="h-[calc(100dvh-160px)] flex-col gap-5 ">
         <TabButtonGroup
           ref={tabListRef}
           tabList={tabList}
           tabClick={tabClick}
         />
-        {children[activeTabIndex]}
+        <div className="flex h-full w-[calc(100%+10px)] flex-col gap-5 overflow-auto pr-3">
+          {children[activeTabIndex]}
+        </div>
       </Box>
     </div>
   );

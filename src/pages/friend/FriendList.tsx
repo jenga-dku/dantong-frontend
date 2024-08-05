@@ -1,10 +1,18 @@
-// import { useGetInfiniteFriendList } from '@/query-hooks/friend';
+import { useGetInfiniteFriendList } from '@/query-hooks/friend';
 import { useModal } from '@/hooks/modal/useModal';
 import { RxCross2 } from 'react-icons/rx';
 import { FriendListItem } from './FriendListItem';
+import { useInfiniteScroll } from '@/hooks/useInfiniteScroll';
+import { Loader } from '@/components/ui/Loader';
+import { Intersection } from '@/components/Intersection';
 
 export const FriendList = () => {
-  // const { data: friends, isLoading } = useGetInfiniteFriendList({ size: 3 });
+  const InfiniteFriendListQuery = useGetInfiniteFriendList({ size: 3 });
+  const {
+    list: friendList,
+    isFetching,
+    intersection,
+  } = useInfiniteScroll(InfiniteFriendListQuery);
 
   const { open } = useModal();
   const deleteFriend = () => {
@@ -16,17 +24,21 @@ export const FriendList = () => {
       },
     });
   };
-  return (
-    <>
-      {Array.from({ length: 10 }).map(() => (
-        <FriendListItem
-          name="사용자"
-          majorName="SOFTWARE"
-          extraContent={
-            <RxCross2 className="clickable" onClick={deleteFriend} />
-          }
-        />
-      ))}
-    </>
-  );
+  if (!isFetching) {
+    return (
+      <>
+        {friendList!.map(() => (
+          <FriendListItem
+            name="사용자"
+            majorName="SOFTWARE"
+            extraContent={
+              <RxCross2 className="clickable" onClick={deleteFriend} />
+            }
+          />
+        ))}
+        <Intersection ref={intersection} />
+      </>
+    );
+  }
+  return <Loader className="mt-4" type="clip" loading={isFetching} />;
 };
