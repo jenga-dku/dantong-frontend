@@ -9,8 +9,10 @@ export interface ButtonProps
   onClick?: () => void;
   disabled?: boolean;
   size?: 'full' | 'fit';
-  color?: 'dark-blue';
+  color?: ButtonColors;
 }
+
+export type ButtonColors = 'dark-blue';
 
 export const ButtonVariants = cva(`btn-primary btn border-none text-white`, {
   variants: {
