@@ -4,7 +4,7 @@ import { useQueryClient } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 
 export default function useAuth() {
-  const { setUserInfo, setIsLoggedIn } = useAuthStore();
+  const { setUserInfo, setIsLoggedIn, setIsTokenIssued } = useAuthStore();
   const navigate = useNavigate();
   const queryClient = useQueryClient();
 
@@ -16,6 +16,7 @@ export default function useAuth() {
       studentId: '',
     });
     setIsLoggedIn(false);
+    setIsTokenIssued(false);
     navigate('/start');
     queryClient.setQueryData(['user-info', true], {});
   };

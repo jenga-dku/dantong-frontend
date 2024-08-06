@@ -6,6 +6,8 @@ interface AuthState {
   setIsLoggedIn: (state: boolean) => void;
   userInfo: UserInfo;
   setUserInfo: (state: UserInfo) => void;
+  isTokenIssued: boolean;
+  setIsTokenIssued: (state: boolean) => void;
 }
 
 interface UserInfo {
@@ -29,6 +31,8 @@ export const useAuthStore = create(
       setUserInfo: (state: UserInfo) => {
         set({ userInfo: state });
       },
+      isTokenIssued: false,
+      setIsTokenIssued: (state: boolean) => set({ isTokenIssued: state }),
     }),
     {
       name: 'auth',
