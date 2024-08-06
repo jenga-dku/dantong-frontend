@@ -7,6 +7,9 @@ import { Axios } from '@api/Axios';
 import { HTMLAttributes, ReactNode } from 'react';
 import { cva, VariantProps } from 'class-variance-authority';
 import { cn } from '@/utils/cn';
+import { useAuthStore } from '@/stores/auth-stores';
+import { useReissueToken } from '@/query-hooks/user';
+import { getTimeDifference } from '@/utils/getTimeDifference';
 
 export const LayoutVariants = cva(
   `flex w-full flex-col overflow-auto bg-[#EBF4FF] px-5 pb-[100px] pt-[60px]`,
@@ -24,9 +27,13 @@ interface LayoutProps
   children?: ReactNode;
 }
 
+const TOKEN_EXPIRED_TIME = 3500000;
+
 export const Layout = ({ className, ...props }: LayoutProps) => {
   const layoutRef = useRef<HTMLDivElement>(null);
   const location = useLocation();
+  const { isTokenIssued, setIsTokenIssued } = useAuthStore();
+  const { mutate: reissueToken } = useReissueToken();
   const {
     isBackButtonVisible,
     setIsBackButtonVisible,
@@ -40,6 +47,18 @@ export const Layout = ({ className, ...props }: LayoutProps) => {
     isNotificationButtonVisible || setIsNotificationButtonVisible(true);
     layoutRef.current?.scrollTo({ top: 0, behavior: 'smooth' });
   }, [location]);
+
+  useEffect(() => {
+    const tokenDate = localStorage.getItem('tokenDate');
+    if (tokenDate) {
+      const remainTime = TOKEN_EXPIRED_TIME - getTimeDifference(tokenDate);
+      isTokenIssued &&
+        setTimeout(() => {
+          setIsTokenIssued(false);
+          reissueToken();
+        }, remainTime);
+    }
+  }, [isTokenIssued]);
 
   return (
     <>
