@@ -1,4 +1,4 @@
-import { getToken } from '@utils/handleAuth';
+import { getRefreshToken, getToken } from '@utils/handleAuth';
 import { API } from '@api/api';
 import { PostDetailResponse } from '../post/types';
 import { ModifiedUserInfo, UserInfoResponse } from './types';
@@ -18,7 +18,7 @@ export const User = {
         Authorization: `Bearer ${getToken()}`,
       },
     });
-    return response.data;
+    return response.data ?? null;
   },
   async patchUserInfo(data: ModifiedUserInfo) {
     const response = await API.patch(`/user/edit`, data, {
@@ -27,5 +27,19 @@ export const User = {
       },
     });
     return response?.data ?? null;
+  },
+  async reissueToken() {
+    const response = await API.post(
+      '/user/reissue',
+      {
+        refreshToken: getRefreshToken(),
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${getToken()}`,
+        },
+      },
+    );
+    return response.data;
   },
 };

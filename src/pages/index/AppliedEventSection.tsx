@@ -13,7 +13,7 @@ export const AppliedEventSection = () => {
     <>
       <Section title="신청 내역">
         {isLoadSuccess ? (
-          appliedEventList.length === 0 ? (
+          appliedEventList === null ? (
             <EmptyTicket isLoggedIn={isLoggedIn} />
           ) : (
             <TicketCarousel data={appliedEventList} />

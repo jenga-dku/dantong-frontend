@@ -11,7 +11,8 @@ import { useEffect } from 'react';
 import { useGetUserInfo } from '../user';
 
 export const usePostLoginInfo = () => {
-  const { setIsLoggedIn, setUserInfo, isLoggedIn } = useAuthStore();
+  const { setIsLoggedIn, setUserInfo, isLoggedIn, setIsTokenIssued } =
+    useAuthStore();
   const { open } = useModal();
   const { openLoadingModal, closeLoadingModal } = useLoadingModal();
   const navigate = useNavigate();
@@ -35,7 +36,9 @@ export const usePostLoginInfo = () => {
     onSuccess: ({ accessToken, refreshToken }) => {
       localStorage.setItem('accessToken', accessToken);
       localStorage.setItem('refreshToken', refreshToken);
+      localStorage.setItem('tokenDate', JSON.stringify(new Date()));
       setIsLoggedIn(true);
+      setIsTokenIssued(true);
     },
     onError: ({ response }: AxiosError<ErrorResponse>) => {
       closeLoadingModal();
