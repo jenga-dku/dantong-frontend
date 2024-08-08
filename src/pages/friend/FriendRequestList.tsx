@@ -1,6 +1,13 @@
-import { ButtonColors, Button as DefaultButton } from '@/components/ui/Button';
+import {
+  ButtonColors,
+  ButtonProps,
+  Button as DefaultButton,
+} from '@/components/ui/Button';
 import { FriendListItem } from './FriendListItem';
-import { useGetInfiniteFriendRequestList } from '@/query-hooks/friend';
+import {
+  useAcceptFriend,
+  useGetInfiniteFriendRequestList,
+} from '@/query-hooks/friend';
 import { useInfiniteScroll } from '@/hooks/useInfiniteScroll';
 import { Loader } from '@/components/ui/Loader';
 import { Intersection } from '@/components/Intersection';
@@ -11,19 +18,27 @@ export const FriendRequestList = () => {
   });
   const {
     list: requestList,
-    isFetching,
+    isLoading,
     intersection,
   } = useInfiniteScroll(InfiniteFriendRequestListQuery);
-  if (!isFetching)
+  const { mutate: acceptFriend } = useAcceptFriend();
+
+  if (!isLoading)
     return (
       <>
-        {requestList!.map(({ studentId, friendshipId }) => (
+        {requestList!.map(({ friendshipId, name }) => (
           <FriendListItem
-            name="사용자"
+            name={name}
             major="SECURE"
+            key={friendshipId}
             extraContent={
               <div className="flex gap-2">
-                <Button content="수락" />
+                <Button
+                  content="수락"
+                  onClick={() => {
+                    acceptFriend(friendshipId);
+                  }}
+                />
                 <Button content="거절" color="dark-blue" />
               </div>
             }
@@ -32,20 +47,22 @@ export const FriendRequestList = () => {
         <Intersection ref={intersection} />
       </>
     );
-  return <Loader className="mt-4" type="clip" loading={isFetching} />;
+  return <Loader className="mt-4" type="clip" loading={isLoading} />;
 };
 
 const Button = ({
   content,
   color,
+  ...props
 }: {
   content: string;
   color?: ButtonColors;
-}) => (
+} & ButtonProps) => (
   <DefaultButton
     size="fit"
     content={content}
     color={color}
     className="h-fit min-h-fit py-2 text-xs"
+    {...props}
   />
 );

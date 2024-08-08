@@ -31,4 +31,12 @@ export const Friend = {
     const list = (await response.data.content) as FriendRequestListItem[];
     return list;
   },
+  async accept(friendshipId: number) {
+    const response = await API.post(`/friend/accept/${friendshipId}`, null, {
+      headers: {
+        Authorization: `Bearer ${getToken()}`,
+      },
+    });
+    return response.data;
+  },
 };

@@ -10,7 +10,7 @@ export const FriendList = () => {
   const InfiniteFriendListQuery = useGetInfiniteFriendList({ size: 3 });
   const {
     list: friendList,
-    isFetching,
+    isLoading,
     intersection,
   } = useInfiniteScroll(InfiniteFriendListQuery);
 
@@ -24,13 +24,13 @@ export const FriendList = () => {
       },
     });
   };
-  if (!isFetching) {
+  if (!isLoading) {
     return (
       <>
-        {friendList!.map(() => (
+        {friendList!.map(({ name }) => (
           <FriendListItem
-            name="사용자"
-            majorName="SOFTWARE"
+            name={name}
+            major="SOFTWARE"
             extraContent={
               <RxCross2 className="clickable" onClick={deleteFriend} />
             }
@@ -40,5 +40,5 @@ export const FriendList = () => {
       </>
     );
   }
-  return <Loader className="mt-4" type="clip" loading={isFetching} />;
+  return <Loader className="mt-4" type="clip" loading={isLoading} />;
 };
