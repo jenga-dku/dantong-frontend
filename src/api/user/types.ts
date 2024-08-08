@@ -3,7 +3,7 @@ import { Major } from '@src/types/major';
 export type UserInfoResponse = {
   name: string;
   studentId: string;
-  majorName: Major;
+  major: Major;
   phoneNumber: string;
   userRole: string;
 };

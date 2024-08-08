@@ -10,7 +10,7 @@ import { setInputChange } from '@/utils/setInputChange';
 import { Major } from '@/types/major';
 
 type ModifiedInfo = Pick<UserInfoResponse, 'name' | 'phoneNumber'> & {
-  majorName?: Major;
+  major?: Major;
 };
 
 export const ProfilePage = () => {
@@ -20,7 +20,7 @@ export const ProfilePage = () => {
   const [modifedInfo, setModifiedInfo] = useState<ModifiedInfo>({
     name: '',
     phoneNumber: '',
-    majorName: undefined,
+    major: undefined,
   });
   const { mutate: patch } = usePatchUserInfo();
 
@@ -29,7 +29,7 @@ export const ProfilePage = () => {
       setModifiedInfo({
         name: userInfo.name,
         phoneNumber: userInfo.phoneNumber,
-        majorName: userInfo.majorName,
+        major: userInfo.major,
       });
   }, [isUserInfoLoadedSuccess]);
 
@@ -60,7 +60,7 @@ export const ProfilePage = () => {
           patch({
             name: modifedInfo.name,
             phoneNumber: modifedInfo.phoneNumber,
-            major: modifedInfo.majorName!,
+            major: modifedInfo.major!,
           }),
       },
     });
@@ -71,7 +71,7 @@ export const ProfilePage = () => {
       <div className="flex flex-col gap-4">
         <Box className="flex-col gap-2">
           <MajorSelect
-            majorName={userInfo.majorName!}
+            major={userInfo.major!}
             handleInputChange={handleInputChange}
           />
           <Input

@@ -17,10 +17,10 @@ export const FriendRequestList = () => {
   if (!isFetching)
     return (
       <>
-        {requestList!.map(() => (
+        {requestList!.map(({ studentId, friendshipId }) => (
           <FriendListItem
             name="사용자"
-            majorName="SECURE"
+            major="SECURE"
             extraContent={
               <div className="flex gap-2">
                 <Button content="수락" />

@@ -19,7 +19,7 @@ export const Friend = {
   async getInfiniteFriendRequestList({
     page,
     size,
-  }: PageParams): Promise<FriendListItem[]> {
+  }: PageParams): Promise<FriendRequestListItem[]> {
     const response = await API.get(
       `/friend/request?page=${page}&size=${size}`,
       {
