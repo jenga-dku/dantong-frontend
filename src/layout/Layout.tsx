@@ -27,7 +27,7 @@ interface LayoutProps
   children?: ReactNode;
 }
 
-const TOKEN_EXPIRED_TIME = 3500000;
+const TOKEN_EXPIRED_TIME = 50000;
 
 export const Layout = ({ className, ...props }: LayoutProps) => {
   const layoutRef = useRef<HTMLDivElement>(null);
