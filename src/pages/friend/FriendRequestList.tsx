@@ -26,10 +26,10 @@ export const FriendRequestList = () => {
   if (!isLoading)
     return (
       <>
-        {requestList!.map(({ friendshipId, name }) => (
+        {requestList!.map(({ friendshipId, name, major }) => (
           <FriendListItem
             name={name}
-            major="SECURE"
+            major={major}
             key={friendshipId}
             extraContent={
               <div className="flex gap-2">

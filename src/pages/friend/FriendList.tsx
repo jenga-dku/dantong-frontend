@@ -27,10 +27,10 @@ export const FriendList = () => {
   if (!isLoading) {
     return (
       <>
-        {friendList!.map(({ name }) => (
+        {friendList!.map(({ name, major }) => (
           <FriendListItem
             name={name}
-            major="SOFTWARE"
+            major={major}
             extraContent={
               <RxCross2 className="clickable" onClick={deleteFriend} />
             }
