@@ -3,6 +3,12 @@ import { API } from '@api/api';
 import { ErrorResponse } from '@api/types';
 
 export const Axios = () => {
+  API.interceptors.request.use((config) => {
+    const accessToken = localStorage.getItem('accessToken');
+    config.headers['Authorization'] = `Bearer ${accessToken}`;
+    return config;
+  });
+
   API.interceptors.response.use(
     function (response) {
       return response;
