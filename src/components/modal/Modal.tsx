@@ -41,13 +41,7 @@ export const Modal = ({ title, desc, visible, option }: ModalState) => {
         </div>
         <div className="modal-action flex w-full">
           {option?.type && 'CONFIRM_CANCEL' && (
-            <button
-              className="btn flex-1"
-              onClick={() => {
-                option?.confirmEvent && option?.confirmEvent();
-                handleClose();
-              }}
-            >
+            <button className="btn flex-1" onClick={handleClose}>
               취소
             </button>
           )}
