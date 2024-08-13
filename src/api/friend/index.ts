@@ -43,4 +43,8 @@ export const Friend = {
     const response = await API.delete(`/friend/deleteFriend/${friendshipId}`);
     return response.data;
   },
+  async request(studentId: number) {
+    const response = await API.post(`/friend/send/${studentId}`);
+    return response.data;
+  },
 };

@@ -1,14 +1,14 @@
 import { TabPageLayout } from './TabLayout';
-import { FriendList } from './FriendList';
-import { FriendRequestList } from './FriendRequestList';
+import { FriendRegister } from './FriendRegister';
+import { Friend } from './Friend';
 
 export const FriendPage = () => {
   const tabList = ['친구', '요청'];
 
   return (
     <TabPageLayout tabList={tabList}>
-      <FriendList />
-      <FriendRequestList />
+      <Friend />
+      <FriendRegister />
     </TabPageLayout>
   );
 };

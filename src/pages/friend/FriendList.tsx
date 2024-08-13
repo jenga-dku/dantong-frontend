@@ -33,7 +33,7 @@ export const FriendList = () => {
 
   if (!isLoading) {
     return (
-      <>
+      <div className="flex flex-col gap-4">
         {friendList!.map(({ friendshipId, ...props }) => (
           <FriendListItem
             {...props}
@@ -45,7 +45,7 @@ export const FriendList = () => {
           />
         ))}
         <Intersection ref={intersection} />
-      </>
+      </div>
     );
   }
   return <Loader className="mt-4" type="clip" loading={isLoading} />;

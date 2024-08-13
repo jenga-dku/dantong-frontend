@@ -10,7 +10,6 @@ import {
   useGetInfiniteFriendRequestList,
 } from '@/query-hooks/friend';
 import { useInfiniteScroll } from '@/hooks/useInfiniteScroll';
-import { Loader } from '@/components/ui/Loader';
 import { Intersection } from '@/components/Intersection';
 
 export const FriendRequestList = () => {
@@ -27,7 +26,7 @@ export const FriendRequestList = () => {
 
   if (!isLoading)
     return (
-      <>
+      <div className="flex flex-col gap-4">
         {requestList!.map(({ friendshipId, ...props }) => (
           <FriendListItem
             key={friendshipId}
@@ -48,9 +47,9 @@ export const FriendRequestList = () => {
           />
         ))}
         <Intersection ref={intersection} />
-      </>
+      </div>
     );
-  return <Loader className="mt-4" type="clip" loading={isLoading} />;
+  return <></>;
 };
 
 const Button = ({
