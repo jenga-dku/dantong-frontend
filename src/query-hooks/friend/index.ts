@@ -20,7 +20,7 @@ export const useGetInfiniteFriendList = ({ size }: { size: number }) =>
 
 export const useGetInfiniteFriendRequestList = ({ size }: { size: number }) =>
   useInfiniteQuery({
-    queryKey: ['infiniteFriendRequestList, infiniteFriendList'],
+    queryKey: ['infiniteFriendRequestList'],
     queryFn: ({ pageParam: pageNum }) =>
       Friend.getInfiniteFriendRequestList({ page: pageNum, size }),
     initialPageParam: 0,
@@ -34,8 +34,11 @@ export const useAcceptFriend = () => {
   return useMutation({
     mutationFn: (friendshipId: number) => Friend.accept(friendshipId),
     onSuccess: async () => {
-      return await queryClient.invalidateQueries({
+      await queryClient.invalidateQueries({
         queryKey: ['infiniteFriendRequestList'],
+      });
+      await queryClient.invalidateQueries({
+        queryKey: ['infiniteFriendList'],
       });
     },
     onError: ({ response }: AxiosError<ErrorResponse>) =>
@@ -46,7 +49,7 @@ export const useAcceptFriend = () => {
   });
 };
 
-export const useDeletetFriendRequest = () => {
+export const useDeleteFriendRequest = () => {
   const { open } = useModal();
   const queryClient = useQueryClient();
   return useMutation({

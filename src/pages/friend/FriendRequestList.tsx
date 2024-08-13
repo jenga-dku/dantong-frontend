@@ -6,7 +6,7 @@ import {
 import { FriendListItem } from './FriendListItem';
 import {
   useAcceptFriend,
-  useDeletetFriendRequest,
+  useDeleteFriendRequest,
   useGetInfiniteFriendRequestList,
 } from '@/query-hooks/friend';
 import { useInfiniteScroll } from '@/hooks/useInfiniteScroll';
@@ -14,7 +14,7 @@ import { Intersection } from '@/components/Intersection';
 
 export const FriendRequestList = () => {
   const { mutate: acceptFriend } = useAcceptFriend();
-  const { mutate: denyFriend } = useDeletetFriendRequest();
+  const { mutate: denyFriend } = useDeleteFriendRequest();
   const InfiniteFriendRequestListQuery = useGetInfiniteFriendRequestList({
     size: 3,
   });
