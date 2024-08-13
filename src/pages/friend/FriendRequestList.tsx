@@ -6,6 +6,7 @@ import {
 import { FriendListItem } from './FriendListItem';
 import {
   useAcceptFriend,
+  useDeletetFriendRequest,
   useGetInfiniteFriendRequestList,
 } from '@/query-hooks/friend';
 import { useInfiniteScroll } from '@/hooks/useInfiniteScroll';
@@ -13,6 +14,8 @@ import { Loader } from '@/components/ui/Loader';
 import { Intersection } from '@/components/Intersection';
 
 export const FriendRequestList = () => {
+  const { mutate: acceptFriend } = useAcceptFriend();
+  const { mutate: denyFriend } = useDeletetFriendRequest();
   const InfiniteFriendRequestListQuery = useGetInfiniteFriendRequestList({
     size: 3,
   });
@@ -21,25 +24,25 @@ export const FriendRequestList = () => {
     isLoading,
     intersection,
   } = useInfiniteScroll(InfiniteFriendRequestListQuery);
-  const { mutate: acceptFriend } = useAcceptFriend();
 
   if (!isLoading)
     return (
       <>
-        {requestList!.map(({ friendshipId, name, major }) => (
+        {requestList!.map(({ friendshipId, ...props }) => (
           <FriendListItem
-            name={name}
-            major={major}
             key={friendshipId}
+            {...props}
             extraContent={
               <div className="flex gap-2">
                 <Button
                   content="수락"
-                  onClick={() => {
-                    acceptFriend(friendshipId);
-                  }}
+                  onClick={() => acceptFriend(friendshipId)}
                 />
-                <Button content="거절" color="dark-blue" />
+                <Button
+                  content="거절"
+                  color="dark-blue"
+                  onClick={() => denyFriend(friendshipId)}
+                />
               </div>
             }
           />

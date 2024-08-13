@@ -37,7 +37,43 @@ export const useAcceptFriend = () => {
     mutationFn: (friendshipId: number) => Friend.accept(friendshipId),
     onSuccess: async () => {
       return await queryClient.invalidateQueries({
-        queryKey: ['infiniteFriendRequestList', true],
+        queryKey: ['infiniteFriendRequestList'],
+      });
+    },
+    onError: ({ response }: AxiosError<ErrorResponse>) =>
+      open({
+        title: '오류',
+        desc: response?.data.message[0],
+      }),
+  });
+};
+
+export const useDeletetFriendRequest = () => {
+  const { open } = useModal();
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: (friendshipId: number) => Friend.deny(friendshipId),
+    onSuccess: async () => {
+      return await queryClient.invalidateQueries({
+        queryKey: ['infiniteFriendRequestList'],
+      });
+    },
+    onError: ({ response }: AxiosError<ErrorResponse>) =>
+      open({
+        title: '오류',
+        desc: response?.data.message[0],
+      }),
+  });
+};
+
+export const useDeleteFriend = () => {
+  const { open } = useModal();
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: (friendshipId: number) => Friend.delete(friendshipId),
+    onSuccess: async () => {
+      return await queryClient.invalidateQueries({
+        queryKey: ['infiniteFriendList'],
       });
     },
     onError: ({ response }: AxiosError<ErrorResponse>) =>

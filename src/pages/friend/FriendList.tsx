@@ -1,12 +1,18 @@
-import { useGetInfiniteFriendList } from '@/query-hooks/friend';
+import {
+  useDeleteFriend,
+  useGetInfiniteFriendList,
+} from '@/query-hooks/friend';
 import { useModal } from '@/hooks/modal/useModal';
 import { RxCross2 } from 'react-icons/rx';
 import { FriendListItem } from './FriendListItem';
 import { useInfiniteScroll } from '@/hooks/useInfiniteScroll';
 import { Loader } from '@/components/ui/Loader';
 import { Intersection } from '@/components/Intersection';
+import { memo } from 'react';
 
 export const FriendList = () => {
+  const { open } = useModal();
+  const { mutate: deleteFriend } = useDeleteFriend();
   const InfiniteFriendListQuery = useGetInfiniteFriendList({ size: 3 });
   const {
     list: friendList,
@@ -14,25 +20,27 @@ export const FriendList = () => {
     intersection,
   } = useInfiniteScroll(InfiniteFriendListQuery);
 
-  const { open } = useModal();
-  const deleteFriend = () => {
+  const handleDeleteButtonClick = (friendshipId: number) => {
     open({
       title: '친구 삭제',
       desc: '친구 목록에서 삭제하시겠습니까?',
       option: {
         type: 'CONFIRM_CANCEL',
+        confirmEvent: () => deleteFriend(friendshipId),
       },
     });
   };
+
   if (!isLoading) {
     return (
       <>
-        {friendList!.map(({ name, major }) => (
+        {friendList!.map(({ friendshipId, ...props }) => (
           <FriendListItem
-            name={name}
-            major={major}
+            {...props}
             extraContent={
-              <RxCross2 className="clickable" onClick={deleteFriend} />
+              <DeleteButton
+                onClick={() => handleDeleteButtonClick(friendshipId)}
+              />
             }
           />
         ))}
@@ -42,3 +50,7 @@ export const FriendList = () => {
   }
   return <Loader className="mt-4" type="clip" loading={isLoading} />;
 };
+
+const DeleteButton = memo(({ onClick }: { onClick: () => void }) => (
+  <RxCross2 className="clickable" onClick={onClick} />
+));

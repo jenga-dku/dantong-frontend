@@ -32,11 +32,15 @@ export const Friend = {
     return list;
   },
   async accept(friendshipId: number) {
-    const response = await API.post(`/friend/accept/${friendshipId}`, null, {
-      headers: {
-        Authorization: `Bearer ${getToken()}`,
-      },
-    });
+    const response = await API.post(`/friend/accept/${friendshipId}`, null);
+    return response.data;
+  },
+  async deny(friendshipId: number) {
+    const response = await API.delete(`/friend/deleteRequest/${friendshipId}`);
+    return response.data;
+  },
+  async delete(friendshipId: number) {
+    const response = await API.delete(`/friend/deleteFriend/${friendshipId}`);
     return response.data;
   },
 };
