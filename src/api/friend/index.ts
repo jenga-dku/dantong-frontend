@@ -54,4 +54,10 @@ export const Friend = {
     );
     return response.data;
   },
+  async getFriendEventByPost(
+    postId: number,
+  ): Promise<Omit<FriendListItem, 'friendshipId'>[]> {
+    const response = await API.get(`/friend/submit-list/postId/${postId}`);
+    return response.data;
+  },
 };

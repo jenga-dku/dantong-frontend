@@ -2,6 +2,7 @@ import { Friend } from '@/api/friend';
 import { PostDetailResponse } from '@/api/post/types';
 import { ErrorResponse } from '@/api/types';
 import { useModal } from '@/hooks/modal/useModal';
+import { useAuthStore } from '@/stores/auth-stores';
 import {
   useInfiniteQuery,
   useMutation,
@@ -111,5 +112,14 @@ export const useGetFriendEvent = (studentId: string) => {
     queryKey: ['friend-event-list', studentId],
     enabled: studentId.length > 0,
     gcTime: 0,
+  });
+};
+
+export const useGetFriendEventByPost = (postId: number) => {
+  const { isLoggedIn } = useAuthStore();
+  return useQuery({
+    queryFn: () => Friend.getFriendEventByPost(postId),
+    queryKey: ['friend-event-list-by-post'],
+    enabled: isLoggedIn,
   });
 };
