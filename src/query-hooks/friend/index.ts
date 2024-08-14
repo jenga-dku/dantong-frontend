@@ -1,9 +1,11 @@
 import { Friend } from '@/api/friend';
+import { PostDetailResponse } from '@/api/post/types';
 import { ErrorResponse } from '@/api/types';
 import { useModal } from '@/hooks/modal/useModal';
 import {
   useInfiniteQuery,
   useMutation,
+  useQuery,
   useQueryClient,
 } from '@tanstack/react-query';
 import { AxiosError } from 'axios';
@@ -100,5 +102,14 @@ export const useRequestFriend = () => {
         title: '오류',
         desc: response?.data.message[0],
       }),
+  });
+};
+
+export const useGetFriendEvent = (studentId: string) => {
+  return useQuery({
+    queryFn: () => Friend.getFriendEvent(studentId),
+    queryKey: ['friend-event-list', studentId],
+    enabled: studentId.length > 0,
+    gcTime: 0,
   });
 };

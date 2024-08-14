@@ -5,7 +5,9 @@ import { ErrorResponse } from '@api/types';
 export const Axios = () => {
   API.interceptors.request.use((config) => {
     const accessToken = localStorage.getItem('accessToken');
-    config.headers['Authorization'] = `Bearer ${accessToken}`;
+    config.headers['Authorization'] = !!accessToken
+      ? `Bearer ${accessToken}`
+      : null;
     return config;
   });
 

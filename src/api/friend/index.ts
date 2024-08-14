@@ -2,6 +2,7 @@ import { PageParams } from '../types';
 import { API } from '../api';
 import { getToken } from '@/utils/handleAuth';
 import { FriendListItem } from './types';
+import { PostDetailResponse } from '../post/types';
 
 export const Friend = {
   async getInfiniteFriendList({
@@ -45,6 +46,12 @@ export const Friend = {
   },
   async request(studentId: number) {
     const response = await API.post(`/friend/send/${studentId}`);
+    return response.data;
+  },
+  async getFriendEvent(studentId: string): Promise<PostDetailResponse[]> {
+    const response = await API.get(
+      `/friend/submit-list/studentId/${studentId}`,
+    );
     return response.data;
   },
 };

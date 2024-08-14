@@ -3,14 +3,19 @@ import { ReactNode } from 'react';
 
 type FriendListItemProps = Pick<FriendListItemType, 'name' | 'major'> & {
   extraContent?: ReactNode;
+  onClick?: () => void;
 };
 
 export const FriendListItem = ({
   name,
   major,
   extraContent,
+  onClick,
 }: FriendListItemProps) => (
-  <li className="flex items-center justify-between gap-1">
+  <li
+    onClick={onClick}
+    className="flex w-full items-center justify-between gap-1"
+  >
     <div>
       <p className="mb-1 text-xs text-primary">{major}</p>
       <p>{name}</p>
