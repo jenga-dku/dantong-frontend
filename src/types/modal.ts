@@ -10,4 +10,4 @@ export type ModalState = {
   };
 };
 
-export type ModalType = 'CONFIRM' | 'DISABLE_CANCLE';
+export type ModalType = 'CONFIRM' | 'CONFIRM_CANCEL' | 'DISABLE_CANCEL';

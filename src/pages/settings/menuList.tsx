@@ -1,4 +1,8 @@
-import { PiCalendarCheckLight, PiLockKeyLight } from 'react-icons/pi';
+import {
+  PiCalendarCheckLight,
+  PiLockKeyLight,
+  PiSmileyLight,
+} from 'react-icons/pi';
 
 export const menuList = [
   {
@@ -10,5 +14,10 @@ export const menuList = [
     id: 'form-my',
     icon: <PiCalendarCheckLight />,
     menuName: '신청 내역',
+  },
+  {
+    id: 'friend',
+    icon: <PiSmileyLight />,
+    menuName: '친구',
   },
 ];
