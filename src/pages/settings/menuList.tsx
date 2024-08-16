@@ -1,4 +1,5 @@
 import {
+  PiBellLight,
   PiCalendarCheckLight,
   PiLockKeyLight,
   PiSmileyLight,
@@ -19,5 +20,10 @@ export const menuList = [
     id: 'friend',
     icon: <PiSmileyLight />,
     menuName: '친구',
+  },
+  {
+    id: 'notification',
+    icon: <PiBellLight />,
+    menuName: '알림',
   },
 ];
