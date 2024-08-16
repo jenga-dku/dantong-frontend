@@ -18,13 +18,13 @@ export const Nav = () => {
       {NavButtonDataList.map(({ link, icon, name }) => (
         <div
           key={`nav-button-${link}`}
-          className="flex w-1/4 items-center justify-center text-2xl text-[#DEDEDE]"
+          className="flex w-1/4 items-center justify-center text-2xl text-[#acacac]"
         >
           <button
             onClick={() => {
               navigate(`/${isAdminMenu(link) ? 'admin' : link}`);
             }}
-            className={`${pageType === link && 'text-[#8898AB]'} flex flex-col items-center gap-1`}
+            className={`${pageType === link && 'text-[#89abd4]'} clickable flex flex-col items-center gap-1`}
           >
             {icon}
             <p className="text-[0.6rem] leading-tight">{name}</p>
