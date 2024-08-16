@@ -19,7 +19,7 @@ export const MenuContainer = ({
             onClick={() => {
               navigate(`/${id.replaceAll('-', '/')}`);
             }}
-            className="flex cursor-pointer items-center gap-3"
+            className="clickable flex cursor-pointer items-center gap-3"
           >
             <span className="text-2xl">{icon}</span>
             <p>{menuName}</p>

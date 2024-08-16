@@ -1,12 +1,12 @@
 import { Major } from '@src/types/major';
 
-export type UserInfoResponse = {
+export interface UserInfoResponse {
   name: string;
   studentId: string;
   major: Major;
   phoneNumber: string;
   userRole: string;
-};
+}
 
 export type ModifiedUserInfo = {
   name: string;
