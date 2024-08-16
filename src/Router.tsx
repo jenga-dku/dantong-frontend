@@ -2,6 +2,7 @@ import { lazy } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { Layout } from '@layout/Layout';
 import { FallbackLayout } from '@layout/FallbackLayout';
+import { NotificationPage } from './pages/notification/_NotificationPage';
 
 export default function Router() {
   return (
@@ -23,6 +24,7 @@ export default function Router() {
           <Route path="/form/my/response" element={<MyResponsePage />} />
           <Route path="/profile" element={<ProfilePage />} />
           <Route path="/friend" element={<FriendPage />} />
+          <Route path="/notification" element={<NotificationPage />} />
         </Route>
         <Route path="/" element={<FallbackLayout />}>
           <Route path="/start" element={<StartPage />} />
