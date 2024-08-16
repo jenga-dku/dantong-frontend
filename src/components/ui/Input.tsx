@@ -1,4 +1,4 @@
-import { HTMLAttributes, ReactNode } from 'react';
+import { forwardRef, HTMLAttributes, ReactNode } from 'react';
 import { cva, VariantProps } from 'class-variance-authority';
 import { cn } from '../../utils/cn';
 
@@ -57,38 +57,50 @@ export interface InputProps
   placeholder?: string;
   outline?: boolean;
   shadow?: boolean;
+  background?: string;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-export const Input = ({
-  label,
-  maxLength,
-  type = 'text',
-  onChange = () => {},
-  style,
-  name,
-  inputContent,
-  shadow,
-  outline,
-  placeholder,
-  ...props
-}: InputProps) => {
-  return (
-    <label
-      className={cn(LabelVariants({ shadow, outline }), style?.labelStyle)}
-    >
-      <span className={cn(TextVariants(), style?.textStyle)}>{label}</span>
-      <input
-        type={type}
-        onChange={onChange}
-        className={cn(InputVariants(), style?.inputStyle)}
-        maxLength={maxLength}
-        name={name}
-        placeholder={placeholder}
-        autoComplete="off"
-        {...props}
-      />
-      {inputContent}
-    </label>
-  );
-};
+export const Input = forwardRef(
+  (
+    {
+      label,
+      maxLength,
+      type = 'text',
+      onChange = () => {},
+      style,
+      name,
+      inputContent,
+      shadow,
+      outline,
+      placeholder,
+      background,
+      ...props
+    }: InputProps,
+    ref: React.LegacyRef<HTMLInputElement>,
+  ) => {
+    return (
+      <label
+        className={cn(
+          LabelVariants({ shadow, outline }),
+          style?.labelStyle,
+          background,
+        )}
+      >
+        <span className={cn(TextVariants(), style?.textStyle)}>{label}</span>
+        <input
+          type={type}
+          onChange={onChange}
+          className={cn(InputVariants(), style?.inputStyle, background)}
+          maxLength={maxLength}
+          name={name}
+          placeholder={placeholder}
+          autoComplete="off"
+          ref={ref}
+          {...props}
+        />
+        {inputContent}
+      </label>
+    );
+  },
+);

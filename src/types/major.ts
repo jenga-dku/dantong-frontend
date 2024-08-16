@@ -4,6 +4,7 @@ export const MAJOR = {
   STATICS: '통계데이터사이언스학과',
   MOBILE: '모바일시스템공학과',
   SECURE: '사이버보안학과',
-};
+} as const;
 
-export type Major = 'SOFTWARE' | 'COMPUTER' | 'STATICS' | 'MOBILE' | 'SECURE';
+export type Major = keyof typeof MAJOR;
+export type MajorKorean = (typeof MAJOR)[keyof typeof MAJOR];

@@ -9,7 +9,10 @@ export interface ButtonProps
   onClick?: () => void;
   disabled?: boolean;
   size?: 'full' | 'fit';
+  color?: ButtonColors;
 }
+
+export type ButtonColors = 'dark-blue';
 
 export const ButtonVariants = cva(`btn-primary btn border-none text-white`, {
   variants: {
@@ -17,8 +20,13 @@ export const ButtonVariants = cva(`btn-primary btn border-none text-white`, {
       full: 'w-full',
       fit: 'w-fit',
     },
+    color: {
+      default: 'bg-primary',
+      'dark-blue': 'bg-slate-500 hover:bg-slate-600',
+    },
   },
   defaultVariants: {
+    color: 'default',
     size: 'full',
   },
 });
@@ -28,12 +36,13 @@ export const Button = ({
   onClick,
   size,
   disabled,
+  color,
   className,
   ...props
 }: ButtonProps) => {
   return (
     <button
-      className={cn(ButtonVariants({ size }), className)}
+      className={cn(ButtonVariants({ size, color }), className)}
       disabled={disabled}
       onClick={onClick}
       {...props}

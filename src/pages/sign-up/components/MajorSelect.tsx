@@ -25,8 +25,8 @@ export const MajorSelect = ({
         <option disabled selected>
           전공 선택
         </option>
-        {Object.entries(MAJOR).map(([id, majorName]) => (
-          <option value={id}>{majorName}</option>
+        {Object.entries(MAJOR).map(([id, major]) => (
+          <option value={id}>{major}</option>
         ))}
       </select>
     </div>

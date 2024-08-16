@@ -30,5 +30,5 @@ export const useInfiniteScroll = <T>({
     }, []);
   }, [data]);
 
-  return { intersection, list, isFetching };
+  return { intersection, list, isLoading, isFetching };
 };
