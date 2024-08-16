@@ -10,7 +10,6 @@ export const Axios = () => {
       : null;
     return config;
   });
-
   API.interceptors.response.use(
     function (response) {
       return response;
