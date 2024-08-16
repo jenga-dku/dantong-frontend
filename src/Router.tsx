@@ -2,7 +2,6 @@ import { lazy } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { Layout } from '@layout/Layout';
 import { FallbackLayout } from '@layout/FallbackLayout';
-import { NotificationPage } from './pages/notification/_NotificationPage';
 
 export default function Router() {
   return (
@@ -130,4 +129,11 @@ const FriendPage = lazy(() =>
   import('./pages/friend/_FriendPage').then(({ FriendPage }) => ({
     default: FriendPage,
   })),
+);
+const NotificationPage = lazy(() =>
+  import('./pages/notification/_NotificationPage').then(
+    ({ NotificationPage }) => ({
+      default: NotificationPage,
+    }),
+  ),
 );
