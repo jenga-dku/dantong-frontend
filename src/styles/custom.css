@@ -1,3 +1,13 @@
+html {
+    min-height: calc(100% + env(safe-area-inset-top));
+    padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+    background-attachment: fixed;
+    background: transparent;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
 body {
   background-color: #f1f1f1;
   font-family: 'NanumSquareRegular';
