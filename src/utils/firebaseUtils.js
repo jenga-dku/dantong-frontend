@@ -21,7 +21,7 @@ const token = await getToken(messaging, {
   vapidKey: process.env.REACT_APP_VAPID_KEY,
 });
 
-export const requestFcmToken = async () => {
+export const issueFcmToken = async () => {
 	return Notification.requestPermission()
 		.then((permission) => {
 			if (permission === "granted") {
