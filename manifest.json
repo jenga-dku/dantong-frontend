@@ -20,10 +20,11 @@
   ],
   "start_url": "start",
   "display": "standalone",
-  "theme_color": "#ffffff",
-  "background_color": "#ffffff",
+  "theme_color": "#ebf4ff",
+  "background_color": "#ebf4ff",
   "description": "단통 PWA 입니다",
   "id": "dantong",
-  "lang": "en",
+  "lang": "ko-KR",
+  "orientation": "portrait",
   "display_override": ["window-controls-overlay"]
 }

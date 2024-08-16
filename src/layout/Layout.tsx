@@ -12,7 +12,7 @@ import { useReissueToken } from '@/query-hooks/user';
 import { getTimeDifference } from '@/utils/getTimeDifference';
 
 export const LayoutVariants = cva(
-  `flex w-full flex-col overflow-auto bg-[#EBF4FF] px-5 pb-[100px] pt-[60px]`,
+  `flex w-full flex-col overflow-auto bg-[#EBF4FF] px-5 pb-[100px]`,
   {
     variants: {},
     defaultVariants: {
@@ -63,7 +63,11 @@ export const Layout = ({ className, ...props }: LayoutProps) => {
   return (
     <>
       <TopBar />
-      <div className={cn(LayoutVariants(), className)} {...props}>
+      <div
+        className={cn(LayoutVariants(), className)}
+        style={{ paddingTop: 'calc(40px + env(safe-area-inset-top))' }}
+        {...props}
+      >
         <Suspense>
           <Outlet />
         </Suspense>
