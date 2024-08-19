@@ -68,15 +68,14 @@ input[type='password'] {
   }
 }
 
-/* Swiper */
-.swiper-slide {
-  display: flex;
-  justify-content: center;
+.swiper {
+  width: 100%;
+  height: 100%;
 }
 
-.swiper-carousel {
-  width: 100%;
-  transition: opacity 0.2s ease-in-out;
+.swiper-slide img {
+  display: block;
+  object-fit: cover;
 }
 
 .horizontalScrollBox > .swiper-wrapper,
@@ -85,7 +84,7 @@ input[type='password'] {
   height: fit-content;
 }
 
-/* Scrollbar */
+/* Scrollbar */ 
 * {
   &::-webkit-scrollbar {
     width: 5px;
