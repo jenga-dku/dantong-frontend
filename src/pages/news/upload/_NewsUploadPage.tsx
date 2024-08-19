@@ -1,13 +1,6 @@
 import '@toast-ui/editor/dist/toastui-editor.css';
 import { useEffect, useState } from 'react';
-import {
-  Box as Title,
-  Box as Category,
-  Box as Summary,
-  Box as Desc,
-  Box as FileBox,
-  Box as PeriodBox,
-} from '@/components/ui/Box';
+import { Box } from '@/components/ui/Box';
 import { Button } from '@components/ui/Button';
 import { FaCamera } from 'react-icons/fa6';
 import { useTopBarStore } from '@stores/topBar-stores';
@@ -20,6 +13,7 @@ import { getFormattedDate } from '@utils/getFormattedDate';
 import { PeriodPicker } from '@components/period-picker';
 import { usePostNews } from '@query-hooks/news-upload';
 import { useModal } from '@/hooks/modal/useModal';
+import { Input } from '@/components/ui/Input';
 
 export const NewsUploadPage = () => {
   const [desc, setDesc] = useState('');
@@ -108,7 +102,7 @@ export const NewsUploadPage = () => {
         <select
           className="select w-full  text-gray-400"
           name="category"
-          onChange={(e) => handleInputChange(e)}
+          onChange={handleInputChange}
         >
           <option disabled selected>
             카테고리 선택
@@ -119,13 +113,11 @@ export const NewsUploadPage = () => {
         </select>
       </Category>
       <Title>
-        <input
+        <Input
           className="text-md w-full"
           name="title"
           value={postInfo.title}
-          onChange={(e) => {
-            handleInputChange(e);
-          }}
+          onChange={handleInputChange}
           placeholder="제목을 입력해주세요"
         />
       </Title>
@@ -134,9 +126,7 @@ export const NewsUploadPage = () => {
           className="text-md w-full"
           value={postInfo.description}
           name="description"
-          onChange={(e) => {
-            handleInputChange(e);
-          }}
+          onChange={handleInputChange}
           placeholder="간단한 설명을 입력해주세요"
         />
       </Summary>
@@ -150,9 +140,7 @@ export const NewsUploadPage = () => {
             type="file"
             className="hidden"
             accept="image/png, image/jpeg"
-            onChange={(e) => {
-              handleImages(e);
-            }}
+            onChange={handleImages}
           />
           <FaCamera className="mr-2" />
           이미지 첨부
@@ -161,13 +149,7 @@ export const NewsUploadPage = () => {
       {images.length > 0 && images[0].length > 0 && (
         <ImageList images={images} updateImages={setImages} />
       )}
-      <Button
-        onClick={() => {
-          uploadPost();
-        }}
-        size="full"
-        content="업로드"
-      />
+      <Button onClick={uploadPost} size="full" content="업로드" />
     </div>
   );
 };
@@ -182,3 +164,10 @@ const initialPostInfo = {
   endTime: '',
   shown: true,
 };
+
+const Title = Box;
+const Category = Box;
+const Summary = Box;
+const Desc = Box;
+const FileBox = Box;
+const PeriodBox = Box;

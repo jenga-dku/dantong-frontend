@@ -54,31 +54,27 @@ export interface InputProps
   };
   name: string;
   inputContent?: string | ReactNode;
+  value?: string;
   placeholder?: string;
   outline?: boolean;
   shadow?: boolean;
   background?: string;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  ref?: React.LegacyRef<HTMLInputElement>;
 }
 
 export const Input = forwardRef(
-  (
-    {
-      label,
-      maxLength,
-      type = 'text',
-      onChange = () => {},
-      style,
-      name,
-      inputContent,
-      shadow,
-      outline,
-      placeholder,
-      background,
-      ...props
-    }: InputProps,
-    ref: React.LegacyRef<HTMLInputElement>,
-  ) => {
+  ({
+    label,
+    type = 'text',
+    onChange = () => {},
+    style,
+    inputContent,
+    shadow,
+    outline,
+    background,
+    ...props
+  }: InputProps) => {
     return (
       <label
         className={cn(
@@ -89,14 +85,10 @@ export const Input = forwardRef(
       >
         <span className={cn(TextVariants(), style?.textStyle)}>{label}</span>
         <input
+          className={cn(InputVariants(), style?.inputStyle, background)}
+          autoComplete="off"
           type={type}
           onChange={onChange}
-          className={cn(InputVariants(), style?.inputStyle, background)}
-          maxLength={maxLength}
-          name={name}
-          placeholder={placeholder}
-          autoComplete="off"
-          ref={ref}
           {...props}
         />
         {inputContent}
