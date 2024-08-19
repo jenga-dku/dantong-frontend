@@ -1,71 +1,26 @@
 import '@toast-ui/editor/dist/toastui-editor.css';
-import { useEffect, useState } from 'react';
-import { Box } from '@/components/ui/Box';
+import { useEffect } from 'react';
 import { Button } from '@components/ui/Button';
-import { FaCamera } from 'react-icons/fa6';
 import { useTopBarStore } from '@stores/topBar-stores';
-import { Editor } from '@components/Editor';
-import { CATEGORY } from '@src/types/news-category';
-import ImageList from './ImageList';
-import { Period } from '@src/types/period-picker/period';
-import { NewsUpload } from '@api/news-upload/types';
-import { getFormattedDate } from '@utils/getFormattedDate';
-import { PeriodPicker } from '@components/period-picker';
 import { usePostNews } from '@query-hooks/news-upload';
 import { useModal } from '@/hooks/modal/useModal';
-import { Input } from '@/components/ui/Input';
+import { PeriodInput } from './PeriodInput';
+import { CategorySelector } from './CategorySelector';
+import { Input } from './Input';
+import { FileSection } from './FileSection';
+import { EditorSection } from './EditorSection';
+import { Wrapper } from '@/components/ui/Wrapper';
 
 export const NewsUploadPage = () => {
-  const [desc, setDesc] = useState('');
-  const [images, setImages] = useState(['']);
-  const [imageFiles, setImageFiles] = useState<File[]>([]);
   const { mutate: post } = usePostNews();
   const { open } = useModal();
-  const { setIsBackButtonVisible, setIsNotificationButtonVisible } =
-    useTopBarStore();
-  const [postInfo, setPostInfo] = useState<NewsUpload>(initialPostInfo);
-  const periodState = useState<Period>({
-    start: new Date(),
-    end: new Date(),
-  });
-  const [period] = periodState;
 
   useEffect(() => {
-    setIsBackButtonVisible(true);
-    setIsNotificationButtonVisible(false);
+    useTopBarStore.setState({
+      isBackButtonVisible: true,
+      isNotificationButtonVisible: false,
+    });
   }, []);
-
-  useEffect(() => {
-    setPostInfo({
-      ...postInfo,
-      content: desc,
-      imageFiles: imageFiles,
-      startTime: `${getFormattedDate(period.start)}`,
-      endTime: `${getFormattedDate(period.end)}`,
-    });
-  }, [desc, imageFiles, period]);
-
-  const handleInputChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
-  ) => {
-    const { name, value } = e.target;
-    setPostInfo({ ...postInfo, [name]: value });
-  };
-
-  const handleImages = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setImages([]);
-    const files = Array.from(e.target.files || []);
-    files.forEach((f) => {
-      setImages([...images, URL.createObjectURL(f)]);
-      setImageFiles(() => {
-        if (imageFiles !== null || imageFiles !== undefined) {
-          return [...imageFiles, f];
-        } else {
-          return [f];
-        }
-      });
-    });
-  };
 
   const uploadPost = () => {
     open({
@@ -74,100 +29,21 @@ export const NewsUploadPage = () => {
       option: {
         type: 'CONFIRM',
         confirmEvent: () => {
-          post(postInfo);
+          // post(postInfo);
         },
       },
     });
   };
 
-  // 이미지 순서 변경시 로직
-  useEffect(() => {
-    setImageFiles([]);
-    images.forEach((image) => {
-      fetch(image)
-        .then((res) => res.blob())
-        .then((blob) => {
-          const file = new File([blob], 'image.jpg', { type: blob.type });
-          setImageFiles([...imageFiles, file]);
-        });
-    });
-  }, [images]);
-
   return (
-    <div className="flex flex-col gap-5">
-      <PeriodBox>
-        <PeriodPicker periodState={periodState} />
-      </PeriodBox>
-      <Category className="p-0 py-1">
-        <select
-          className="select w-full  text-gray-400"
-          name="category"
-          onChange={handleInputChange}
-        >
-          <option disabled selected>
-            카테고리 선택
-          </option>
-          {Object.entries(CATEGORY).map(([id, categoryName]) => (
-            <option value={id}>{categoryName}</option>
-          ))}
-        </select>
-      </Category>
-      <Title>
-        <Input
-          className="text-md w-full"
-          name="title"
-          value={postInfo.title}
-          onChange={handleInputChange}
-          placeholder="제목을 입력해주세요"
-        />
-      </Title>
-      <Summary>
-        <input
-          className="text-md w-full"
-          value={postInfo.description}
-          name="description"
-          onChange={handleInputChange}
-          placeholder="간단한 설명을 입력해주세요"
-        />
-      </Summary>
-      <Desc className="overflow-hidden p-0 [&>div]:w-full">
-        <Editor setDesc={setDesc} />
-      </Desc>
-      <FileBox>
-        <label className="flex cursor-pointer text-gray-400">
-          <input
-            multiple
-            type="file"
-            className="hidden"
-            accept="image/png, image/jpeg"
-            onChange={handleImages}
-          />
-          <FaCamera className="mr-2" />
-          이미지 첨부
-        </label>
-      </FileBox>
-      {images.length > 0 && images[0].length > 0 && (
-        <ImageList images={images} updateImages={setImages} />
-      )}
+    <Wrapper className="flex flex-col gap-5">
+      <PeriodInput />
+      <CategorySelector />
+      <Input.Title />
+      <Input.Summary />
+      <EditorSection />
+      <FileSection />
       <Button onClick={uploadPost} size="full" content="업로드" />
-    </div>
+    </Wrapper>
   );
 };
-
-const initialPostInfo = {
-  title: '',
-  description: '',
-  content: '',
-  category: undefined,
-  imageFiles: undefined,
-  startTime: '',
-  endTime: '',
-  shown: true,
-};
-
-const Title = Box;
-const Category = Box;
-const Summary = Box;
-const Desc = Box;
-const FileBox = Box;
-const PeriodBox = Box;

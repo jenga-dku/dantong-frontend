@@ -13,6 +13,7 @@ export default function ImageList({
   updateImages: React.Dispatch<React.SetStateAction<string[]>>;
 }) {
   const imageListRef = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
     imageListRef &&
       Sortable.create(imageListRef!.current!, {
