@@ -1,11 +1,13 @@
 import '@toast-ui/editor/dist/toastui-editor.css';
 import { useEffect, useState } from 'react';
-import { Box as Title } from '@/components/ui/Box';
-import { Box as Category } from '@/components/ui/Box';
-import { Box as Summary } from '@/components/ui/Box';
-import { Box as Desc } from '@/components/ui/Box';
-import { Box as FileBox } from '@/components/ui/Box';
-import { Box as PeriodBox } from '@/components/ui/Box';
+import {
+  Box as Title,
+  Box as Category,
+  Box as Summary,
+  Box as Desc,
+  Box as FileBox,
+  Box as PeriodBox,
+} from '@/components/ui/Box';
 import { Button } from '@components/ui/Button';
 import { FaCamera } from 'react-icons/fa6';
 import { useTopBarStore } from '@stores/topBar-stores';
@@ -27,53 +29,43 @@ export const NewsUploadPage = () => {
   const { open } = useModal();
   const { setIsBackButtonVisible, setIsNotificationButtonVisible } =
     useTopBarStore();
-  const [postInfo, setPostInfo] = useState<NewsUpload>({
-    title: '',
-    description: '',
-    content: '',
-    category: undefined,
-    imageFiles: undefined,
-    startTime: '',
-    endTime: '',
-    shown: true,
-  });
+  const [postInfo, setPostInfo] = useState<NewsUpload>(initialPostInfo);
   const periodState = useState<Period>({
     start: new Date(),
     end: new Date(),
   });
   const [period] = periodState;
+
   useEffect(() => {
     setIsBackButtonVisible(true);
     setIsNotificationButtonVisible(false);
   }, []);
 
   useEffect(() => {
-    setPostInfo((prev) => ({
-      ...prev,
+    setPostInfo({
+      ...postInfo,
       content: desc,
       imageFiles: imageFiles,
       startTime: `${getFormattedDate(period.start)}`,
       endTime: `${getFormattedDate(period.end)}`,
-    }));
+    });
   }, [desc, imageFiles, period]);
 
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
   ) => {
     const { name, value } = e.target;
-    setPostInfo((prev) => ({ ...prev, [name]: value }));
+    setPostInfo({ ...postInfo, [name]: value });
   };
 
   const handleImages = (e: React.ChangeEvent<HTMLInputElement>) => {
     setImages([]);
     const files = Array.from(e.target.files || []);
     files.forEach((f) => {
-      setImages((prev) => {
-        return [...prev, URL.createObjectURL(f)];
-      });
-      setImageFiles((prev) => {
-        if (prev !== null || prev !== undefined) {
-          return [...prev, f];
+      setImages([...images, URL.createObjectURL(f)]);
+      setImageFiles(() => {
+        if (imageFiles !== null || imageFiles !== undefined) {
+          return [...imageFiles, f];
         } else {
           return [f];
         }
@@ -102,7 +94,7 @@ export const NewsUploadPage = () => {
         .then((res) => res.blob())
         .then((blob) => {
           const file = new File([blob], 'image.jpg', { type: blob.type });
-          setImageFiles((prev) => [...prev, file]);
+          setImageFiles([...imageFiles, file]);
         });
     });
   }, [images]);
@@ -178,4 +170,15 @@ export const NewsUploadPage = () => {
       />
     </div>
   );
+};
+
+const initialPostInfo = {
+  title: '',
+  description: '',
+  content: '',
+  category: undefined,
+  imageFiles: undefined,
+  startTime: '',
+  endTime: '',
+  shown: true,
 };
