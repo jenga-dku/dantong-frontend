@@ -1,13 +1,15 @@
 import { Editor } from '@/components/Editor';
 import { Box } from '@/components/ui/Box';
-import { useState } from 'react';
+import { FormRegister } from '@/types/react-hook-form';
 
-export const EditorSection = () => {
-  const [desc, setDesc] = useState('');
-
+export const EditorSection = ({
+  register,
+}: {
+  register: Required<FormRegister>;
+}) => {
   return (
     <Box className="overflow-hidden p-0 [&>div]:w-full">
-      <Editor setDesc={setDesc} />
+      <Editor {...register} />
     </Box>
   );
 };

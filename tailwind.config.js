@@ -29,9 +29,33 @@ module.exports = {
         load: {
           '100%': { backgroundPosition: '-100% 0' },
         },
+        headShake: {
+          '0%': {
+            transform: 'translateX(0)',
+          },
+          '6.5%': {
+            transform: 'translateX(-6px) rotateY(-9deg)',
+          },
+
+          '18.5%': {
+            transform: 'translateX(5px) rotateY(7deg)',
+          },
+
+          '31.5%': {
+            transform: 'translateX(-3px) rotateY(-5deg)',
+          },
+
+          '43.5%': {
+            transform: 'translateX(2px) rotateY(3deg)',
+          },
+          '50%': {
+            transform: 'translateX(0)',
+          },
+        },
       },
       animation: {
         load: 'load 1s infinite',
+        headShake: 'headShake 1s',
       },
       backgroundSize: {
         '200%': '200% 100%',
@@ -55,6 +79,7 @@ module.exports = {
         mytheme: {
           ...require('daisyui/src/theming/themes')['light'],
           primary: '#308FFF',
+          error: '#407bbf',
           '.btn-primary.btn-outline:hover': {
             'color': 'white',
           },

@@ -1,13 +1,22 @@
 import { Box } from '@/components/ui/Box';
 import { CATEGORY } from '@/types/news-category';
+import { FormRegister } from '@/types/react-hook-form';
+import { cn } from '@/utils/cn';
 
-export const CategorySelector = () => {
+export const CategorySelector = ({
+  register: { register, formState },
+}: {
+  register: FormRegister;
+}) => {
   return (
     <Box className="p-0 py-1">
       <select
-        className="select w-full  text-gray-400"
+        className={cn(
+          'select w-full  text-gray-400',
+          formState.errors['category'] && 'text-error',
+        )}
+        {...register('category')}
         name="category"
-        // onChange={handleInputChange}
       >
         <option disabled selected>
           카테고리 선택

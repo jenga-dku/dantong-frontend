@@ -8,5 +8,4 @@ export type NewsUpload = {
   imageFiles?: File[];
   startTime: string;
   endTime: string;
-  shown: boolean;
 };

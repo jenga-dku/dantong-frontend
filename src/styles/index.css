@@ -6,9 +6,15 @@
   .tooltip-primary:before {
     @apply text-primary bg-slate-100;
   }
+  .editor-error .ProseMirror .placeholder {
+    @apply text-error;
+  }
 }
 
 @layer utilities {
+  .text-error {
+    @apply animate-headShake
+  }
   .clickable {
     @apply cursor-pointer transform active:scale-95 transition-transform;
   }

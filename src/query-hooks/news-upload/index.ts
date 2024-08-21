@@ -18,7 +18,7 @@ export const usePostNews = () => {
     onError: ({ response }: AxiosError<ErrorResponse>) =>
       open({
         title: '오류',
-        desc: response?.data.message[0],
+        desc: response?.data.message.join(''),
       }),
   });
 };
