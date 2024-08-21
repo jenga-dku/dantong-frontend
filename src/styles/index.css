@@ -23,6 +23,11 @@
   }
 }
 
+/* TOAST-UI-EDITOR */
+.toastui-editor-defaultUI * {
+  font-size: 1rem;
+}
+
 /* TOOLTIP */
 .tooltip-primary {
   --tooltip-color: #f1f5f9;
