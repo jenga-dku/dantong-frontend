@@ -20,7 +20,7 @@ export const TicketCarousel = ({ data }: { data: PostDetailResponse[] }) => {
       spaceBetween={20}
       pagination={{ type: 'bullets' }}
       modules={[Navigation, Pagination]}
-      className="swiper-carousel h-[180px] [&_.swiper-button-next::after]:h-[20px] [&_.swiper-button-next::after]:text-[20px] [&_.swiper-button-next::after]:font-bold [&_.swiper-button-prev::after]:h-[20px] [&_.swiper-button-prev::after]:text-[20px] [&_.swiper-button-prev::after]:font-bold "
+      className="ticket-carousel swiper-carousel h-[180px] [&_.swiper-button-next::after]:h-[20px] [&_.swiper-button-next::after]:text-[20px] [&_.swiper-button-next::after]:font-bold [&_.swiper-button-prev::after]:h-[20px] [&_.swiper-button-prev::after]:text-[20px] [&_.swiper-button-prev::after]:font-bold "
     >
       {data.map(
         (

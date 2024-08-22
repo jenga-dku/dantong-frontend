@@ -1,10 +1,10 @@
 import { Box } from '@/components/ui/Box';
-import HorizontalScrollBox from '@components/HorizontalScrollBox';
 import { SwiperSlide } from 'swiper/react';
+import { PostListSwiperSlide } from './PostItemList';
 
 export default function PostItemsSkeleton() {
   return (
-    <HorizontalScrollBox>
+    <PostListSwiperSlide>
       {Array.from({ length: 2 }).map((_, index) => (
         <SwiperSlide>
           <Box
@@ -16,6 +16,6 @@ export default function PostItemsSkeleton() {
           </Box>
         </SwiperSlide>
       ))}
-    </HorizontalScrollBox>
+    </PostListSwiperSlide>
   );
 }

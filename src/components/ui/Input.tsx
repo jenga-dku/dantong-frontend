@@ -1,6 +1,8 @@
-import { forwardRef, HTMLAttributes, ReactNode } from 'react';
+import { forwardRef, HTMLAttributes, LegacyRef, ReactNode } from 'react';
 import { cva, VariantProps } from 'class-variance-authority';
 import { cn } from '../../utils/cn';
+import { RegisterOptions } from 'react-hook-form';
+import { FormRegister } from '@/types/react-hook-form';
 
 export const LabelVariants = cva(`flex flex-col w-full rounded-lg p-3`, {
   variants: {
@@ -22,9 +24,14 @@ export const LabelVariants = cva(`flex flex-col w-full rounded-lg p-3`, {
 export const InputVariants = cva(
   `bg-white px-1 text-black focus:outline-none`,
   {
-    variants: {},
+    variants: {
+      error: {
+        default: '',
+        true: 'placeholder:text-error text-error',
+      },
+    },
     defaultVariants: {
-      variant: 'default',
+      error: 'default',
     },
   },
 );
@@ -54,31 +61,38 @@ export interface InputProps
   };
   name: string;
   inputContent?: string | ReactNode;
+  value?: string;
   placeholder?: string;
   outline?: boolean;
   shadow?: boolean;
   background?: string;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  ref?: React.LegacyRef<HTMLInputElement>;
+  register?: FormRegister;
+  rules?: RegisterOptions;
+  error?: boolean;
 }
 
 export const Input = forwardRef(
   (
     {
       label,
-      maxLength,
+      className,
       type = 'text',
       onChange = () => {},
       style,
-      name,
       inputContent,
       shadow,
       outline,
-      placeholder,
       background,
+      register,
+      rules,
       ...props
     }: InputProps,
-    ref: React.LegacyRef<HTMLInputElement>,
+    ref: LegacyRef<HTMLInputElement>,
   ) => {
+    const { register: registerInput, formState } = register || {};
+    const error = !!formState?.errors[props.name];
     return (
       <label
         className={cn(
@@ -89,14 +103,17 @@ export const Input = forwardRef(
       >
         <span className={cn(TextVariants(), style?.textStyle)}>{label}</span>
         <input
+          className={cn(
+            InputVariants({ error }),
+            style?.inputStyle,
+            className,
+            background,
+          )}
+          autoComplete="off"
           type={type}
           onChange={onChange}
-          className={cn(InputVariants(), style?.inputStyle, background)}
-          maxLength={maxLength}
-          name={name}
-          placeholder={placeholder}
-          autoComplete="off"
           ref={ref}
+          {...(registerInput && registerInput(props.name, rules))}
           {...props}
         />
         {inputContent}

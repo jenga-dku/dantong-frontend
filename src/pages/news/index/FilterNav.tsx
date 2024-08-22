@@ -7,8 +7,11 @@ export const FilterNav = () => {
   const [seachParams] = useSearchParams();
 
   return (
-    <div className="fixed top-[40px] z-50 ml-[-1.25rem] flex w-[400px] max-w-full justify-center bg-[#EBF4FF] pb-[2px] pt-2">
-      <Box className="h-[45px] w-[calc(100%-2.5rem)] max-w-full items-center justify-between gap-2 overflow-hidden py-3">
+    <div className="fixed top-[40px] z-[20] ml-[-1.25rem] flex w-[400px] max-w-full flex-col items-center bg-[#EBF4FF] pb-[2px] pt-2">
+      <div
+        style={{ width: '100%', height: 'calc(env(safe-area-inset-top)*0.6)' }}
+      />
+      <Box className="flex h-[45px] w-[calc(100%-2.5rem)] max-w-full items-center justify-between gap-2 overflow-hidden py-3">
         {/* <strong className="whitespace-nowrap">스윙</strong> */}
         {FilterNavDataList.map(({ name, id }) => (
           <label

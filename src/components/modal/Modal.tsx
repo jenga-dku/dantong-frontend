@@ -37,7 +37,7 @@ export const Modal = ({ title, desc, visible, option }: ModalState) => {
         )}
         <div className=" flex w-full flex-col gap-2">
           <h3 className="text-lg font-bold">{title}</h3>
-          <div className="flex w-full">{desc}</div>
+          <div className="flex w-full leading-[1.3]">{desc}</div>
         </div>
         <div className="modal-action flex w-full">
           {option?.type && 'CONFIRM_CANCEL' && (

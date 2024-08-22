@@ -6,13 +6,24 @@ import './styles.css';
 import moment from 'moment';
 import { setMinutes } from 'date-fns';
 import { Period } from '@src/types/period-picker/period';
+import { UseFormSetValue } from 'react-hook-form';
+import { useEffect } from 'react';
+import { getFormattedDate } from '@/utils/getFormattedDate';
 
 export const PeriodPicker = ({
   periodState: [period, setPeriod],
+  setValue,
 }: {
   periodState: [Period, React.Dispatch<React.SetStateAction<Period>>];
+  setValue?: UseFormSetValue<any>;
 }) => {
   const currentDate = new Date();
+
+  useEffect(() => {
+    setValue && setValue('startTime', getFormattedDate(period.start));
+    setValue && setValue('endTime', getFormattedDate(period.end));
+  }, [period]);
+
   return (
     <div className="flex items-center gap-3">
       <DatePicker
