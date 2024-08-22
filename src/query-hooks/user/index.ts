@@ -4,11 +4,10 @@ import { useAuthStore } from '@stores/auth-stores';
 import { ErrorResponse } from '@api/types';
 import { ModifiedUserInfo, UserInfoResponse } from '@api/user/types';
 import { AxiosError } from 'axios';
-import { getToken, removeToken } from '@utils/handleAuth';
+import { getToken } from '@utils/handleAuth';
 import { PostDetailResponse } from '@api/post/types';
 import { useModal } from '@/hooks/modal/useModal';
-import { useLocation, useNavigate } from 'react-router-dom';
-import useAuth from '@/hooks/useAuth';
+import { useNavigate } from 'react-router-dom';
 
 export const useGetUserInfo = () => {
   const { isLoggedIn } = useAuthStore();
@@ -56,9 +55,6 @@ export const usePatchUserInfo = () => {
 };
 
 export const useReissueToken = () => {
-  const { open } = useModal();
-  const { pathname } = useLocation();
-  const { logout } = useAuth();
   const { setIsTokenIssued } = useAuthStore();
 
   return useMutation({
@@ -68,18 +64,6 @@ export const useReissueToken = () => {
       localStorage.setItem('refreshToken', refreshToken);
       localStorage.setItem('tokenDate', JSON.stringify(new Date()));
       setIsTokenIssued(true);
-    },
-    onError: () => {
-      pathname !== '/login' &&
-        open({
-          title: '다시 로그인해주세요',
-          option: {
-            type: 'CONFIRM',
-            confirmEvent: () => {
-              logout();
-            },
-          },
-        });
     },
     onSettled: async () => {},
   });
