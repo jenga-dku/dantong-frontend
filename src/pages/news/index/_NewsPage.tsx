@@ -28,9 +28,9 @@ export const NewsPage = () => {
   }, [searchParams]);
 
   return (
-    <div className="gap- flex flex-col gap-5">
+    <div className="flex flex-col gap-5">
       <FilterNav />
-      <ul className="flex flex-col gap-6 pt-[55px]">
+      <ul className="flex flex-col gap-6 pt-[60px]">
         {postList?.map((data: PostDetailResponse) => (
           <PostItem key={data.postId} data={data} />
         ))}
