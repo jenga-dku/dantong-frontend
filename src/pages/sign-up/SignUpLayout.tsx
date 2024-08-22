@@ -13,7 +13,6 @@ export const SignUpLayout = ({
 
   return (
     <div
-      style={{ paddingTop: 'calc(2rem + env(safe-area-inset-top))' }}
       className={`pwa-layout grid h-full w-full gap-8 p-8 ${isInSuccessPage && 'gradientBackground'}`}
     >
       {children[step]}

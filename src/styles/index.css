@@ -23,10 +23,34 @@
   }
 }
 
+.toaster {
+  margin-top: calc(env(safe-area-inset-bottom) * 1.2);
+}
+
+.screen-width {
+  max-width: 430px;
+}
+
+.screen-width.filter-nav {
+  max-width: 100%;
+  width: 430px
+}
+
+@media all and (min-width:431px) {
+  .screen-width {
+    max-width: 400px;
+  }
+  .screen-width.filter-nav {
+    max-width: 100%;
+    width: 400px
+  }
+}
+
 /* TOAST-UI-EDITOR */
 .toastui-editor-defaultUI * {
   font-size: 1rem;
 }
+
 
 /* TOOLTIP */
 .tooltip-primary {

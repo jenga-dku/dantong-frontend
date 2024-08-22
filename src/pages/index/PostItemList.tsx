@@ -30,6 +30,9 @@ export const PostListSwiperSlide = ({ children }: { children: ReactNode }) => (
       380: {
         slidesPerView: 1.25,
       },
+      410: {
+        slidesPerView: 1.3,
+      },
     }}
     spaceBetween={10}
     className="swiperPerView"

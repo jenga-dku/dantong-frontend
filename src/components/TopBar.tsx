@@ -9,7 +9,7 @@ export const TopBar = () => {
 
   return (
     <>
-      <div className="fixed top-0 z-50 box-border flex w-full max-w-[400px] flex-col bg-[#EBF4FF] px-5 py-[5px] text-[#AFAFAF]">
+      <div className="screen-width fixed top-0 z-50 box-border flex w-full flex-col bg-[#EBF4FF] px-5 py-[5px] text-[#AFAFAF]">
         <div
           style={{
             width: '100%',

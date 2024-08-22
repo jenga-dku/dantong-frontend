@@ -7,7 +7,7 @@ export const FilterNav = () => {
   const [seachParams] = useSearchParams();
 
   return (
-    <div className="fixed top-[40px] z-[20] ml-[-1.25rem] flex w-[400px] max-w-full flex-col items-center bg-[#EBF4FF] pb-[2px] pt-2">
+    <div className="screen-width filter-nav fixed top-[40px] z-[20] ml-[-1.25rem] flex flex-col items-center bg-[#EBF4FF] pb-[2px] pt-2">
       <div
         style={{ width: '100%', height: 'calc(env(safe-area-inset-top)*0.6)' }}
       />

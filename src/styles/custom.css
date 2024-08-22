@@ -24,15 +24,20 @@ body {
 
 @media all and (display-mode: standalone) {
   .navBar {
-   height:calc(60px + env(safe-area-inset-bottom));
-   align-items: center;
-  }
-  .navBar button {
-    padding-bottom: env(safe-area-inset-bottom)
-  }
-  .pwa-layout {
-    padding-bottom: 75px;
-  }
+    height:calc(50px + env(safe-area-inset-bottom));
+    padding-top: 5px;
+    box-sizing: border-box;
+    align-items: center;
+   }
+   .navBar button {
+     padding-bottom: env(safe-area-inset-bottom)
+   }
+   .pwa-layout {
+     padding-bottom: 65px;
+   }
+   .layout-wrapper {
+    padding-bottom: calc(60px + env(safe-area-inset-bottom));
+   }
 }
 
 input[type='password']::placeholder {
@@ -72,6 +77,10 @@ input[type='password'] {
 
 .swiper {
   width: 100%;
+}
+
+.swiper.swiperPerView {
+  padding-bottom: 10px;
 }
 
 .ticket-carousel .swiper-pagination-bullets.swiper-pagination-horizontal {

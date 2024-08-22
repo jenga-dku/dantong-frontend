@@ -14,7 +14,7 @@ export const Nav = () => {
     link === 'settings' && userInfo.role.includes('ROLE_ADMIN');
 
   return (
-    <div className="navBar fixed bottom-0 z-50 box-border flex h-[55px] w-full max-w-[400px] rounded-t-[20px] bg-white shadow-[0_-2px_5px_1px_rgba(0,0,0,0.05)]">
+    <div className="screen-width navBar fixed bottom-0 z-50 box-border flex h-[55px] w-full rounded-t-[20px] bg-white shadow-[0_-2px_5px_1px_rgba(0,0,0,0.05)]">
       {NavButtonDataList.map(({ link, icon, name }) => (
         <div
           key={`nav-button-${link}`}

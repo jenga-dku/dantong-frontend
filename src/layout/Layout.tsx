@@ -12,7 +12,7 @@ import { useReissueToken } from '@/query-hooks/user';
 import { getTimeDifference } from '@/utils/getTimeDifference';
 
 export const LayoutVariants = cva(
-  `flex w-full flex-col overflow-auto bg-[#EBF4FF] px-5 pb-[60px] pt-[45px]`,
+  `layout-wrapper pb-[70px] flex w-full flex-col overflow-auto bg-[#EBF4FF] px-5 pt-[45px]`,
   {
     variants: {},
     defaultVariants: {
