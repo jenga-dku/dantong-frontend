@@ -1,7 +1,11 @@
 import { FilterCategory } from '@src/types/news-category';
 import { API } from '@api/api';
 import { PageParams } from '../types';
-import { PostDetailResponse, PostListResponse } from './types';
+import {
+  PostDeleteResponse,
+  PostDetailResponse,
+  PostListResponse,
+} from './types';
 
 export const Post = {
   async getInfinitePostList({
@@ -25,6 +29,10 @@ export const Post = {
   },
   async getPostDetail(id: number): Promise<PostDetailResponse> {
     const response = await API.get(`/post/${id}`);
+    return response.data;
+  },
+  async delete(id: number): Promise<PostDeleteResponse> {
+    const response = await API.delete(`/post/${id}`);
     return response.data;
   },
 };

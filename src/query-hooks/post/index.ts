@@ -1,10 +1,15 @@
 import {
   useInfiniteQuery,
+  useMutation,
   useQuery,
   useSuspenseQuery,
 } from '@tanstack/react-query';
 import { Post } from '@api/post';
 import { FilterCategory } from '@src/types/news-category';
+import { useModal } from '@/hooks/modal/useModal';
+import { useNavigate } from 'react-router-dom';
+import { AxiosError } from 'axios';
+import { ErrorResponse } from '@/api/types';
 
 export const useGetPostList = (category: string) =>
   useSuspenseQuery({
@@ -35,3 +40,20 @@ export const useGetPostDetail = (id: number) =>
     queryKey: ['postDetail'],
     gcTime: 0,
   });
+
+export const useDeletePost = () => {
+  const { open } = useModal();
+  const navigate = useNavigate();
+
+  return useMutation({
+    mutationFn: (postId: number) => Post.delete(postId),
+    onSuccess: () => {
+      navigate('/news');
+    },
+    onError: ({ response }: AxiosError<ErrorResponse>) =>
+      open({
+        title: '오류',
+        desc: response?.data.message.join(''),
+      }),
+  });
+};

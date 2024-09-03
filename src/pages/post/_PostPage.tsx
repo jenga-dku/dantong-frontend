@@ -27,6 +27,7 @@ export const PostPage = () => {
         <Box className={`h-fit flex-col overflow-hidden p-0`}>
           <Carousel data={post!.postFileResponse} />
           <PostHeader
+            id={postId}
             status={post!.status}
             title={post!.title}
             category={post!.category}

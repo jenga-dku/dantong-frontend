@@ -45,6 +45,14 @@ export type PostDetailResponse = {
   surveyId: number;
 };
 
+export type PostDeleteResponse = {
+  timestamp: string;
+  trackingId: string;
+  status: string;
+  code: string;
+  message: [];
+};
+
 export type FormSummaryResponse = {
   surveyId: number;
   title: string;
