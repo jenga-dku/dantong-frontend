@@ -15,7 +15,7 @@ export const Post = {
   }: PageParams & { category: FilterCategory }): Promise<PostDetailResponse[]> {
     const isCategoryViewAll = category.length === 0;
     const response = await API.get(
-      `/post/list${isCategoryViewAll ? '?' : `?category=${category}&`}page=${page}&size=${size}&sort=createdAt,desc`,
+      `/post/list${isCategoryViewAll ? '?' : `?category=${category}&`}page=${page}&size=${size}&sort=startDate,desc`,
     );
     const postList = (await response.data.content) as PostDetailResponse[];
     return postList;
@@ -23,7 +23,7 @@ export const Post = {
   async getPostList(category: string): Promise<PostListResponse> {
     const isCategoryViewAll = category.length === 0;
     const response = await API.get(
-      `/post/list${isCategoryViewAll ? '?' : `?category=${category}&`}sort=createdAt,desc`,
+      `/post/list${isCategoryViewAll ? '?' : `?category=${category}&`}sort=startDate,desc`,
     );
     return response.data;
   },
