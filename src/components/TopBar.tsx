@@ -30,7 +30,13 @@ export const TopBar = () => {
             <h1 className="font-SejongHospitalBold text-2xl">단통</h1>
           )}
           {isNotificationButtonVisible && (
-            <IoNotifications className="text-3xl text-[#AFAFAF]" />
+            <button
+              onClick={() => {
+                navigate('/notification');
+              }}
+            >
+              <IoNotifications className="text-3xl text-[#AFAFAF]" />
+            </button>
           )}
         </div>
       </div>
