@@ -16,7 +16,7 @@ export const AppliedEventSection = () => {
           appliedEventList === null ? (
             <EmptyTicket isLoggedIn={isLoggedIn} />
           ) : (
-            <TicketCarousel data={appliedEventList} />
+            <TicketCarousel data={appliedEventList.reverse()} />
           )
         ) : (
           <EmptyTicket isLoggedIn={isLoggedIn} />

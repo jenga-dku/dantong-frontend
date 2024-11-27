@@ -31,7 +31,7 @@ export const NotificationPage = () => {
           });
           onMessage(messaging, (payload) => {
             console.log(payload);
-            toast(payload!.notification!.body!);
+            toast(payload!.data!.body!);
           });
         })
         .catch((err) => {
