@@ -17,15 +17,11 @@ const messaging = firebase.messaging();
 
 messaging.onBackgroundMessage((payload) => {
     console.log("백그라운드 메시지입니다.", payload);
-
-	// customize notification
-	const notificationTitle = payload.notification.title;
+	const notificationTitle = payload.data.title;
 	const notificationOptions = {
-		body: payload.notification.body,
-		icon: payload.notification.image
-
+	  body: payload.data.body,
+	  icon: payload.data.image,
 	};
-
 	self.registration.showNotification(notificationTitle, notificationOptions);
 
 });
