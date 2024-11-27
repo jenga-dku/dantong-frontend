@@ -41,9 +41,11 @@ export const FormUploadPage = () => {
   const { mutate: createForm } = useCreateForm();
   const { open } = useModal();
 
-  const uploadForm = () => {
+  useEffect(() => {
     setFormUploadInfo((prev) => ({ ...prev, surveyItems: questionList }));
-    console.log(formUploadInfo);
+  }, [questionList]);
+
+  const uploadForm = () => {
     open({
       title: '폼 생성',
       desc: '폼을 생성하시겠습니까?',
