@@ -17,7 +17,7 @@ export const StartPage = () => {
         <Button
           content="시작하기"
           onClick={() => {
-            navigate('/sign-up/email');
+            navigate('/sign-up/dku');
           }}
         />
         <Link to="/login" className="text-center text-sm text-[#bbb] underline">

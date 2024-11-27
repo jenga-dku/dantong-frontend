@@ -1,3 +1,5 @@
+import { Major } from '@/types/major';
+
 export type SignUpInfo = {
   studentId: string;
   password: string;
@@ -14,4 +16,19 @@ export type Verification = {
 export type VerificationResponse = {
   studentId: string;
   signupToken: string;
+};
+
+export type DKULogin = {
+  dkuId: string;
+  dkuPassword: string;
+};
+
+export type DKULoginResponse = {
+  signupToken: string;
+  studentInfo: {
+    name: string;
+    studentId: string;
+    majorName: string;
+    departmentName: string;
+  };
 };

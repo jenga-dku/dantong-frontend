@@ -7,6 +7,7 @@ export const MajorSelect = ({
   activateNextInputIndex: () => void;
 }) => {
   const { signUpInfo, setSignUpInfo } = useSignUpInfoStore();
+
   return (
     <div
       className={`border-b-2 border-solid ${signUpInfo.major.length === 0 ? 'border-primary' : 'border-[#CAD4E0]'}`}
@@ -21,6 +22,7 @@ export const MajorSelect = ({
           setSignUpInfo({ ...signUpInfo, major: e.target.value });
           activateNextInputIndex();
         }}
+        defaultValue={signUpInfo.major}
       >
         <option disabled selected>
           전공 선택

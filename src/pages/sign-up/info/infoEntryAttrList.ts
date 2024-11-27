@@ -16,9 +16,9 @@ export const userInfoInputAttrList: userInfoInputAttr[] = [
     korName: '휴대폰번호',
     type: 'text',
   },
-  {
-    id: 'major',
-    korName: '전공',
-    type: 'select',
-  },
+  // {
+  //   id: 'major',
+  //   korName: '전공',
+  //   type: 'select',
+  // },
 ];

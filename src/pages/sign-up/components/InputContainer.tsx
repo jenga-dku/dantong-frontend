@@ -28,6 +28,8 @@ export const InputContainer = ({
   const inputContainerRef = useRef<HTMLDivElement>(null);
   const { signUpInfo, setSignUpInfo } = useSignUpInfoStore();
   const { activatedInputIndex } = useSignUpInfoStore();
+  const isEntryCompleted =
+    signUpInfo.name && signUpInfo.phoneNumber && signUpInfo.studentId;
 
   const isLastInputIndex =
     activatedInputIndex[containerId] === inputAttrList.length;
@@ -97,7 +99,9 @@ export const InputContainer = ({
             </>
           ))}
       </div>
-      {isLastInputIndex && <Button content="다음" onClick={onNext} />}
+      {isLastInputIndex && isEntryCompleted && (
+        <Button content="다음" onClick={onNext} />
+      )}
     </div>
   );
 };

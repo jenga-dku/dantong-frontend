@@ -1,7 +1,11 @@
 import { API } from '@api/api';
-import { SignUpInfo, VerificationResponse } from './types';
+import { DKULogin, SignUpInfo, VerificationResponse } from './types';
 
 export const SignUp = {
+  async verify(data: DKULogin) {
+    const response = await API.post('/user/verify', data);
+    return response.data;
+  },
   async postMail(studentId: string) {
     const response = await API.post('/user/email', { studentId: studentId });
     return response.data;

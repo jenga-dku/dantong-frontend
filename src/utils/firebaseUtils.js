@@ -27,7 +27,6 @@ export const issueFcmToken = async () => {
 			if (permission === "granted") {
 				console.log("알림 권한이 허용됨");
 				return token;
-				// FCM 메세지 처리
 			} else {
 				console.log("알림 권한 허용 안됨");
 			}
