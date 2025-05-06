@@ -4,7 +4,7 @@
 
 단통 프론트엔드 레포지토리입니다.
 
-🔗 Link : https://dantong.site/
+🔗 Link : https://dantong.vercel.app/
 
 <br/>
 
